@@ -1,10 +1,11 @@
 package com.codeoftheweb.salvo;
 
 import org.hibernate.annotations.GenericGenerator;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import java.util.List;
+
+import javax.persistence.*;
+//import java.util.HashSet;
+//import java.util.Set;
 
 @Entity
 public class Player {
@@ -12,7 +13,7 @@ public class Player {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
     @GenericGenerator(name = "native", strategy = "native")
-    private long id;
+    private Long id;
     private String firstName;
     private String lastName;
 
@@ -39,7 +40,12 @@ public class Player {
         this.lastName = lastName;
     }
 
+    public Long getId() {
+        return id;
+    }
+    public List getGames(GamePlayerRepository repositoryGamePlayer) {return repositoryGamePlayer.findByPlayer_Id(id);};
+
     public String toString() {
-        return firstName + " " + lastName;
+        return id + " " +firstName + " " + lastName;
     }
 }

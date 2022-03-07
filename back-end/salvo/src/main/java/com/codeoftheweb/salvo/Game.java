@@ -1,0 +1,50 @@
+package com.codeoftheweb.salvo;
+import org.hibernate.annotations.GenericGenerator;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import java.util.Date;
+import java.util.List;
+
+@Entity
+public class Game {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
+    @GenericGenerator(name = "native", strategy = "native")
+    private Long id;
+    private String gameName;
+    private Date creationGameDate;
+
+    public Game() { }
+
+    public Game(String name, Date creationGameDate ) {
+        this.gameName = name;
+        this.creationGameDate= creationGameDate;
+
+    }
+
+    public String getGameName() {
+        return gameName;
+    }
+    public void setGameName(String gameName) {
+        this.gameName = gameName;
+    }
+
+    public Date getGameDate() {
+        return creationGameDate;
+    }
+    public void setGameDate(String lastName) {
+        this.creationGameDate = creationGameDate;
+    }
+
+   public Long getId() {
+        return id;
+    }
+    public List getPlayers(GamePlayerRepository repositoryGamePlayer) {return  repositoryGamePlayer.findByGame_Id(id);} ;
+    public String toString() {
+        return id + " " + gameName + " " + creationGameDate ;
+    }
+
+
+}
