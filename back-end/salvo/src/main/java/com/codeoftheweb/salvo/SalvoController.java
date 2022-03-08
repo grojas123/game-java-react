@@ -17,11 +17,10 @@ public class SalvoController {
     private GameRepository gamesRepository;
     @RequestMapping("/games_ids")
     public List<String> getAllGamesIds() {
-    List allGames= gamesRepository.findAll();
         List<String> listTemp = new ArrayList<>();
-      for (Game game : gamesRepository.findAll()) {
-           listTemp.add(String.valueOf(game.getId()));
-       }
+            for (Game game : gamesRepository.findAll()) {
+                listTemp.add(String.valueOf(game.getId()));
+                }
     //log.info(String.valueOf(listTemp));
     return listTemp;
 }
