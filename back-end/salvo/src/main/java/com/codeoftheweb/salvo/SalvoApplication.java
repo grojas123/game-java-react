@@ -52,14 +52,14 @@ public class SalvoApplication {
                     Player Player01 = new Player("Jack", "Bauer");
                     Player Player02 = new Player("Kim", "Bassigner");
                     Player Player03 = new Player("Tony", "Almeida");
-                    Player Player04 = new Player("Tony", "Almeida");
+                    Player Player04 = new Player("Mia", "Rojas");
                     Player Player05 = new Player("Michelle", "Dessler");
                     repositoryPlayers.save(Player01);
                     repositoryPlayers.save(Player02);
                     repositoryPlayers.save(Player03);
                     repositoryPlayers.save(Player04);
                     repositoryPlayers.save(Player05);
-
+                    // Create and save Game and Player pairs in GamePlayer repository
                     GamePlayer Game01Player05 = new GamePlayer(Game01,Player05,game_player_date01);
                     repositoryGamePlayer.save(Game01Player05);
 
@@ -74,8 +74,9 @@ public class SalvoApplication {
 
                     GamePlayer Game04Player01 = new GamePlayer(Game04,Player01,game_player_date01);
                     repositoryGamePlayer.save(Game04Player01);
-
+                    log.info("Player05.getGames(repositoryGamePlayer)");
                     log.info(String.valueOf(Player05.getGames(repositoryGamePlayer)));
+                    log.info("Game01.getPlayers(repositoryGamePlayer)");
                     log.info(String.valueOf(Game01.getPlayers(repositoryGamePlayer)));
                     //Long id04 = Game04.getId();
                     //log.info(String.valueOf(id04));

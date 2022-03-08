@@ -38,7 +38,7 @@ public class Game {
         this.creationGameDate = creationGameDate;
     }
 
-   public Long getId() {
+    public Long getId() {
         return id;
     }
     public List getPlayers(GamePlayerRepository repositoryGamePlayer) {return  repositoryGamePlayer.findByGame_Id(id);} ;
