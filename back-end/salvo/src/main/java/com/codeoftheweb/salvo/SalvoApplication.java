@@ -49,11 +49,11 @@ public class SalvoApplication {
                     repositoryGames.save(Game04);
                     repositoryGames.save(Game05);
                     // Save Players
-                    Player Player01 = new Player("Jack", "Bauer");
-                    Player Player02 = new Player("Kim", "Bassigner");
-                    Player Player03 = new Player("Tony", "Almeida");
-                    Player Player04 = new Player("Mia", "Rojas");
-                    Player Player05 = new Player("Michelle", "Dessler");
+                    Player Player01 = new Player("Jack", "Bauer","jack@example.com");
+                    Player Player02 = new Player("Kim", "Bassigner","kim@example.com");
+                    Player Player03 = new Player("Tony", "Almeida","tony@example.com");
+                    Player Player04 = new Player("Mia", "Rojas","mia@example.com");
+                    Player Player05 = new Player("Michelle", "Dessler","michelle@example.com");
                     repositoryPlayers.save(Player01);
                     repositoryPlayers.save(Player02);
                     repositoryPlayers.save(Player03);

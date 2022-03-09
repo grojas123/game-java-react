@@ -16,13 +16,16 @@ public class Player {
     private Long id;
     private String firstName;
     private String lastName;
-
+    private String email;
     public Player() { }
 
-    public Player(String first, String last) {
+    public Player(String first, String last, String email) {
         this.firstName = first;
         this.lastName = last;
+        this.email=email;
     }
+
+
 
     public String getFirstName() {
         return firstName;
@@ -35,11 +38,11 @@ public class Player {
     public String getLastName() {
         return lastName;
     }
-
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
-
+    public String getEmail() {return email;}
+    public void setEmail(String email) {this.email = email;}
     public Long getId() {
         return id;
     }

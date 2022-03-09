@@ -16,12 +16,16 @@ public class SalvoController {
     @Autowired
     private GameRepository gamesRepository;
     @RequestMapping("/games_ids")
-    public List<String> getAllGamesIds() {
-        List<String> listTemp = new ArrayList<>();
+    public List<Long> getAllGamesIds() {
+        List<Long> listTemp = new ArrayList<>();
             for (Game game : gamesRepository.findAll()) {
-                listTemp.add(String.valueOf(game.getId()));
+                listTemp.add(game.getId());
                 }
     //log.info(String.valueOf(listTemp));
     return listTemp;
 }
+    @RequestMapping("/games")
+    public List<Game> getAllGames(){
+        return gamesRepository.findAll();
+    }
 }
