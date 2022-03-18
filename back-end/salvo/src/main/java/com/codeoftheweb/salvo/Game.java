@@ -1,9 +1,7 @@
 package com.codeoftheweb.salvo;
 import org.hibernate.annotations.GenericGenerator;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+
+import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
 
@@ -41,10 +39,10 @@ public class Game {
     public Long getId() {
         return id;
     }
+
     public List getPlayers(GamePlayerRepository repositoryGamePlayer) {return  repositoryGamePlayer.findByGame_Id(id);} ;
     public String toString() {
         return id + " " + gameName + " " + creationGameDate ;
     }
-
 
 }

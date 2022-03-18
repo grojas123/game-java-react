@@ -29,6 +29,7 @@ public class SalvoApplication {
    @Bean
     public CommandLineRunner
         initData(GameRepository repositoryGames,PlayerRepository repositoryPlayers,GamePlayerRepository repositoryGamePlayer) {
+
             Date game_creation_date01 = new Date();
             Date game_creation_date02= addHoursToJavaUtilDate(game_creation_date01,1);
             Date game_creation_date03= addHoursToJavaUtilDate(game_creation_date01,2);
@@ -60,24 +61,43 @@ public class SalvoApplication {
                     repositoryPlayers.save(Player04);
                     repositoryPlayers.save(Player05);
                     // Create and save Game and Player pairs in GamePlayer repository
-                    GamePlayer Game01Player05 = new GamePlayer(Game01,Player05,game_player_date01);
-                    repositoryGamePlayer.save(Game01Player05);
+                    GamePlayer Game01Player01 = new GamePlayer(Game01,Player01,game_player_date01);
+                    repositoryGamePlayer.save(Game01Player01);
 
-                    GamePlayer Game02Player02 = new GamePlayer(Game02,Player02,game_player_date01);
-                    repositoryGamePlayer.save(Game02Player02);
+                    GamePlayer Game01Player02 = new GamePlayer(Game01,Player02,game_player_date01);
+                    repositoryGamePlayer.save(Game01Player02);
 
                     GamePlayer Game01Player03 = new GamePlayer(Game01,Player03,game_player_date01);
                     repositoryGamePlayer.save(Game01Player03);
 
-                    GamePlayer Game02Player04 = new GamePlayer(Game02,Player01,game_player_date01);
-                    repositoryGamePlayer.save(Game02Player04);
+                    GamePlayer Game02Player01 = new GamePlayer(Game02,Player01,game_player_date01);
+                    repositoryGamePlayer.save(Game02Player01);
 
+                    GamePlayer Game02Player02 = new GamePlayer(Game02,Player02,game_player_date01);
+                    repositoryGamePlayer.save(Game02Player02);
+
+                    GamePlayer Game02Player03 = new GamePlayer(Game02,Player03,game_player_date01);
+                    repositoryGamePlayer.save(Game02Player03);
+
+                    GamePlayer Game03Player01 = new GamePlayer(Game03,Player01,game_player_date01);
+                    repositoryGamePlayer.save(Game03Player01);
+
+                    GamePlayer Game03Player02 = new GamePlayer(Game03,Player02,game_player_date01);
+                    repositoryGamePlayer.save(Game03Player02);
+
+                    GamePlayer Game03Player03 = new GamePlayer(Game03,Player03,game_player_date01);
+                    repositoryGamePlayer.save(Game03Player03);
+
+                    GamePlayer Game03Player04 = new GamePlayer(Game03,Player04,game_player_date01);
+                    repositoryGamePlayer.save(Game03Player04);
                     GamePlayer Game04Player01 = new GamePlayer(Game04,Player01,game_player_date01);
                     repositoryGamePlayer.save(Game04Player01);
-                    log.info("Player05.getGames(repositoryGamePlayer)");
-                    log.info(String.valueOf(Player05.getGames(repositoryGamePlayer)));
-                    log.info("Game01.getPlayers(repositoryGamePlayer)");
-                    log.info(String.valueOf(Game01.getPlayers(repositoryGamePlayer)));
+                    //log.info("Player05.getGames(repositoryGamePlayer)");
+                    //log.info(String.valueOf(Player02.getGames(repositoryGamePlayer)));
+                    //log.info("Game01.getPlayers(repositoryGamePlayer)");
+                    //log.info(String.valueOf(Game01.getPlayers(repositoryGamePlayer)));
+                   //log.info("repositoryGamePlayer.findAll()");
+                    //log.info(String.valueOf(repositoryGamePlayer.findAll()));
                     //Long id04 = Game04.getId();
                     //log.info(String.valueOf(id04));
                     //log.info("GamePlayer found with findAll():");

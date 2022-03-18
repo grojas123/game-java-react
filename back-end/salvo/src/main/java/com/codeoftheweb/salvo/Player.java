@@ -1,6 +1,8 @@
 package com.codeoftheweb.salvo;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.springframework.beans.factory.annotation.Autowired;
+
 import java.util.List;
 
 import javax.persistence.*;
@@ -9,7 +11,6 @@ import javax.persistence.*;
 
 @Entity
 public class Player {
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
     @GenericGenerator(name = "native", strategy = "native")
@@ -17,6 +18,7 @@ public class Player {
     private String firstName;
     private String lastName;
     private String email;
+
     public Player() { }
 
     public Player(String first, String last, String email) {
@@ -46,9 +48,14 @@ public class Player {
     public Long getId() {
         return id;
     }
-    public List getGames(GamePlayerRepository repositoryGamePlayer) {return repositoryGamePlayer.findByPlayer_Id(id);};
+
+    public List getGames(GamePlayerRepository repositoryGamePlayer) {
+
+        return repositoryGamePlayer.findByPlayer_Id(id);};
 
     public String toString() {
         return id + " " +firstName + " " + lastName;
     }
+
+
 }

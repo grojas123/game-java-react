@@ -39,15 +39,21 @@ public class GamePlayer {
     public Game getGame() {
         return game;
     }
+    public Long getGameId() {return game.getId();}
 
     public void setPlayer(Player player) {this.player=player;};
     public Player getPlayer() {
         return player;
     }
+    public Long getPlayerId() {return player.getId();};
     //public Long getId() { return id;  }
+    public Game removeGame() {return game=null;};
 
     public String toString() {
         return game + " " + player+" "+ gamePlayerCreationDate;
     }
 
+    public Long getId() {
+        return id;
+    }
 }
