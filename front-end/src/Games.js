@@ -17,17 +17,22 @@ export const Games = () => {
     useEffect(()=>getGames(),[])
 
     if (typeof(listGames) !== 'undefined') {
-        return (
-            <ul>
-                {Object.keys(listGames).forEach(key => { listGames[key].map(gameplayer_temp =>
-                    console.log(gameplayer_temp.game_id,' ',gameplayer_temp.creation_date, ' ',
-                                gameplayer_temp.player.id,' ',gameplayer_temp.player.firstName,' ',
-                                gameplayer_temp.player.lastName,' ',gameplayer_temp.player.email))}
-                )
-                }
-            </ul>
-        );}
+          const keysList=Object.keys(listGames);
+          //console.log(keysList);
+           return (
+               <ul>
+                  {keysList.map(key => (listGames[key].map(gameplayer_temp =>
+                      (<li className="d-flex justify-content-start" key={unique_id()}>
+                          {gameplayer_temp.game_id} {" "}
+                          {gameplayer_temp.creation_date} {" "}
+                          {gameplayer_temp.player.id} {" "}
+                          {gameplayer_temp.player.firstName} {" "}
+                          {gameplayer_temp.player.lastName} {" "}
+                          {gameplayer_temp.player.email} </li>))))}
+               </ul>)
+
+
     return (
         <ul> </ul>
     );
-}
+}}
