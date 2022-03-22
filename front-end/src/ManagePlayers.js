@@ -3,7 +3,8 @@ import React, { useState, useEffect }  from 'react';
 import axios from 'axios';
 import { useFormik } from 'formik';
 // PlayersBackend must be change in Sync with the value in package.json for now is set for the Backend and Frontend will be in the localhost ."http://localhost:8080"
-var PlayersBackend='/players';
+var PlayersBackend='/rest/players';
+
 function unique_id() {
                       return uuidv4()
                      }
@@ -29,8 +30,8 @@ const validate = values => {
                                 }
                             return errors;
                             };
-function AddPlayer(firstName,lastName,useStateUsers) {
-    const data = { firstName: firstName, lastName: lastName };
+function AddPlayer(firstName,lastName,email,useStateUsers) {
+    const data = { firstName: firstName, lastName: lastName,email: email };
     let listPlayers=useStateUsers.useStateUsers[0];
     let setPlayers=useStateUsers.useStateUsers[1];
     axios.post(PlayersBackend, data)
@@ -43,11 +44,11 @@ function AddPlayer(firstName,lastName,useStateUsers) {
 
 const AddPlayerForm=(useStateUsers) =>{
      const formik = useFormik(
-        {initialValues:{firstName: '',lastName: '',},
+        {initialValues:{firstName: '',lastName: '',email: ''},
             validate,
             onSubmit: (values,{resetForm}) =>
                                                     {
-                                                        AddPlayer(values.firstName,values.lastName,useStateUsers);
+                                                        AddPlayer(values.firstName,values.lastName,values.email,useStateUsers);
                                                         resetForm();
                                                     },
                                                                                 }
@@ -70,6 +71,14 @@ const AddPlayerForm=(useStateUsers) =>{
                 onChange={formik.handleChange}
                 value={formik.values.lastName}
             />
+            <label htmlFor="email">email</label>
+            <input
+                id="email"
+                name="email"
+                type="text"
+                onChange={formik.handleChange}
+                value={formik.values.email}
+            />
 
             <button type="submit">Add user</button>
         </form>
@@ -91,12 +100,12 @@ export const Users = () => {
             <ul>
                 <AddPlayerForm useStateUsers={[listPlayers, setPlayers]}/>
                 {listPlayers.map(player =>
-                    (<li className="d-flex justify-content-start" key={unique_id()}> {player.firstName} {player.lastName} </li>)
+                    (<li className="d-flex justify-content-start" key={unique_id()}> {player.firstName} {player.lastName} {player.email} </li>)
                                  )
                 }
             </ul>
         );}
     return (
         <ul> </ul>
-           );
-}
+           );}
+
