@@ -69,5 +69,12 @@ public class SalvoController {
 
         return listTemp03;
     }
+    private ShipRepository shipRepository;
+    @RequestMapping("/ships")
+    public List<Ship> getAllShips(){
+        return shipRepository.findAll();
+
+    };
+
 
 }

@@ -53,6 +53,7 @@ public class Player {
 
         return repositoryGamePlayer.findByPlayer_Id(id);};
 
+
     public String toString() {
         return id + " " +firstName + " " + lastName;
     }

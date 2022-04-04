@@ -4,6 +4,7 @@ import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 public class Game {
@@ -15,6 +16,9 @@ public class Game {
     private Date creationGameDate;
 
     public Game() { }
+
+    @OneToMany(mappedBy = "game")
+    private List<GamePlayer> gamePlayers;
 
     public Game(String name, Date creationGameDate ) {
         this.gameName = name;
