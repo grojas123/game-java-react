@@ -35,6 +35,7 @@ public class SalvoApplication {
 
             Date game_player_date01 = new Date();
             Date game_player_date02 = new Date();
+            Date game_player_date03 = new Date();
                 return (args) -> {
                     // Save Games
                     Game Game01 = new Game("Game 01", game_creation_date01);
@@ -194,7 +195,8 @@ public class SalvoApplication {
                     repositoryShips.save(Ship09);
                     repositoryShips.save(Ship10);
                     //GamePlayer Game01Player02Ship02 = new GamePlayer(Game01,Player02,game_player_date01,Ship02);
-                   // repositoryGamePlayer.save(Game01Player02Ship02);
+
+                    //System.out.println(String.valueOf(repositoryGamePlayer.findAll()));
 
                    // GamePlayer Game01Player03Ship03 = new GamePlayer(Game01,Player03,game_player_date01,Ship03);
                    // repositoryGamePlayer.save(Game01Player03Ship03);

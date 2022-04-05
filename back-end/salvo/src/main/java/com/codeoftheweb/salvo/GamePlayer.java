@@ -1,4 +1,5 @@
 package com.codeoftheweb.salvo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -22,8 +23,8 @@ public class GamePlayer {
     @JoinColumn(name="GAME_ID")
     private Game game;
 
-
     @OneToMany(mappedBy = "gamePlayer")
+   // @JsonIgnore
     private List<Ship> ships;
 
     private Date gamePlayerCreationDate;

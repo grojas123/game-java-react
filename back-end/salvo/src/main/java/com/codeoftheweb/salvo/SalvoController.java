@@ -7,6 +7,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -51,11 +52,12 @@ public class SalvoController {
         return dto;
     }
     @RequestMapping("/games01")
-    public List<Game> getAllGames(){
-        return gamesRepository.findAll();
-    }
+   public List<Game> getAllGames(){
+       return gamesRepository.findAll();
+   }
     @Autowired
     private GamePlayerRepository gamePlayerRepository;
+
     @RequestMapping("/games")
     public Object getAllGamePlayersPerGame(){
         List listTemp= gamePlayerRepository.findAll()
@@ -69,12 +71,17 @@ public class SalvoController {
 
         return listTemp03;
     }
+    @Autowired
     private ShipRepository shipRepository;
     @RequestMapping("/ships")
     public List<Ship> getAllShips(){
-        return shipRepository.findAll();
 
+        return shipRepository.findAll();
     };
 
+    @RequestMapping("/gameplayer/{gameplayerid}")
+    public List<GamePlayer> getGamePlayer(@PathVariable Long gameplayerid) {
+        return gamePlayerRepository.findByid(gameplayerid);
+    };
 
 }
