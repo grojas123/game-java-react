@@ -71,15 +71,14 @@ public class SalvoController {
 
         return listTemp03;
     }
-    @Autowired
-    private ShipRepository shipRepository;
-    @RequestMapping("/ships")
-    public List<Ship> getAllShips(){
+    //@Autowired
+    //private ShipRepository shipRepository;
+   // @RequestMapping("/ships")
+    //public List<Ship> getAllShips(){
+     //   return shipRepository.findAll();
+    //};
 
-        return shipRepository.findAll();
-    };
-
-    @RequestMapping("/gameplayer/{gameplayerid}")
+   @RequestMapping("/game_view/{gameplayerid}")
     public List<GamePlayer> getGamePlayer(@PathVariable Long gameplayerid) {
         return gamePlayerRepository.findByid(gameplayerid);
     };

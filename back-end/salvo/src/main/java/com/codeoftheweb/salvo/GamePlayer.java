@@ -24,7 +24,6 @@ public class GamePlayer {
     private Game game;
 
     @OneToMany(mappedBy = "gamePlayer")
-   // @JsonIgnore
     private List<Ship> ships;
 
     private Date gamePlayerCreationDate;
