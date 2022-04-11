@@ -31,8 +31,4 @@ export const Games = () => {
                           {gameplayer_temp.player.email} </li>))))}
                </ul>)
 
-
-    return (
-        <ul> </ul>
-    );
 }}

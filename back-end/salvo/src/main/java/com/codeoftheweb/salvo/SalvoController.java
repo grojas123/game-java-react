@@ -78,8 +78,9 @@ public class SalvoController {
      //   return shipRepository.findAll();
     //};
 
-   @RequestMapping("/game_view/{gameid}")
+   @RequestMapping("/gameview/{gameid}")
     public List<GamePlayer> getGamePlayer(@PathVariable Long gameid) {
+       //System.out.println(gamePlayerRepository.findByGame_Id(gameid));
         return gamePlayerRepository.findByGame_Id(gameid);
     };
 

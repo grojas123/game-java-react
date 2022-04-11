@@ -23,7 +23,6 @@ public class Ship {
     private List<String> locations = new ArrayList<>();
 
     @ManyToOne
-
     @JoinColumn(name = "game_player")
     private GamePlayer gamePlayer;
 
