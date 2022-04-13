@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import axios from "axios";
-var GameViewBackend='/api/gameview/1'
+import {useParams} from "react-router";
+var GameViewBackend='/api/gameview/'
 const tableGridTemplate= [
 
     {
@@ -151,6 +152,20 @@ const tableGridTemplate= [
         tenCol:0
     }
 ]
+var boardplayers=[
+    {
+        playerNumber:0,
+        firstName:'',
+        lastName:'',
+        email:''
+},
+    {
+        playerNumber:1,
+        firstName:'',
+        lastName:'',
+        email:''
+    }
+]
 
 const tableGameHeader= [
     {
@@ -169,36 +184,37 @@ const tableGameHeader= [
     }
 ]
 const GetCoordinatesCell=(cellLocation)=>{
+    let colum='';
     switch (cellLocation.substring(0,2)) {
        case '01':
-            var colum='oneCol'
+            colum='oneCol'
             break
         case '02':
-            var colum='twoCol'
+            colum='twoCol'
             break
         case '03':
-            var colum='thirdCol'
+            colum='thirdCol'
             break
         case '04':
-            var colum='fourthCol'
+            colum='fourthCol'
             break
         case '05':
-            var colum='fiveCol'
+            colum='fiveCol'
             break
         case '06':
-            var colum='sixCol'
+            colum='sixCol'
             break
         case '07':
-            var colum='sevenCol'
+            colum='sevenCol'
             break
         case '08':
-            var colum='eighthCol'
+            colum='eighthCol'
             break
         case '09':
-            var colum='nineCol'
+            colum='nineCol'
             break
         case '10':
-            var colum='tenCol'
+            colum='tenCol'
             break
         default:console.log('Invalid col coordinate')
     }
@@ -219,46 +235,61 @@ const GetMapShips=(GameViewGameShips) =>{
     return tableMapWithShips;
 }
 export const GameViewPlayer = () => {
+    var { gameid,gamernumber } = useParams();
+    var otherplayernumber=1-gamernumber;
+    const GameViewBackendWithGameid=GameViewBackend+gameid;
     const [playerGameView, setPlayerGameView] = useState({});
-    const getGameView = () =>axios.get(GameViewBackend)
+    const getGameView = () =>axios.get(GameViewBackendWithGameid)
         .then((response)=>
             {
-                //console.log(response);
-                const GameViewGameShipsGamer01=response.data[1].ships;
-                let mapShipsTemp=GetMapShips(GameViewGameShipsGamer01);
+                const GameViewGameShipsGamer=response.data[gamernumber].ships;
+                boardplayers[gamernumber].email =response.data[gamernumber].player.email;
+                boardplayers[otherplayernumber].email =response.data[otherplayernumber].player.email;
+                //console.log(boardplayers[gamernumber].email,' ',boardplayers[otherplayernumber].email)
+                let mapShipsTemp=GetMapShips(GameViewGameShipsGamer);
                 setPlayerGameView(mapShipsTemp);
-                //console.log(playerGameView)
+
             }
         )
-    useEffect(()=>getGameView(),[])
-   // console.log(playerGameView)
-    var tableGridNoShips=tableGridTemplate;
+
+    useEffect(()=>getGameView(),tableGridTemplate)
+
+    let tableGridNoShips=tableGridTemplate;
     return (
+
         <div>
-            <table className="table">
+
+            <table className="table table-borderless table-responsive ">
+                <caption className='caption-top fw-bolder' >Player board {boardplayers[gamernumber].email} vs {boardplayers[otherplayernumber].email} </caption>
+
                 <thead>
+
                 {tableGameHeader.map(header => {
                     return (
-                        <tr key={header.id}><th>{header.firstCol}</th><th>{header.secondCol}</th><th>{header.thirdCol}</th><th>{header.fourthCol}</th>
+                           <tr key={header.id}>
+
+                            <th>{header.firstCol}</th><th>{header.secondCol}</th><th>{header.thirdCol}</th><th>{header.fourthCol}</th>
                             <th>{header.fifthCol}</th><th>{header.sixCol}</th><th>{header.sevenCol}</th><th>{header.eighthCol}</th><th>{header.nineCol}</th>
-                            <th>{header.tenCol}</th><th>{header.elevenCol}</th></tr>
+                            <th>{header.tenCol}</th><th>{header.elevenCol}</th>
+                            </tr>
+
                     )
                 })}
                 </thead>
                 <tbody>
                 {tableGridNoShips.map(gridRow => {
                 return(
-                    <tr key={gridRow.row_id}> <td>{gridRow.rowLetter} </td>
-                        <td key='oneCol' className={gridRow.oneCol==1 ? 'bg-primary' : ''} >{gridRow.oneCol} </td>
-                        <td key='twoCol' className={gridRow.twoCol==1 ? 'bg-primary' : ''} >{gridRow.twoCol}</td>
-                        <td key='thirdCol' className={gridRow.thirdCol==1 ? 'bg-primary' : ''}>{gridRow.thirdCol}</td>
-                        <td key='fourthCol' className={gridRow.fourthCol==1 ? 'bg-primary' : ''}>{gridRow.fourthCol}</td>
-                        <td key='fiveCol' className={gridRow.fiveCol==1 ? 'bg-primary' : ''}>{gridRow.fiveCol}</td>
-                        <td key='sixCol' className={gridRow.sixCol==1 ? 'bg-primary' : ''}>{gridRow.sixCol}</td>
-                        <td key='sevenCol' className={gridRow.sevenCol==1 ? 'bg-primary' : ''}>{gridRow.sevenCol}</td>
-                        <td key='eighthCol' className={gridRow.eighthCol==1 ? 'bg-primary' : ''}>{gridRow.eighthCol}</td>
-                        <td key='nineCol' className={gridRow.nineCol==1 ? 'bg-primary' : ''}>{gridRow.nineCol}</td>
-                        <td key='tenCol' className={gridRow.tenCol==1 ? 'bg-primary' : ''}>{gridRow.tenCol}</td> </tr>)
+                    <tr key={gridRow.row_id}><td>{gridRow.rowLetter}</td>
+                        <td key='oneCol' className={gridRow.oneCol===1 ? 'bg-primary':''}>{gridRow.oneCol} </td>
+                        <td key='twoCol' className={gridRow.twoCol===1 ? 'bg-primary':''}>{gridRow.twoCol}</td>
+                        <td key='thirdCol' className={gridRow.thirdCol===1 ? 'bg-primary':''}>{gridRow.thirdCol}</td>
+                        <td key='fourthCol' className={gridRow.fourthCol===1 ? 'bg-primary':''}>{gridRow.fourthCol}</td>
+                        <td key='fiveCol' className={gridRow.fiveCol===1 ? 'bg-primary':''}>{gridRow.fiveCol}</td>
+                        <td key='sixCol' className={gridRow.sixCol===1 ? 'bg-primary':''}>{gridRow.sixCol}</td>
+                        <td key='sevenCol' className={gridRow.sevenCol===1 ? 'bg-primary':''}>{gridRow.sevenCol}</td>
+                        <td key='eighthCol' className={gridRow.eighthCol===1 ? 'bg-primary':''}>{gridRow.eighthCol}</td>
+                        <td key='nineCol' className={gridRow.nineCol===1 ? 'bg-primary':''}>{gridRow.nineCol}</td>
+                        <td key='tenCol' className={gridRow.tenCol===1 ? 'bg-primary':''}>{gridRow.tenCol}</td></tr>)
                 })}
                 </tbody>
             </table>

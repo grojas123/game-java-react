@@ -301,7 +301,6 @@ public class SalvoApplication {
                     Ship19Battleship.setGamePlayer(Game02Player04gamePlayer04ListOfShips);
                     Ship20Destroyer.setGamePlayer(Game02Player04gamePlayer04ListOfShips);
 
-
                     repositoryShips.save(Ship16AircraftCarrier);
                     repositoryShips.save(Ship17Submarine);
                     repositoryShips.save(Ship18Cruiser);
