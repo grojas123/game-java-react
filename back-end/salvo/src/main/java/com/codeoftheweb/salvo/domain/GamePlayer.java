@@ -1,5 +1,4 @@
-package com.codeoftheweb.salvo;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+package com.codeoftheweb.salvo.domain;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;

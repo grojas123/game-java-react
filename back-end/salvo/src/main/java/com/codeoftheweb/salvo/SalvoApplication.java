@@ -1,6 +1,14 @@
 package com.codeoftheweb.salvo;
 //import org.slf4j.Logger;
 //import org.slf4j.LoggerFactory;
+import com.codeoftheweb.salvo.domain.Game;
+import com.codeoftheweb.salvo.domain.GamePlayer;
+import com.codeoftheweb.salvo.domain.Player;
+import com.codeoftheweb.salvo.domain.Ship;
+import com.codeoftheweb.salvo.repositories.GamePlayerRepository;
+import com.codeoftheweb.salvo.repositories.GameRepository;
+import com.codeoftheweb.salvo.repositories.PlayerRepository;
+import com.codeoftheweb.salvo.repositories.ShipRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -14,29 +22,31 @@ public class SalvoApplication {
 
    // private static final Logger log = LoggerFactory.getLogger(SalvoApplication.class);
 
-    public Date addHoursToJavaUtilDate(Date date, int hours) {
+    /*public Date addHoursToJavaUtilDate(Date date, int hours) {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(date);
         calendar.add(Calendar.HOUR_OF_DAY, hours);
         return calendar.getTime();
-    }
+    }*/
     public static void main(String[] args) {
         SpringApplication.run(SalvoApplication.class, args);
     }
    @Bean
     public CommandLineRunner
-        initData(GameRepository repositoryGames,PlayerRepository repositoryPlayers,GamePlayerRepository repositoryGamePlayer,ShipRepository repositoryShips) {
+        initData(GameRepository repositoryGames, PlayerRepository repositoryPlayers, GamePlayerRepository repositoryGamePlayer, ShipRepository repositoryShips) {
 
-            Date game_creation_date01 = new Date();
-            Date game_creation_date02= addHoursToJavaUtilDate(game_creation_date01,1);
+          /*  Date game_creation_date01 = new Date();
+            Date game_creation_date02= addHoursToJavaUtilDate(game_creation_date01,1);*/
             //Date game_creation_date03= addHoursToJavaUtilDate(game_creation_date01,2);
             //Date game_creation_date04= addHoursToJavaUtilDate(game_creation_date01,3);
             //Date game_creation_date05= addHoursToJavaUtilDate(game_creation_date01,4);
 
 
                 return (args) -> {
+
+                    //___________________________________ Comments in block to test
                     // Save Games
-                    Game Game01 = new Game("Game 01", game_creation_date01);
+                    /*Game Game01 = new Game("Game 01", game_creation_date01);
                     Game Game02 = new Game("Game 02", game_creation_date02);
                     repositoryGames.save(Game01);
                     repositoryGames.save(Game02);
@@ -305,7 +315,8 @@ public class SalvoApplication {
                     repositoryShips.save(Ship17Submarine);
                     repositoryShips.save(Ship18Cruiser);
                     repositoryShips.save(Ship19Battleship);
-                    repositoryShips.save(Ship20Destroyer);
+                    repositoryShips.save(Ship20Destroyer);*/
+                    // End of comment to test
                     //System.out.println(String.valueOf(repositoryGamePlayer.findAll()));
 
                    // GamePlayer Game01Player03Ship03 = new GamePlayer(Game01,Player03,game_player_date01,Ship03);

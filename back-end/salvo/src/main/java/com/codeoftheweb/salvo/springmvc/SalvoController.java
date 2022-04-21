@@ -1,5 +1,9 @@
-package com.codeoftheweb.salvo;
+package com.codeoftheweb.salvo.springmvc;
 //import com.fasterxml.jackson.annotation.JsonRootName;
+import com.codeoftheweb.salvo.domain.Game;
+import com.codeoftheweb.salvo.domain.GamePlayer;
+import com.codeoftheweb.salvo.repositories.GamePlayerRepository;
+import com.codeoftheweb.salvo.repositories.GameRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -13,10 +17,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.*;
 import java.util.stream.Collectors;
-import java.util.stream.Collectors.*;
-import java.util.stream.Stream;
-
-import static java.util.stream.Collectors.*;
 
 @RestController
 @RequestMapping("/api")

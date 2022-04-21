@@ -1,10 +1,10 @@
-package com.codeoftheweb.salvo;
+package com.codeoftheweb.salvo.domain;
+import com.codeoftheweb.salvo.repositories.GamePlayerRepository;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 public class Game {

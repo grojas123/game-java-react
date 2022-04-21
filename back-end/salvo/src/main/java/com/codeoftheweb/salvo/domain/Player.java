@@ -1,7 +1,7 @@
-package com.codeoftheweb.salvo;
+package com.codeoftheweb.salvo.domain;
 
+import com.codeoftheweb.salvo.repositories.GamePlayerRepository;
 import org.hibernate.annotations.GenericGenerator;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
