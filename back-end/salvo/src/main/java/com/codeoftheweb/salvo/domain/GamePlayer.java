@@ -25,14 +25,17 @@ public class GamePlayer {
     @OneToMany(mappedBy = "gamePlayer")
     private List<Ship> ships;
 
+    @OneToMany(mappedBy = "gamePlayer")
+    private List<Salvo> salvoes;
     private Date gamePlayerCreationDate;
 
     public GamePlayer() { }
-    public GamePlayer(Game game, Player player,Date gamePlayerCreationDate, List<Ship> ships) {
+    public GamePlayer(Game game, Player player,Date gamePlayerCreationDate, List<Ship> ships,List<Salvo> salvoes) {
         this.game = game;
         this.player = player;
         this.gamePlayerCreationDate=gamePlayerCreationDate;
         this.ships=ships;
+        this.salvoes=salvoes;
 
     }
 
