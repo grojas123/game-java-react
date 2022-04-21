@@ -14,6 +14,8 @@ public class Ship {
     @GenericGenerator(name = "native", strategy = "native")
     private Long id;
     private String shipType;
+
+
     public Ship() {
 
     }

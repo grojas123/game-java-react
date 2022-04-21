@@ -33,6 +33,7 @@ public class GamePlayer {
         this.player = player;
         this.gamePlayerCreationDate=gamePlayerCreationDate;
         this.ships=ships;
+
     }
 
        public Date getGamePlayerCreationDate() {
