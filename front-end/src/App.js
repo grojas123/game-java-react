@@ -2,7 +2,7 @@
 import './App.css';
 import {Users} from './ManagePlayers'
 import {Games} from './Games'
-import {GameViewPlayer} from './GameView'
+import {GameBoard} from './GameView'
 import { Routes,Route } from 'react-router';
 
 function App() {
@@ -11,7 +11,7 @@ function App() {
         <Routes>
             <Route path="/" element ={<Users/>}/>
             <Route path="/games" element ={<Games/>}/>
-            <Route path="/gameview/:gameid/:gamernumber" element={<GameViewPlayer/>}/>
+            <Route path="/gameboard/:gameid/:gamernumber" element={<GameBoard/>}/>
         </Routes>
     </div>
   );

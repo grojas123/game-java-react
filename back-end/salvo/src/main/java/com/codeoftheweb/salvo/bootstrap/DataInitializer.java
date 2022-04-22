@@ -140,6 +140,7 @@ public class DataInitializer implements CommandLineRunner {
         GamePlayer Game01Player01Player01ListOfShipsPlayer01ListSalvoes = new GamePlayer(Game01,Player01,gamePlayer01Date,Player01ListShipsGame01,Player01ListSalvoesOnGame01);
         // To set the GamePlayer for the salvoes
         repositoryGamePlayer.save(Game01Player01Player01ListOfShipsPlayer01ListSalvoes);
+
         Salvo01.setGamePlayer(Game01Player01Player01ListOfShipsPlayer01ListSalvoes);
         repositorySalvoes.save(Salvo01);
 
