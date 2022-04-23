@@ -1,10 +1,7 @@
 package com.codeoftheweb.salvo.bootstrap;
 
 import com.codeoftheweb.salvo.domain.*;
-import com.codeoftheweb.salvo.repositories.GamePlayerRepository;
-import com.codeoftheweb.salvo.repositories.GameRepository;
-import com.codeoftheweb.salvo.repositories.PlayerRepository;
-import com.codeoftheweb.salvo.repositories.ShipRepository;
+import com.codeoftheweb.salvo.repositories.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -57,32 +54,33 @@ public class DataInitializer implements CommandLineRunner {
 
 
         // Create the list of Locations of the Ships
+
         List<String> locationShip01Destroyer = new ArrayList<>();
-        locationShip01Destroyer.add("0109");
-        locationShip01Destroyer.add("0209");
+        locationShip01Destroyer.add("010901");
+        locationShip01Destroyer.add("020901");
 
         List<String> locationShip02Battleship = new ArrayList<>();
-        locationShip02Battleship.add("0509");
-        locationShip02Battleship.add("0609");
-        locationShip02Battleship.add("0709");
-        locationShip02Battleship.add("0809");
+        locationShip02Battleship.add("050901");
+        locationShip02Battleship.add("060901");
+        locationShip02Battleship.add("070901");
+        locationShip02Battleship.add("080901");
 
         List<String> locationShip03AircraftCarrier = new ArrayList<>();
-        locationShip03AircraftCarrier.add("0301");
-        locationShip03AircraftCarrier.add("0302");
-        locationShip03AircraftCarrier.add("0303");
-        locationShip03AircraftCarrier.add("0304");
-        locationShip03AircraftCarrier.add("0305");
+        locationShip03AircraftCarrier.add("030101");
+        locationShip03AircraftCarrier.add("030201");
+        locationShip03AircraftCarrier.add("030301");
+        locationShip03AircraftCarrier.add("030401");
+        locationShip03AircraftCarrier.add("030501");
 
         List<String> locationShip04Submarine = new ArrayList<>();
-        locationShip04Submarine.add("0701");
-        locationShip04Submarine.add("0702");
-        locationShip04Submarine.add("0703");
+        locationShip04Submarine.add("070101");
+        locationShip04Submarine.add("070201");
+        locationShip04Submarine.add("070301");
 
         List<String> locationShip05Cruiser = new ArrayList<>();
-        locationShip05Cruiser.add("0904");
-        locationShip05Cruiser.add("0905");
-        locationShip05Cruiser.add("0906");
+        locationShip05Cruiser.add("090401");
+        locationShip05Cruiser.add("090501");
+        locationShip05Cruiser.add("090601");
         // Create the Ships with the locations for Player01
         Ship Ship01Destroyer= new Ship("Destroyer",locationShip01Destroyer);
         Ship Ship02Battleship= new Ship("Battleship",locationShip02Battleship);
@@ -137,6 +135,30 @@ public class DataInitializer implements CommandLineRunner {
         repositorySalvoes.save(Salvo05);
         Player01ListSalvoesOnGame01.add(Salvo05);
 
+        List<String> locationSalvo06_01 = new ArrayList<>();
+        locationSalvo06_01.add("0110");
+        Salvo Salvo06_01= new Salvo("Normal",locationSalvo06_01);
+        repositorySalvoes.save(Salvo06_01);
+        Player01ListSalvoesOnGame01.add(Salvo06_01);
+
+        List<String> locationSalvo06_02 = new ArrayList<>();
+        locationSalvo06_02.add("0210");
+        Salvo Salvo06_02= new Salvo("Normal",locationSalvo06_02);
+        repositorySalvoes.save(Salvo06_02);
+        Player01ListSalvoesOnGame01.add(Salvo06_02);
+
+        List<String> locationSalvo06_03 = new ArrayList<>();
+        locationSalvo06_03.add("0310");
+        Salvo Salvo06_03= new Salvo("Normal",locationSalvo06_03);
+        repositorySalvoes.save(Salvo06_03);
+        Player01ListSalvoesOnGame01.add(Salvo06_03);
+
+        List<String> locationSalvo06_04 = new ArrayList<>();
+        locationSalvo06_04.add("0410");
+        Salvo Salvo06_04= new Salvo("Normal",locationSalvo06_04);
+        repositorySalvoes.save(Salvo06_04);
+        Player01ListSalvoesOnGame01.add(Salvo06_04);
+
         GamePlayer Game01Player01Player01ListOfShipsPlayer01ListSalvoes = new GamePlayer(Game01,Player01,gamePlayer01Date,Player01ListShipsGame01,Player01ListSalvoesOnGame01);
         // To set the GamePlayer for the salvoes
         repositoryGamePlayer.save(Game01Player01Player01ListOfShipsPlayer01ListSalvoes);
@@ -156,6 +178,18 @@ public class DataInitializer implements CommandLineRunner {
         Salvo05.setGamePlayer(Game01Player01Player01ListOfShipsPlayer01ListSalvoes);
         repositorySalvoes.save(Salvo05);
 
+        Salvo06_01.setGamePlayer(Game01Player01Player01ListOfShipsPlayer01ListSalvoes);
+        repositorySalvoes.save(Salvo06_01);
+
+        Salvo06_02.setGamePlayer(Game01Player01Player01ListOfShipsPlayer01ListSalvoes);
+        repositorySalvoes.save(Salvo06_02);
+
+        Salvo06_03.setGamePlayer(Game01Player01Player01ListOfShipsPlayer01ListSalvoes);
+        repositorySalvoes.save(Salvo06_03);
+
+        Salvo06_04.setGamePlayer(Game01Player01Player01ListOfShipsPlayer01ListSalvoes);
+        repositorySalvoes.save(Salvo06_04);
+
         // Set the game player row with the ship
         Ship01Destroyer.setGamePlayer(Game01Player01Player01ListOfShipsPlayer01ListSalvoes);
         Ship02Battleship.setGamePlayer(Game01Player01Player01ListOfShipsPlayer01ListSalvoes);
@@ -168,35 +202,37 @@ public class DataInitializer implements CommandLineRunner {
         repositoryShips.save(Ship04Submarine);
         repositoryShips.save(Ship05Cruiser);
 
+
+
         // To Create the Ships with Player02ListShipsGame01
 
         List<String> locationShip06Battleship = new ArrayList<>();
-        locationShip06Battleship.add("0110");
-        locationShip06Battleship.add("0210");
-        locationShip06Battleship.add("0310");
-        locationShip06Battleship.add("0410");
+        locationShip06Battleship.add("011001");
+        locationShip06Battleship.add("021001");
+        locationShip06Battleship.add("031001");
+        locationShip06Battleship.add("041001");
 
         List<String> locationShip07Submarine = new ArrayList<>();
-        locationShip07Submarine.add("0506");
-        locationShip07Submarine.add("0606");
-        locationShip07Submarine.add("0706");
+        locationShip07Submarine.add("050601");
+        locationShip07Submarine.add("060601");
+        locationShip07Submarine.add("070601");
 
         List<String> locationShip08Cruiser = new ArrayList<>();
-        locationShip08Cruiser.add("1005");
-        locationShip08Cruiser.add("1006");
-        locationShip08Cruiser.add("1007");
+        locationShip08Cruiser.add("100501");
+        locationShip08Cruiser.add("100601");
+        locationShip08Cruiser.add("100701");
 
         List<String> locationShip09Submarine = new ArrayList<>();
-        locationShip09Submarine.add("0102");
-        locationShip09Submarine.add("0103");
-        locationShip09Submarine.add("0104");
+        locationShip09Submarine.add("010201");
+        locationShip09Submarine.add("010301");
+        locationShip09Submarine.add("010401");
 
         List<String> locationShip10AircraftCarrier = new ArrayList<>();
-        locationShip10AircraftCarrier.add("0501");
-        locationShip10AircraftCarrier.add("0601");
-        locationShip10AircraftCarrier.add("0701");
-        locationShip10AircraftCarrier.add("0801");
-        locationShip10AircraftCarrier.add("0901");
+        locationShip10AircraftCarrier.add("050101");
+        locationShip10AircraftCarrier.add("060101");
+        locationShip10AircraftCarrier.add("070101");
+        locationShip10AircraftCarrier.add("080101");
+        locationShip10AircraftCarrier.add("090101");
 
         // Create the Ships with the locations
         Ship Ship06Battleship= new Ship("Battleship",locationShip06Battleship);
@@ -242,7 +278,7 @@ public class DataInitializer implements CommandLineRunner {
         Player02ListSalvoesOnGame01.add(Salvo08);
 
         List<String> locationSalvo09 = new ArrayList<>();
-        locationSalvo09.add("0803");
+        locationSalvo09.add("0702");
         Salvo Salvo09= new Salvo("Normal",locationSalvo09);
         repositorySalvoes.save(Salvo09);
         Player02ListSalvoesOnGame01.add(Salvo09);
@@ -252,6 +288,36 @@ public class DataInitializer implements CommandLineRunner {
         Salvo Salvo10= new Salvo("Normal",locationSalvo10);
         repositorySalvoes.save(Salvo10);
         Player02ListSalvoesOnGame01.add(Salvo10);
+
+        List<String> locationSalvo10_01 = new ArrayList<>();
+        locationSalvo10_01.add("0803");
+        Salvo Salvo10_01= new Salvo("Normal",locationSalvo10_01);
+        repositorySalvoes.save(Salvo10_01);
+        Player02ListSalvoesOnGame01.add(Salvo10_01);
+
+        List<String> locationSalvo10_02 = new ArrayList<>();
+        locationSalvo10_02.add("0301");
+        Salvo Salvo10_02= new Salvo("Normal",locationSalvo10_02);
+        repositorySalvoes.save(Salvo10_02);
+        Player02ListSalvoesOnGame01.add(Salvo10_02);
+
+        List<String> locationSalvo10_03 = new ArrayList<>();
+        locationSalvo10_03.add("0302");
+        Salvo Salvo10_03= new Salvo("Normal",locationSalvo10_03);
+        repositorySalvoes.save(Salvo10_03);
+        Player02ListSalvoesOnGame01.add(Salvo10_03);
+
+        List<String> locationSalvo10_04 = new ArrayList<>();
+        locationSalvo10_04.add("0303");
+        Salvo Salvo10_04= new Salvo("Normal",locationSalvo10_04);
+        repositorySalvoes.save(Salvo10_04);
+        Player02ListSalvoesOnGame01.add(Salvo10_04);
+
+        List<String> locationSalvo10_05 = new ArrayList<>();
+        locationSalvo10_05.add("0305");
+        Salvo Salvo10_05= new Salvo("Normal",locationSalvo10_05);
+        repositorySalvoes.save(Salvo10_05);
+        Player02ListSalvoesOnGame01.add(Salvo10_05);
 
         Date gamePlayer02Date = new Date();
 
@@ -273,6 +339,21 @@ public class DataInitializer implements CommandLineRunner {
         Salvo10.setGamePlayer(Game01Player02Player02ListOfShipsPlayer02ListSalvoes);
         repositorySalvoes.save(Salvo10);
 
+        Salvo10_01.setGamePlayer(Game01Player02Player02ListOfShipsPlayer02ListSalvoes);
+        repositorySalvoes.save(Salvo10_01);
+
+        Salvo10_02.setGamePlayer(Game01Player02Player02ListOfShipsPlayer02ListSalvoes);
+        repositorySalvoes.save(Salvo10_02);
+
+        Salvo10_03.setGamePlayer(Game01Player02Player02ListOfShipsPlayer02ListSalvoes);
+        repositorySalvoes.save(Salvo10_03);
+
+        Salvo10_04.setGamePlayer(Game01Player02Player02ListOfShipsPlayer02ListSalvoes);
+        repositorySalvoes.save(Salvo10_04);
+
+        Salvo10_05.setGamePlayer(Game01Player02Player02ListOfShipsPlayer02ListSalvoes);
+        repositorySalvoes.save(Salvo10_05);
+
         // Set the game player row with the ship
         Ship06Battleship.setGamePlayer(Game01Player02Player02ListOfShipsPlayer02ListSalvoes);
         Ship07Submarine.setGamePlayer(Game01Player02Player02ListOfShipsPlayer02ListSalvoes);
@@ -284,36 +365,41 @@ public class DataInitializer implements CommandLineRunner {
         repositoryShips.save(Ship08Cruiser);
         repositoryShips.save(Ship09Submarine);
         repositoryShips.save(Ship10AircraftCarrier);
+
+        UpdateShipsSalvos updateShipsSalvosGame01Player01Player01ListOfShipsPlayer01ListSalvoes= new UpdateShipsSalvos(Game01Player01Player01ListOfShipsPlayer01ListSalvoes,Game01Player02Player02ListOfShipsPlayer02ListSalvoes);
+        updateShipsSalvosGame01Player01Player01ListOfShipsPlayer01ListSalvoes.UpdateSalvosAdversary();
+        //UpdateShipsSalvos updateShipsSalvosGame01Player02Player02ListOfShipsPlayer02ListSalvoes= new UpdateShipsSalvos(Game01Player02Player02ListOfShipsPlayer02ListSalvoes,Game01Player01Player01ListOfShipsPlayer01ListSalvoes);
+        //updateShipsSalvosGame01Player02Player02ListOfShipsPlayer02ListSalvoes.ProcessSalvos();
         //______________________________________________________________________________________________________________
         // To create Ships for Player03 in Game02 with Player03ListOfShips
         // Create and Locate the Ships
         List<String> locationShip11Submarine = new ArrayList<>();
-        locationShip11Submarine.add("0309");
-        locationShip11Submarine.add("0409");
-        locationShip11Submarine.add("0509");
+        locationShip11Submarine.add("030901");
+        locationShip11Submarine.add("040901");
+        locationShip11Submarine.add("050901");
 
         List<String> locationShip12AircraftCarrier = new ArrayList<>();
-        locationShip12AircraftCarrier.add("0506");
-        locationShip12AircraftCarrier.add("0606");
-        locationShip12AircraftCarrier.add("0706");
-        locationShip12AircraftCarrier.add("0806");
-        locationShip12AircraftCarrier.add("0906");
+        locationShip12AircraftCarrier.add("050601");
+        locationShip12AircraftCarrier.add("060601");
+        locationShip12AircraftCarrier.add("070601");
+        locationShip12AircraftCarrier.add("080601");
+        locationShip12AircraftCarrier.add("090601");
 
 
         List<String> locationShip13BattleShip = new ArrayList<>();
-        locationShip13BattleShip.add("0304");
-        locationShip13BattleShip.add("0404");
-        locationShip13BattleShip.add("0504");
-        locationShip13BattleShip.add("0604");
+        locationShip13BattleShip.add("030401");
+        locationShip13BattleShip.add("040401");
+        locationShip13BattleShip.add("050401");
+        locationShip13BattleShip.add("060401");
 
         List<String> locationShip14Carrier = new ArrayList<>();
-        locationShip14Carrier.add("0802");
-        locationShip14Carrier.add("0902");
-        locationShip14Carrier.add("1002");
+        locationShip14Carrier.add("080201");
+        locationShip14Carrier.add("090201");
+        locationShip14Carrier.add("100201");
 
         List<String> locationShip15Destroyer = new ArrayList<>();
-        locationShip15Destroyer.add("0101");
-        locationShip15Destroyer.add("0201");
+        locationShip15Destroyer.add("010101");
+        locationShip15Destroyer.add("020101");
 
         Ship Ship11Submarine= new Ship("Submarine",locationShip11Submarine);
         Ship Ship12AircraftCarrier= new Ship("Aircraft Carrier",locationShip12AircraftCarrier);
@@ -369,6 +455,11 @@ public class DataInitializer implements CommandLineRunner {
         repositorySalvoes.save(Salvo15);
         Player03ListSalvoesOnGame02.add(Salvo15);
 
+        List<String> locationSalvo15_01 = new ArrayList<>();
+        locationSalvo15_01.add("1004");
+        Salvo Salvo15_01= new Salvo("Normal",locationSalvo15_01);
+        repositorySalvoes.save(Salvo15_01);
+        Player03ListSalvoesOnGame02.add(Salvo15_01);
 
         GamePlayer Game02Player03gamePlayer03ListOfShipsPlayer03ListSalvoes= new GamePlayer(Game02,Player03,gamePlayer03Date,Player03ListShipsGame02,Player03ListSalvoesOnGame02);
         repositoryGamePlayer.save(Game02Player03gamePlayer03ListOfShipsPlayer03ListSalvoes);
@@ -388,6 +479,9 @@ public class DataInitializer implements CommandLineRunner {
         Salvo15.setGamePlayer(Game02Player03gamePlayer03ListOfShipsPlayer03ListSalvoes);
         repositorySalvoes.save(Salvo15);
 
+        Salvo15_01.setGamePlayer(Game02Player03gamePlayer03ListOfShipsPlayer03ListSalvoes);
+        repositorySalvoes.save(Salvo15_01);
+        //_________________________________________________________________________________________________
         Ship11Submarine.setGamePlayer(Game02Player03gamePlayer03ListOfShipsPlayer03ListSalvoes);
         Ship12AircraftCarrier.setGamePlayer(Game02Player03gamePlayer03ListOfShipsPlayer03ListSalvoes);
         Ship13BattleShip.setGamePlayer(Game02Player03gamePlayer03ListOfShipsPlayer03ListSalvoes);
@@ -402,31 +496,31 @@ public class DataInitializer implements CommandLineRunner {
         // To create Player04ListOfShipsIOnGame02
         // Create and Locate the Ships
         List<String> locationShip16AircraftCarrier = new ArrayList<>();
-        locationShip16AircraftCarrier.add("0106");
-        locationShip16AircraftCarrier.add("0107");
-        locationShip16AircraftCarrier.add("0108");
-        locationShip16AircraftCarrier.add("0109");
-        locationShip16AircraftCarrier.add("0110");
+        locationShip16AircraftCarrier.add("010601");
+        locationShip16AircraftCarrier.add("010701");
+        locationShip16AircraftCarrier.add("010801");
+        locationShip16AircraftCarrier.add("010901");
+        locationShip16AircraftCarrier.add("011001");
 
         List<String> locationShip17Submarine = new ArrayList<>();
-        locationShip17Submarine.add("0707");
-        locationShip17Submarine.add("0708");
-        locationShip17Submarine.add("0709");
+        locationShip17Submarine.add("070701");
+        locationShip17Submarine.add("070801");
+        locationShip17Submarine.add("070901");
 
         List<String> locationShip18Cruiser = new ArrayList<>();
-        locationShip18Cruiser.add("0702");
-        locationShip18Cruiser.add("0703");
-        locationShip18Cruiser.add("0704");
+        locationShip18Cruiser.add("070201");
+        locationShip18Cruiser.add("070301");
+        locationShip18Cruiser.add("070401");
 
         List<String> locationShip19Battleship = new ArrayList<>();
-        locationShip19Battleship.add("0402");
-        locationShip19Battleship.add("0403");
-        locationShip19Battleship.add("0404");
-        locationShip19Battleship.add("0405");
+        locationShip19Battleship.add("040201");
+        locationShip19Battleship.add("040301");
+        locationShip19Battleship.add("040401");
+        locationShip19Battleship.add("040501");
 
         List<String> locationShip20Destroyer = new ArrayList<>();
-        locationShip20Destroyer.add("1005");
-        locationShip20Destroyer.add("1006");
+        locationShip20Destroyer.add("100501");
+        locationShip20Destroyer.add("100601");
 
         Ship Ship16AircraftCarrier= new Ship("Aircraft Carrier",locationShip16AircraftCarrier);
         Ship Ship17Submarine= new Ship("Submarine",locationShip17Submarine);
@@ -478,6 +572,13 @@ public class DataInitializer implements CommandLineRunner {
         Salvo Salvo20= new Salvo("Normal",locationSalvo20);
         repositorySalvoes.save(Salvo20);
         Player04ListSalvoesOnGame02.add(Salvo20);
+
+
+        List<String> locationSalvo20_01 = new ArrayList<>();
+        locationSalvo20_01.add("1010");
+        Salvo Salvo20_01= new Salvo("Normal",locationSalvo20_01);
+        repositorySalvoes.save(Salvo20_01);
+        Player04ListSalvoesOnGame02.add(Salvo20_01);
 
         GamePlayer Game02Player04Player04ListOfShipsPlayer04ListSalvoes= new GamePlayer(Game02,Player04,gamePlayer04Date,Player04ListOfShipsIOnGame02 ,Player04ListSalvoesOnGame02);
         repositoryGamePlayer.save(Game02Player04Player04ListOfShipsPlayer04ListSalvoes);
