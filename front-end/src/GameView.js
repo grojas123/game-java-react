@@ -333,7 +333,7 @@ const tableGameHeader= [
         elevenCol:10
     }
 ]
-const GetCoordinatesCell=(cellLocation)=>{
+const GetCoordinatesStatusCell=(cellLocation)=>{
     let colum='';
     switch (cellLocation.substring(0,2)) {
        case '01':
@@ -369,15 +369,20 @@ const GetCoordinatesCell=(cellLocation)=>{
         default:console.log('Invalid col coordinate')
     }
     const row=parseInt(cellLocation.substring(2,4));
-    return [row,colum]
+    const status=parseInt(cellLocation.substring(5,6));
+    console.log(status);
+    return [row,colum,status]
 }
 const GetMapShips=(GameViewGameShips) =>{
     let tableMapWithShips= tableGridTemplateShips;
+
+
     GameViewGameShips.map(
         ship=>{ ship.locations.map(cellLocation=> {
-                var pointCoordinates= GetCoordinatesCell(cellLocation)
+                var pointCoordinates= GetCoordinatesStatusCell(cellLocation)
                 var row=pointCoordinates[0];
                 var column=pointCoordinates[1];
+
                 tableMapWithShips[row-1][column]=1;
             }
             )
@@ -460,7 +465,7 @@ const GetMapSalvoes=(GameViewGameShips) =>{
     let tableMapWithSalvoes= tableGridTemplateSalvoes;
     GameViewGameShips.map(
         ship=>{ ship.locations.map(cellLocation=> {
-                var pointCoordinates= GetCoordinatesCell(cellLocation)
+                var pointCoordinates= GetCoordinatesStatusCell(cellLocation)
                 var row=pointCoordinates[0];
                 var column=pointCoordinates[1];
                 tableMapWithSalvoes[row-1][column]=2;

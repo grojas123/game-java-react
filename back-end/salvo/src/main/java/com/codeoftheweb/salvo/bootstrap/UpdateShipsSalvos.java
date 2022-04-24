@@ -6,15 +6,15 @@ import com.codeoftheweb.salvo.domain.Salvo;
 import com.codeoftheweb.salvo.domain.Ship;
 import com.codeoftheweb.salvo.repositories.ShipRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 public class UpdateShipsSalvos {
     public GamePlayer gamePlayer00;
     public GamePlayer gamePlayer01;
+    public ShipRepository shipRepository;
 
-    @Autowired
-    ShipRepository shipRepository;
     public GamePlayer getGamePlayer00() {
         return gamePlayer00;
     }
@@ -31,9 +31,18 @@ public class UpdateShipsSalvos {
         this.gamePlayer01 = gamePlayer01;
     }
 
-    public UpdateShipsSalvos(GamePlayer gamePlayer00, GamePlayer gamePlayer01) {
+    public UpdateShipsSalvos(GamePlayer gamePlayer00, GamePlayer gamePlayer01,ShipRepository shipRepository) {
         this.gamePlayer00 = gamePlayer00;
         this.gamePlayer01 = gamePlayer01;
+        this.shipRepository=shipRepository;
+    }
+
+    public ShipRepository getShipRepository() {
+        return shipRepository;
+    }
+
+    public void setShipRepository(ShipRepository shipRepository) {
+        this.shipRepository = shipRepository;
     }
 
     public void UpdateSalvosAdversary(){
@@ -45,8 +54,8 @@ public class UpdateShipsSalvos {
         List<Ship> Player02Ships=gamePlayer01.getShips();
         List<Salvo> Player02Salvoes=gamePlayer01.getSalvoes();
 
-        System.out.println("Player01 to update Salvoes ");
-        System.out.println(Player01.getEmail());
+
+        // Check the Player01 Salvoes  with the Player02 Ships
         Player01Salvoes.forEach(salvoPlayer01 -> {
             String Player01SalvoOneCell=salvoPlayer01.getLocations().get(0);
 
@@ -54,44 +63,56 @@ public class UpdateShipsSalvos {
                             ship->
                     {
                         List<String> Player02ShipCellList =ship.getLocations();
-                        //System.out.println(ship);
-                        //System.out.println(Player02ShipCellList);
                         Integer indexOneCellShip=0;
                         Player02ShipCellList.get(indexOneCellShip);
                         for (final String Player02ShipOneCell :Player02ShipCellList){
 
                             if (Player02ShipOneCell.substring(0,4).equals(Player01SalvoOneCell.substring(0,4)))
                             {
-                                //System.out.println(Player02ShipOneCell.substring(0,4));
-                                //System.out.println(Player01SalvoOneCell);
-                                System.out.println("Hit");
+                                System.out.println("Hit a Cell");
                                 String cellHitValueTemp=Player02ShipOneCell.substring(0,4)+"02";
-                                System.out.println(cellHitValueTemp);
-                                //System.out.println(Player02ShipCellList.get(indexOneCellShip);
+                                //System.out.println(cellHitValueTemp);
                                 Player02ShipCellList.set(indexOneCellShip,cellHitValueTemp);
 
                             }
                             indexOneCellShip=indexOneCellShip+1;
                         }
-                            System.out.println(Player02ShipCellList);
+                            //System.out.println(Player02ShipCellList);
+                            ship.setLocations(Player02ShipCellList);
+                            shipRepository.save(ship);
                     }
                                 );
         });
-        //System.out.println("Player02Salvoes Hits");
-        //System.out.println(Player02.getEmail());
+
+        //------------------------------------------------
         Player02Salvoes.forEach(salvoPlayer02 -> {
-            String Player02SalvoCell=salvoPlayer02.getLocations().get(0);
-            Player01Ships.forEach(ship->{
-                List<String> Player01ShipCellList =ship.getLocations();
-                Player01ShipCellList.forEach(Player01ShipCell->
-                {
-                    if (Player01ShipCell.substring(0,4).equals(Player02SalvoCell.substring(0,4))) {
-                        //System.out.println(Player01ShipCell.substring(0,4));
-                        //System.out.println(Player02SalvoCell);
-                        //System.out.println("Hit");
+            String Player02SalvoOneCell=salvoPlayer02.getLocations().get(0);
+
+            Player01Ships.forEach(
+                    ship->
+                    {
+                        List<String> Player01ShipCellList =ship.getLocations();
+                        Integer indexOneCellShip=0;
+                        Player01ShipCellList.get(indexOneCellShip);
+                        for (final String Player01ShipOneCell :Player01ShipCellList){
+
+                            if (Player01ShipOneCell.substring(0,4).equals(Player02SalvoOneCell.substring(0,4)))
+                            {
+                                System.out.println("Hit a cell");
+                                String cellHitValueTemp=Player01ShipOneCell.substring(0,4)+"02";
+                                Player01ShipCellList.set(indexOneCellShip,cellHitValueTemp);
+
+                            }
+                            indexOneCellShip=indexOneCellShip+1;
+                        }
+                        //System.out.println(Player01ShipCellList);
+                        ship.setLocations(Player01ShipCellList);
+                        shipRepository.save(ship);
                     }
-                });});
+            );
         });
+
+
 
     }
 }
