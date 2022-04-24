@@ -45,32 +45,50 @@ public class UpdateShipsSalvos {
         List<Ship> Player02Ships=gamePlayer01.getShips();
         List<Salvo> Player02Salvoes=gamePlayer01.getSalvoes();
 
-        System.out.println("Player01Salvoes Hits");
+        System.out.println("Player01 to update Salvoes ");
         System.out.println(Player01.getEmail());
         Player01Salvoes.forEach(salvoPlayer01 -> {
-            String Player01SalvoLocation=salvoPlayer01.getLocations().get(0);
+            String Player01SalvoOneCell=salvoPlayer01.getLocations().get(0);
 
-            Player02Ships.forEach(ship->{List<String> Player02ShipsLocations =ship.getLocations();
-                Player02ShipsLocations.forEach(Player02ShipLocation->
-                {
-                    if (Player02ShipLocation.substring(0,4).equals(Player01SalvoLocation.substring(0,4))) {
-                        System.out.println(Player02ShipLocation.substring(0,4));
-                        System.out.println(Player01SalvoLocation);
-                        System.out.println("Hit");
+            Player02Ships.forEach(
+                            ship->
+                    {
+                        List<String> Player02ShipCellList =ship.getLocations();
+                        //System.out.println(ship);
+                        //System.out.println(Player02ShipCellList);
+                        Integer indexOneCellShip=0;
+                        Player02ShipCellList.get(indexOneCellShip);
+                        for (final String Player02ShipOneCell :Player02ShipCellList){
+
+                            if (Player02ShipOneCell.substring(0,4).equals(Player01SalvoOneCell.substring(0,4)))
+                            {
+                                //System.out.println(Player02ShipOneCell.substring(0,4));
+                                //System.out.println(Player01SalvoOneCell);
+                                System.out.println("Hit");
+                                String cellHitValueTemp=Player02ShipOneCell.substring(0,4)+"02";
+                                System.out.println(cellHitValueTemp);
+                                //System.out.println(Player02ShipCellList.get(indexOneCellShip);
+                                Player02ShipCellList.set(indexOneCellShip,cellHitValueTemp);
+
+                            }
+                            indexOneCellShip=indexOneCellShip+1;
+                        }
+                            System.out.println(Player02ShipCellList);
                     }
-                });});
+                                );
         });
-        System.out.println("Player02Salvoes Hits");
-        System.out.println(Player02.getEmail());
+        //System.out.println("Player02Salvoes Hits");
+        //System.out.println(Player02.getEmail());
         Player02Salvoes.forEach(salvoPlayer02 -> {
-            String Player02SalvoLocation=salvoPlayer02.getLocations().get(0);
-            Player01Ships.forEach(ship->{List<String> Player01ShipsLocations =ship.getLocations();
-                Player01ShipsLocations.forEach(Player01ShipLocation->
+            String Player02SalvoCell=salvoPlayer02.getLocations().get(0);
+            Player01Ships.forEach(ship->{
+                List<String> Player01ShipCellList =ship.getLocations();
+                Player01ShipCellList.forEach(Player01ShipCell->
                 {
-                    if (Player01ShipLocation.substring(0,4).equals(Player02SalvoLocation.substring(0,4))) {
-                        System.out.println(Player01ShipLocation.substring(0,4));
-                        System.out.println(Player02SalvoLocation);
-                        System.out.println("Hit");
+                    if (Player01ShipCell.substring(0,4).equals(Player02SalvoCell.substring(0,4))) {
+                        //System.out.println(Player01ShipCell.substring(0,4));
+                        //System.out.println(Player02SalvoCell);
+                        //System.out.println("Hit");
                     }
                 });});
         });
