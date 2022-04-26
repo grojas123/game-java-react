@@ -370,7 +370,7 @@ const GetCoordinatesStatusCell=(cellLocation)=>{
     }
     const row=parseInt(cellLocation.substring(2,4));
     const status=parseInt(cellLocation.substring(5,6));
-    console.log(status);
+   // console.log(status);
     return [row,colum,status]
 }
 const GetMapShips=(GameViewGameShips) =>{
@@ -382,8 +382,20 @@ const GetMapShips=(GameViewGameShips) =>{
                 var pointCoordinates= GetCoordinatesStatusCell(cellLocation)
                 var row=pointCoordinates[0];
                 var column=pointCoordinates[1];
-
-                tableMapWithShips[row-1][column]=1;
+                var status=pointCoordinates[2];
+                switch (status){
+                    case 1:
+                        //console.log("Hit not found");
+                        tableMapWithShips[row-1][column]=1;
+                        break;
+                    case 2:
+                        //console.log("Hit found");
+                        tableMapWithShips[row-1][column]=2;
+                        break;
+                    default:
+                        console.log("Not cell status value found");
+                }
+                //tableMapWithShips[row-1][column]=1;
             }
             )
             })
@@ -440,18 +452,90 @@ const PlayerShipsBoard=(gameid,gamernumber) =>{
                 </thead>
                 <tbody>
                 {tableGridNoShips.map(gridRow => {
+
                     return(
                         <tr key={gridRow.row_id}><td>{gridRow.rowLetter}</td>
-                            <td key='oneCol' className={gridRow.oneCol===1 ? 'bg-primary':''}>{gridRow.oneCol} </td>
-                            <td key='twoCol' className={gridRow.twoCol===1 ? 'bg-primary':''}>{gridRow.twoCol}</td>
-                            <td key='thirdCol' className={gridRow.thirdCol===1 ? 'bg-primary':''}>{gridRow.thirdCol}</td>
-                            <td key='fourthCol' className={gridRow.fourthCol===1 ? 'bg-primary':''}>{gridRow.fourthCol}</td>
-                            <td key='fiveCol' className={gridRow.fiveCol===1 ? 'bg-primary':''}>{gridRow.fiveCol}</td>
-                            <td key='sixCol' className={gridRow.sixCol===1 ? 'bg-primary':''}>{gridRow.sixCol}</td>
-                            <td key='sevenCol' className={gridRow.sevenCol===1 ? 'bg-primary':''}>{gridRow.sevenCol}</td>
-                            <td key='eighthCol' className={gridRow.eighthCol===1 ? 'bg-primary':''}>{gridRow.eighthCol}</td>
-                            <td key='nineCol' className={gridRow.nineCol===1 ? 'bg-primary':''}>{gridRow.nineCol}</td>
-                            <td key='tenCol' className={gridRow.tenCol===1 ? 'bg-primary':''}>{gridRow.tenCol}</td></tr>)
+                            <td key='oneCol' className={
+                                (() => {
+                                    switch (gridRow.oneCol) {
+                                        case 1:  return 'bg-primary';
+                                        case 2:  return 'bg-warning';
+                                        default: return '';
+                                    }
+                                })()}>{gridRow.oneCol}
+                                 </td>
+                            <td key='twoCol' className={
+                                (() => {
+                                    switch (gridRow.twoCol) {
+                                        case 1:  return 'bg-primary';
+                                        case 2:  return 'bg-warning';
+                                        default: return '';
+                                    }
+                                })()}>{gridRow.twoCol}</td>
+                            <td key='thirdCol' className={
+                                (() => {
+                                    switch (gridRow.thirdCol) {
+                                        case 1:  return 'bg-primary';
+                                        case 2:  return 'bg-warning';
+                                        default: return '';
+                                    }
+                                })()}>{gridRow.thirdCol}</td>
+                            <td key='fourthCol' className={
+                                (() => {
+                                    switch (gridRow.fourthCol) {
+                                        case 1:  return 'bg-primary';
+                                        case 2:  return 'bg-warning';
+                                        default: return '';
+                                    }
+                                })()}>{gridRow.fourthCol}</td>
+                            <td key='fiveCol' className={
+                                (() => {
+                                    switch (gridRow.fiveCol) {
+                                        case 1:  return 'bg-primary';
+                                        case 2:  return 'bg-warning';
+                                        default: return '';
+                                    }
+                                })()}>{gridRow.fiveCol}</td>
+                            <td key='sixCol' className={
+                                (() => {
+                                    switch (gridRow.sixCol) {
+                                        case 1:  return 'bg-primary';
+                                        case 2:  return 'bg-warning';
+                                        default: return '';
+                                    }
+                                })()}>{gridRow.sixCol}</td>
+                            <td key='sevenCol' className={
+                                (() => {
+                                    switch (gridRow.sevenCol) {
+                                        case 1:  return 'bg-primary';
+                                        case 2:  return 'bg-warning';
+                                        default: return '';
+                                    }
+                                })()}>{gridRow.sevenCol}</td>
+                            <td key='eighthCol' className={
+                                (() => {
+                                    switch (gridRow.eighthCol) {
+                                        case 1:  return 'bg-primary';
+                                        case 2:  return 'bg-warning';
+                                        default: return '';
+                                    }
+                                })()}>{gridRow.eighthCol}</td>
+                            <td key='nineCol' className={
+                                (() => {
+                                    switch (gridRow.nineCol) {
+                                        case 1:  return 'bg-primary';
+                                        case 2:  return 'bg-warning';
+                                        default: return '';
+                                    }
+                                })()}>{gridRow.nineCol}</td>
+                            <td key='tenCol' className={
+                                (() => {
+                                    switch (gridRow.tenCol) {
+                                        case 1:  return 'bg-primary';
+                                        case 2:  return 'bg-warning';
+                                        default: return '';
+                                    }
+                                })()}>{gridRow.tenCol}</td></tr>)
                 })}
                 </tbody>
             </table>

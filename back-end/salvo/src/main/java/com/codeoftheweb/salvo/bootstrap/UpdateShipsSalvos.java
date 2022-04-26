@@ -69,10 +69,11 @@ public class UpdateShipsSalvos {
 
                             if (Player02ShipOneCell.substring(0,4).equals(Player01SalvoOneCell.substring(0,4)))
                             {
-                                System.out.println("Hit a Cell");
+
                                 String cellHitValueTemp=Player02ShipOneCell.substring(0,4)+"02";
                                 //System.out.println(cellHitValueTemp);
                                 Player02ShipCellList.set(indexOneCellShip,cellHitValueTemp);
+                                //System.out.println("Hit a Cell Player01Salvoes to  Player02Ships");
 
                             }
                             indexOneCellShip=indexOneCellShip+1;
@@ -98,9 +99,10 @@ public class UpdateShipsSalvos {
 
                             if (Player01ShipOneCell.substring(0,4).equals(Player02SalvoOneCell.substring(0,4)))
                             {
-                                System.out.println("Hit a cell");
+
                                 String cellHitValueTemp=Player01ShipOneCell.substring(0,4)+"02";
                                 Player01ShipCellList.set(indexOneCellShip,cellHitValueTemp);
+                               // System.out.println("Hit a cell Player02Salvoes to Player01Ships");
 
                             }
                             indexOneCellShip=indexOneCellShip+1;
