@@ -49,6 +49,8 @@ public class SalvoController {
         dto.put("game_id", gamePlayer.getGameId());
         dto.put("player", gamePlayer.getPlayer());
         dto.put("creation_date",gamePlayer.getGamePlayerCreationDate());
+        dto.put("score",gamePlayer.getScore());
+
         return dto;
     }
     @RequestMapping("/games01")

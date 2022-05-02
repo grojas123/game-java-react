@@ -27,6 +27,8 @@ public class Player {
         this.email=email;
     }
 
+    @OneToMany(mappedBy = "player")
+    private List<Score> scores;
 
 
     public String getFirstName() {

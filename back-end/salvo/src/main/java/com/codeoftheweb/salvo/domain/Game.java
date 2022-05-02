@@ -20,6 +20,7 @@ public class Game {
     @OneToMany(mappedBy = "game")
     private List<GamePlayer> gamePlayers;
 
+
     public Game(String name, Date creationGameDate ) {
         this.gameName = name;
         this.creationGameDate= creationGameDate;

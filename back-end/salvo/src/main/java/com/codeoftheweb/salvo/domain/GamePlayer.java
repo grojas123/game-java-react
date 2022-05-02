@@ -22,6 +22,10 @@ public class GamePlayer {
     @JoinColumn(name="GAME_ID")
     private Game game;
 
+    @ManyToOne
+    @JoinColumn(name="SCORE_ID")
+    private Score score;
+
     @OneToMany(mappedBy = "gamePlayer")
     private List<Ship> ships;
 
@@ -82,5 +86,13 @@ public class GamePlayer {
 
     public void setSalvoes(List<Salvo> salvoes) {
         this.salvoes = salvoes;
+    }
+
+    public Score getScore() {
+        return score;
+    }
+
+    public void setScore(Score score) {
+        this.score = score;
     }
 }

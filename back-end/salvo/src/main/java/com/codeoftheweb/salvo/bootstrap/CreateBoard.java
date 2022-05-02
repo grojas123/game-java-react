@@ -1,5 +1,6 @@
-package com.codeoftheweb.salvo.domain;
+package com.codeoftheweb.salvo.bootstrap;
 
+import com.codeoftheweb.salvo.domain.*;
 import com.codeoftheweb.salvo.repositories.GamePlayerRepository;
 import com.codeoftheweb.salvo.repositories.SalvoRepository;
 import com.codeoftheweb.salvo.repositories.ShipRepository;

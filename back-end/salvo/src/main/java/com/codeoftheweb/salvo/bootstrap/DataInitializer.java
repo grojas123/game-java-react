@@ -5,10 +5,7 @@ import com.codeoftheweb.salvo.repositories.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @Component
 public class DataInitializer implements CommandLineRunner {
@@ -23,12 +20,15 @@ public class DataInitializer implements CommandLineRunner {
     private final GamePlayerRepository repositoryGamePlayer;
     private final ShipRepository repositoryShips;
     private final SalvoRepository repositorySalvoes;
-    public DataInitializer(GameRepository repositoryGames,PlayerRepository repositoryPlayers,GamePlayerRepository repositoryGamePlayer,ShipRepository repositoryShips,SalvoRepository repositorySalvoes) {
+
+    private final ScoreRepository repositoryScores;
+    public DataInitializer(GameRepository repositoryGames,PlayerRepository repositoryPlayers,GamePlayerRepository repositoryGamePlayer,ShipRepository repositoryShips,SalvoRepository repositorySalvoes,ScoreRepository repositoryScores) {
        this.repositoryGames=repositoryGames;
        this.repositoryPlayers=repositoryPlayers;
        this.repositoryGamePlayer=repositoryGamePlayer;
        this.repositoryShips=repositoryShips;
        this.repositorySalvoes=repositorySalvoes;
+       this.repositoryScores=repositoryScores;
     }
 
     @Override
@@ -36,13 +36,16 @@ public class DataInitializer implements CommandLineRunner {
         Date game_creation_date01 = new Date();
         Date game_creation_date02= addHoursToJavaUtilDate(game_creation_date01,1);
         Date game_creation_date03= addHoursToJavaUtilDate(game_creation_date01,2);
+        Date game_creation_date04= addHoursToJavaUtilDate(game_creation_date01,4);
         // Save Games
         Game Game01 = new Game("Game 01", game_creation_date01);
         Game Game02 = new Game("Game 02", game_creation_date02);
         Game Game03 = new Game("Game 03", game_creation_date03);
+        Game Game04 = new Game("Game 04", game_creation_date04);
         repositoryGames.save(Game01);
         repositoryGames.save(Game02);
         repositoryGames.save(Game03);
+        repositoryGames.save(Game04);
         // Save Players
         Player Player01 = new Player("Jack", "Bauer","jack@example.com");
         Player Player02 = new Player("Kim", "Bassigner","kim@example.com");
@@ -57,6 +60,8 @@ public class DataInitializer implements CommandLineRunner {
         repositoryPlayers.save(Player04);
         repositoryPlayers.save(Player05);
         repositoryPlayers.save(Player06);
+
+    //Data to creation of 3 Games: Game01 , Game02 , Game03
     //_______________________________________________________________________________________________________
     // Creation of Game01
     //_______________________________________________________________________________________________________
@@ -851,6 +856,39 @@ public class DataInitializer implements CommandLineRunner {
         //_______________________________________________________________________________________________________
         // End of Game03
         //_______________________________________________________________________________________________________
+
+        // Data to Test the Scores
+        Date score01FinishDate= new Date();
+
+        Score scorePlayer01Game01 = new Score(1L,score01FinishDate,Game01,Player01);
+        Score scorePlayer02Game01 = new Score(0L,score01FinishDate,Game01,Player02);
+        repositoryScores.save(scorePlayer01Game01);
+        repositoryScores.save(scorePlayer02Game01);
+        gamePlayerPlayer01Game01.setScore(scorePlayer01Game01);
+        gamePlayerPlayer02Game01.setScore(scorePlayer02Game01);
+        repositoryGamePlayer.save(gamePlayerPlayer01Game01);
+        repositoryGamePlayer.save(gamePlayerPlayer02Game01);
+
+        Date score02FinishDate= new Date();
+
+        Score scorePlayer03Game02 = new Score(0L,score02FinishDate,Game02,Player03);
+        Score scorePlayer04Game02 = new Score(1L,score02FinishDate,Game02,Player04);
+        repositoryScores.save(scorePlayer03Game02);
+        repositoryScores.save(scorePlayer04Game02);
+        gamePlayerPlayer03Game02.setScore(scorePlayer03Game02);
+        gamePlayerPlayer04Game02.setScore(scorePlayer04Game02);
+        repositoryGamePlayer.save(gamePlayerPlayer03Game02);
+        repositoryGamePlayer.save(gamePlayerPlayer04Game02);
+
+        Date score03FinishDate= new Date();
+        Score scorePlayer05Game03 = new Score(1L,score03FinishDate,Game03,Player05);
+        Score scorePlayer06Game03 = new Score(1L,score03FinishDate,Game03,Player06);
+        repositoryScores.save(scorePlayer05Game03);
+        repositoryScores.save(scorePlayer06Game03);
+        gamePlayerPlayer05Game03.setScore(scorePlayer05Game03);
+        gamePlayerPlayer06Game03.setScore(scorePlayer06Game03);
+        repositoryGamePlayer.save(gamePlayerPlayer05Game03);
+        repositoryGamePlayer.save(gamePlayerPlayer06Game03);
 
     }
 }
