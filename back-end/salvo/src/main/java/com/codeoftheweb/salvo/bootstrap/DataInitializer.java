@@ -36,16 +36,16 @@ public class DataInitializer implements CommandLineRunner {
         Date game_creation_date01 = new Date();
         Date game_creation_date02= addHoursToJavaUtilDate(game_creation_date01,1);
         Date game_creation_date03= addHoursToJavaUtilDate(game_creation_date01,2);
-        Date game_creation_date04= addHoursToJavaUtilDate(game_creation_date01,4);
+
         // Save Games
         Game Game01 = new Game("Game 01", game_creation_date01);
         Game Game02 = new Game("Game 02", game_creation_date02);
         Game Game03 = new Game("Game 03", game_creation_date03);
-        Game Game04 = new Game("Game 04", game_creation_date04);
+
         repositoryGames.save(Game01);
         repositoryGames.save(Game02);
         repositoryGames.save(Game03);
-        repositoryGames.save(Game04);
+
         // Save Players
         Player Player01 = new Player("Jack", "Bauer","jack@example.com");
         Player Player02 = new Player("Kim", "Bassigner","kim@example.com");
@@ -855,6 +855,368 @@ public class DataInitializer implements CommandLineRunner {
 
         //_______________________________________________________________________________________________________
         // End of Game03
+        //_______________________________________________________________________________________________________
+
+        //_______________________________________________________________________________________________________
+        // Creation of Game04
+        //_______________________________________________________________________________________________________
+        Date game_creation_date04= addHoursToJavaUtilDate(game_creation_date01,4);
+        Game Game04 = new Game("Game 04", game_creation_date04);
+        repositoryGames.save(Game04);
+
+        // Creation of the Board07 Game04 Player 07
+
+        List<String> locationShip31 = new ArrayList<>();
+        locationShip31.add("010101");
+        locationShip31.add("010201");
+        locationShip31.add("010301");
+
+        List<String> locationShip32 = new ArrayList<>();
+        locationShip32.add("030401");
+        locationShip32.add("040401");
+        locationShip32.add("050401");
+
+        List<String> locationShip33 = new ArrayList<>();
+        locationShip33.add("040701");
+        locationShip33.add("050701");
+        locationShip33.add("060701");
+        locationShip33.add("070701");
+        locationShip33.add("080701");
+
+        List<String> locationShip34 = new ArrayList<>();
+        locationShip34.add("070501");
+        locationShip34.add("080501");
+
+        List<String> locationShip35 = new ArrayList<>();
+        locationShip35.add("090201");
+        locationShip35.add("090301");
+        locationShip35.add("090401");
+        locationShip35.add("090501");
+
+        List<List<String>> listLocationsShipsPlayer07Game04 = new ArrayList<>();
+        listLocationsShipsPlayer07Game04.add(locationShip31);
+        listLocationsShipsPlayer07Game04.add(locationShip32);
+        listLocationsShipsPlayer07Game04.add(locationShip33);
+        listLocationsShipsPlayer07Game04.add(locationShip34);
+        listLocationsShipsPlayer07Game04.add(locationShip35);
+
+        List<String> locationSalvo60 = new ArrayList<>();
+        locationSalvo60.add("010102");
+        List<String> locationSalvo61 = new ArrayList<>();
+        locationSalvo61.add("030402");
+        List<String> locationSalvo62 = new ArrayList<>();
+        locationSalvo62.add("040402");
+        List<String> locationSalvo63 = new ArrayList<>();
+        locationSalvo63.add("050402");
+        List<String> locationSalvo64 = new ArrayList<>();
+        locationSalvo64.add("060402");
+        List<String> locationSalvo65 = new ArrayList<>();
+        locationSalvo65.add("070802");
+        List<String> locationSalvo66 = new ArrayList<>();
+        locationSalvo66.add("070902");
+        List<String> locationSalvo67 = new ArrayList<>();
+        locationSalvo67.add("071002");
+        List<String> locationSalvo68 = new ArrayList<>();
+        locationSalvo68.add("080602");
+        List<String> locationSalvo69 = new ArrayList<>();
+        locationSalvo69.add("090602");
+
+        List<List<String>> listLocationsSalvoesPlayer07Game04 = new ArrayList<>();
+        listLocationsSalvoesPlayer07Game04.add(locationSalvo60);
+        listLocationsSalvoesPlayer07Game04.add(locationSalvo61);
+        listLocationsSalvoesPlayer07Game04.add(locationSalvo62);
+        listLocationsSalvoesPlayer07Game04.add(locationSalvo63);
+        listLocationsSalvoesPlayer07Game04.add(locationSalvo64);
+        listLocationsSalvoesPlayer07Game04.add(locationSalvo65);
+        listLocationsSalvoesPlayer07Game04.add(locationSalvo66);
+        listLocationsSalvoesPlayer07Game04.add(locationSalvo67);
+        listLocationsSalvoesPlayer07Game04.add(locationSalvo68);
+        listLocationsSalvoesPlayer07Game04.add(locationSalvo69);
+
+        Player Player07 = new Player("Daniel", "Travieso","travieso@example.com");
+        repositoryPlayers.save(Player07);
+
+        Date gamePlayer07Date = new Date();
+        CreateBoard boardPlayer07Game04 = new CreateBoard(Player07,Game04,gamePlayer07Date,listLocationsShipsPlayer07Game04,listLocationsSalvoesPlayer07Game04,repositoryShips,repositorySalvoes,repositoryGamePlayer);
+        GamePlayer gamePlayerPlayer07Game04=boardPlayer07Game04.getBoard();
+
+        // Creation of the Board08 Game04 Player 08
+        // Ship creation
+        List<String> locationShip36 = new ArrayList<>();
+        locationShip36.add("010101");
+        locationShip36.add("010201");
+        locationShip36.add("010301");
+        List<String> locationShip37 = new ArrayList<>();
+        locationShip37.add("020801");
+        locationShip37.add("020901");
+        locationShip37.add("021001");
+        List<String> locationShip38 = new ArrayList<>();
+        locationShip38.add("030401");
+        locationShip38.add("040401");
+        locationShip38.add("050401");
+        locationShip38.add("060401");
+        List<String> locationShip39 = new ArrayList<>();
+        locationShip39.add("050101");
+        locationShip39.add("060101");
+        locationShip39.add("070101");
+        List<String> locationShip40 = new ArrayList<>();
+        locationShip40.add("080601");
+        locationShip40.add("090601");
+
+        List<List<String>> listLocationsShipsPlayer08Game04 = new ArrayList<>();
+        listLocationsShipsPlayer08Game04.add(locationShip36);
+        listLocationsShipsPlayer08Game04.add(locationShip37);
+        listLocationsShipsPlayer08Game04.add(locationShip38);
+        listLocationsShipsPlayer08Game04.add(locationShip39);
+        listLocationsShipsPlayer08Game04.add(locationShip40);
+
+        //Salvo creation
+        List<String> locationSalvo70 = new ArrayList<>();
+        locationSalvo70.add("030202");
+        List<String> locationSalvo71 = new ArrayList<>();
+        locationSalvo71.add("040202");
+        List<String> locationSalvo72 = new ArrayList<>();
+        locationSalvo72.add("050202");
+        List<String> locationSalvo73 = new ArrayList<>();
+        locationSalvo73.add("020802");
+        List<String> locationSalvo74 = new ArrayList<>();
+        locationSalvo74.add("020902");
+        List<String> locationSalvo75 = new ArrayList<>();
+        locationSalvo75.add("021002");
+        List<String> locationSalvo76 = new ArrayList<>();
+        locationSalvo76.add("030802");
+        List<String> locationSalvo77 = new ArrayList<>();
+        locationSalvo77.add("030902");
+        List<String> locationSalvo78 = new ArrayList<>();
+        locationSalvo78.add("031002");
+        List<String> locationSalvo79 = new ArrayList<>();
+        locationSalvo79.add("060502");
+        List<String> locationSalvo80 = new ArrayList<>();
+        locationSalvo80.add("080502");
+        List<String> locationSalvo81 = new ArrayList<>();
+        locationSalvo81.add("100302");
+        List<String> locationSalvo82 = new ArrayList<>();
+        locationSalvo82.add("100402");
+        List<String> locationSalvo83 = new ArrayList<>();
+        locationSalvo83.add("100502");
+
+        List<List<String>> listLocationsSalvoesPlayer08Game04 = new ArrayList<>();
+        listLocationsSalvoesPlayer08Game04.add(locationSalvo70);
+        listLocationsSalvoesPlayer08Game04.add(locationSalvo71);
+        listLocationsSalvoesPlayer08Game04.add(locationSalvo72);
+        listLocationsSalvoesPlayer08Game04.add(locationSalvo73);
+        listLocationsSalvoesPlayer08Game04.add(locationSalvo74);
+        listLocationsSalvoesPlayer08Game04.add(locationSalvo75);
+        listLocationsSalvoesPlayer08Game04.add(locationSalvo76);
+        listLocationsSalvoesPlayer08Game04.add(locationSalvo77);
+        listLocationsSalvoesPlayer08Game04.add(locationSalvo78);
+        listLocationsSalvoesPlayer08Game04.add(locationSalvo79);
+        listLocationsSalvoesPlayer08Game04.add(locationSalvo80);
+        listLocationsSalvoesPlayer08Game04.add(locationSalvo81);
+        listLocationsSalvoesPlayer08Game04.add(locationSalvo82);
+        listLocationsSalvoesPlayer08Game04.add(locationSalvo83);
+
+        Player Player08 = new Player("Juego", "Vida","vida@example.com");
+        repositoryPlayers.save(Player08);
+
+        Date gamePlayer08Date = new Date();
+        CreateBoard boardPlayer08Game04 = new CreateBoard(Player08,Game04,gamePlayer08Date,listLocationsShipsPlayer08Game04,listLocationsSalvoesPlayer08Game04,repositoryShips,repositorySalvoes,repositoryGamePlayer);
+        GamePlayer gamePlayerPlayer08Game04=boardPlayer08Game04.getBoard();
+
+        //Update the Board Player07 vs Board Player08 in Game04
+        UpdateShipsSalvos updateGame04SalvosAgainstShipsPlayer07Player08TwoWays= new UpdateShipsSalvos(gamePlayerPlayer07Game04,gamePlayerPlayer08Game04,repositoryShips);
+        updateGame04SalvosAgainstShipsPlayer07Player08TwoWays.UpdateSalvosAdversary();
+        //_______________________________________________________________________________________________________
+        // End of Game04
+        //_______________________________________________________________________________________________________
+
+        //_______________________________________________________________________________________________________
+        // Creation of Game05
+        //_______________________________________________________________________________________________________
+        Date game_creation_date05= addHoursToJavaUtilDate(game_creation_date01,4);
+        Game Game05 = new Game("Game 05", game_creation_date05);
+        repositoryGames.save(Game05);
+
+        // Creation of Board09 Game05 Player09
+        // Creation of Ships
+        List<String> locationShip41 = new ArrayList<>();
+        locationShip41.add("010201");
+        locationShip41.add("020201");
+        locationShip41.add("030201");
+        List<String> locationShip42 = new ArrayList<>();
+        locationShip42.add("010501");
+        locationShip42.add("020501");
+        locationShip42.add("030501");
+        List<String> locationShip43 = new ArrayList<>();
+        locationShip43.add("050101");
+        locationShip43.add("050201");
+        locationShip43.add("050301");
+        List<String> locationShip44 = new ArrayList<>();
+        locationShip44.add("040901");
+        locationShip44.add("050901");
+        locationShip44.add("060901");
+        locationShip44.add("070901");
+        locationShip44.add("080901");
+        List<String> locationShip45 = new ArrayList<>();
+        locationShip45.add("100801");
+        locationShip45.add("100901");
+        locationShip45.add("101001");
+
+        List<List<String>> listLocationsShipsPlayer09Game05 = new ArrayList<>();
+        listLocationsShipsPlayer09Game05.add(locationShip41);
+        listLocationsShipsPlayer09Game05.add(locationShip42);
+        listLocationsShipsPlayer09Game05.add(locationShip43);
+        listLocationsShipsPlayer09Game05.add(locationShip44);
+        listLocationsShipsPlayer09Game05.add(locationShip45);
+
+        // Creation of Salvoes
+        List<String> locationSalvo84 = new ArrayList<>();
+        locationSalvo84.add("010102");
+        List<String> locationSalvo85 = new ArrayList<>();
+        locationSalvo85.add("010202");
+        List<String> locationSalvo86 = new ArrayList<>();
+        locationSalvo86.add("010302");
+        List<String> locationSalvo87 = new ArrayList<>();
+        locationSalvo87.add("010502");
+        List<String> locationSalvo88 = new ArrayList<>();
+        locationSalvo88.add("010802");
+        List<String> locationSalvo89 = new ArrayList<>();
+        locationSalvo89.add("070402");
+        List<String> locationSalvo90 = new ArrayList<>();
+        locationSalvo90.add("080402");
+        List<String> locationSalvo91 = new ArrayList<>();
+        locationSalvo91.add("090402");
+        List<String> locationSalvo92 = new ArrayList<>();
+        locationSalvo92.add("100402");
+        List<String> locationSalvo93 = new ArrayList<>();
+        locationSalvo93.add("070702");
+        List<String> locationSalvo94 = new ArrayList<>();
+        locationSalvo94.add("080702");
+
+        List<List<String>> listLocationsSalvoesPlayer09Game05 = new ArrayList<>();
+        listLocationsSalvoesPlayer09Game05.add(locationSalvo84);
+        listLocationsSalvoesPlayer09Game05.add(locationSalvo85);
+        listLocationsSalvoesPlayer09Game05.add(locationSalvo86);
+        listLocationsSalvoesPlayer09Game05.add(locationSalvo87);
+        listLocationsSalvoesPlayer09Game05.add(locationSalvo88);
+        listLocationsSalvoesPlayer09Game05.add(locationSalvo89);
+        listLocationsSalvoesPlayer09Game05.add(locationSalvo90);
+        listLocationsSalvoesPlayer09Game05.add(locationSalvo91);
+        listLocationsSalvoesPlayer09Game05.add(locationSalvo92);
+        listLocationsSalvoesPlayer09Game05.add(locationSalvo93);
+        listLocationsSalvoesPlayer09Game05.add(locationSalvo94);
+
+        Player Player09 = new Player("Disipline", "Life","life@example.com");
+        repositoryPlayers.save(Player09);
+
+        Date gamePlayer09Date = new Date();
+        CreateBoard boardPlayer09Game05 = new CreateBoard(Player09,Game05,gamePlayer09Date,listLocationsShipsPlayer09Game05,listLocationsSalvoesPlayer09Game05,repositoryShips,repositorySalvoes,repositoryGamePlayer);
+        GamePlayer gamePlayerPlayer09Game05=boardPlayer09Game05.getBoard();
+
+        // Creation of Board10 Game05 Player10
+        // Creation of Ships
+        List<String> locationShip46 = new ArrayList<>();
+        locationShip46.add("010101");
+        locationShip46.add("010201");
+        locationShip46.add("010301");
+        List<String> locationShip47 = new ArrayList<>();
+        locationShip47.add("010801");
+        locationShip47.add("010901");
+        locationShip47.add("011001");
+        List<String> locationShip48 = new ArrayList<>();
+        locationShip48.add("050101");
+        locationShip48.add("060101");
+        locationShip48.add("070101");
+        List<String> locationShip49 = new ArrayList<>();
+        locationShip49.add("050401");
+        locationShip49.add("060401");
+        locationShip49.add("070401");
+        locationShip49.add("080401");
+        locationShip49.add("090401");
+        List<String> locationShip50 = new ArrayList<>();
+        locationShip50.add("050601");
+        locationShip50.add("060601");
+
+        List<List<String>> listLocationsShipsPlayer10Game05 = new ArrayList<>();
+        listLocationsShipsPlayer10Game05.add(locationShip46);
+        listLocationsShipsPlayer10Game05.add(locationShip47);
+        listLocationsShipsPlayer10Game05.add(locationShip48);
+        listLocationsShipsPlayer10Game05.add(locationShip49);
+        listLocationsShipsPlayer10Game05.add(locationShip50);
+
+        // Creation of Salvoes
+        List<String> locationSalvo95 = new ArrayList<>();
+        locationSalvo95.add("010202");
+        List<String> locationSalvo96 = new ArrayList<>();
+        locationSalvo96.add("010302");
+        List<String> locationSalvo97 = new ArrayList<>();
+        locationSalvo97.add("010402");
+        List<String> locationSalvo98 = new ArrayList<>();
+        locationSalvo98.add("010502");
+        List<String> locationSalvo99 = new ArrayList<>();
+        locationSalvo99.add("010702");
+        List<String> locationSalvo100 = new ArrayList<>();
+        locationSalvo100.add("020202");
+        List<String> locationSalvo101 = new ArrayList<>();
+        locationSalvo101.add("030202");
+        List<String> locationSalvo102 = new ArrayList<>();
+        locationSalvo102.add("030302");
+        List<String> locationSalvo103 = new ArrayList<>();
+        locationSalvo103.add("030402");
+        List<String> locationSalvo104 = new ArrayList<>();
+        locationSalvo104.add("030502");
+        List<String> locationSalvo105 = new ArrayList<>();
+        locationSalvo105.add("030702");
+        List<String> locationSalvo106 = new ArrayList<>();
+        locationSalvo106.add("030202");
+        List<String> locationSalvo107 = new ArrayList<>();
+        locationSalvo107.add("030302");
+        List<String> locationSalvo108 = new ArrayList<>();
+        locationSalvo108.add("030402");
+        List<String> locationSalvo109 = new ArrayList<>();
+        locationSalvo109.add("030502");
+        List<String> locationSalvo110 = new ArrayList<>();
+        locationSalvo110.add("030702");
+        List<String> locationSalvo111 = new ArrayList<>();
+        locationSalvo111.add("030802");
+        List<String> locationSalvo112 = new ArrayList<>();
+        locationSalvo112.add("030902");
+        List<String> locationSalvo113 = new ArrayList<>();
+        locationSalvo113.add("031002");
+
+        List<List<String>> listLocationsSalvoesPlayer10Game05 = new ArrayList<>();
+        listLocationsSalvoesPlayer10Game05.add(locationSalvo95);
+        listLocationsSalvoesPlayer10Game05.add(locationSalvo96);
+        listLocationsSalvoesPlayer10Game05.add(locationSalvo97);
+        listLocationsSalvoesPlayer10Game05.add(locationSalvo98);
+        listLocationsSalvoesPlayer10Game05.add(locationSalvo99);
+        listLocationsSalvoesPlayer10Game05.add(locationSalvo100);
+        listLocationsSalvoesPlayer10Game05.add(locationSalvo101);
+        listLocationsSalvoesPlayer10Game05.add(locationSalvo102);
+        listLocationsSalvoesPlayer10Game05.add(locationSalvo103);
+        listLocationsSalvoesPlayer10Game05.add(locationSalvo104);
+        listLocationsSalvoesPlayer10Game05.add(locationSalvo105);
+        listLocationsSalvoesPlayer10Game05.add(locationSalvo106);
+        listLocationsSalvoesPlayer10Game05.add(locationSalvo107);
+        listLocationsSalvoesPlayer10Game05.add(locationSalvo108);
+        listLocationsSalvoesPlayer10Game05.add(locationSalvo109);
+        listLocationsSalvoesPlayer10Game05.add(locationSalvo110);
+        listLocationsSalvoesPlayer10Game05.add(locationSalvo111);
+        listLocationsSalvoesPlayer10Game05.add(locationSalvo112);
+        listLocationsSalvoesPlayer10Game05.add(locationSalvo113);
+
+        Player Player10 = new Player("Body", "Music","body@example.com");
+        repositoryPlayers.save(Player10);
+
+        Date gamePlayer10Date = new Date();
+        CreateBoard boardPlayer10Game05 = new CreateBoard(Player10,Game05,gamePlayer10Date,listLocationsShipsPlayer10Game05,listLocationsSalvoesPlayer10Game05,repositoryShips,repositorySalvoes,repositoryGamePlayer);
+        GamePlayer gamePlayerPlayer10Game05=boardPlayer10Game05.getBoard();
+
+        //Update the Board Player09 vs Board Player10 in Game05
+        UpdateShipsSalvos updateGame05SalvosAgainstShipsPlayer09Player10TwoWays= new UpdateShipsSalvos(gamePlayerPlayer09Game05,gamePlayerPlayer10Game05,repositoryShips);
+        updateGame05SalvosAgainstShipsPlayer09Player10TwoWays.UpdateSalvosAdversary();
+        //_______________________________________________________________________________________________________
+        // End of Game05
         //_______________________________________________________________________________________________________
 
         // Data to Test the Scores
