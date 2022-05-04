@@ -5,12 +5,15 @@ var GamesBackend='/api/games';
 function unique_id() {
     return uuidv4()
 }
+
+
 export const Games = () => {
     const [listGames, setGames] = useState({});
     const getGames = () =>axios.get(GamesBackend)
         .then((response)=>
             {
                 const listGames=response.data;
+                //console.log(listGames);
                 setGames(listGames);
             }
         )

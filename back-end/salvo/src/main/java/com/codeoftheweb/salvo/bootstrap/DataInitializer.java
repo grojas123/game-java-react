@@ -1219,11 +1219,30 @@ public class DataInitializer implements CommandLineRunner {
         // End of Game05
         //_______________________________________________________________________________________________________
 
+        //Create the Game06
+        // with Player 09 y Player10 and the SameShips as Game05
+        Date game_creation_date06= addHoursToJavaUtilDate(game_creation_date01,4);
+        Game Game06 = new Game("Game 06", game_creation_date06);
+        repositoryGames.save(Game06);
+       // Create a Board boardPlayer09Game06
+        Date gamePlayer11Date = new Date();
+        CreateBoard boardPlayer09Game06 = new CreateBoard(Player09,Game06,gamePlayer11Date,listLocationsShipsPlayer09Game05,listLocationsSalvoesPlayer09Game05,repositoryShips,repositorySalvoes,repositoryGamePlayer);
+        GamePlayer gamePlayerPlayer09Game06=boardPlayer09Game06.getBoard();
+
+        // Create a Board boardPlayer10Game06
+        Date gamePlayer12Date = new Date();
+        CreateBoard boardPlayer10Game06 = new CreateBoard(Player10,Game06,gamePlayer12Date,listLocationsShipsPlayer10Game05,listLocationsSalvoesPlayer10Game05,repositoryShips,repositorySalvoes,repositoryGamePlayer);
+        GamePlayer gamePlayerPlayer10Game06=boardPlayer10Game06.getBoard();
+
+        UpdateShipsSalvos updateGame06SalvosAgainstShipsPlayer09Player10TwoWays= new UpdateShipsSalvos(gamePlayerPlayer09Game06,gamePlayerPlayer10Game06,repositoryShips);
+        updateGame06SalvosAgainstShipsPlayer09Player10TwoWays.UpdateSalvosAdversary();
+        // End Game06
+
         // Data to Test the Scores
         Date score01FinishDate= new Date();
 
-        Score scorePlayer01Game01 = new Score(1L,score01FinishDate,Game01,Player01);
-        Score scorePlayer02Game01 = new Score(0L,score01FinishDate,Game01,Player02);
+        Score scorePlayer01Game01 = new Score(1f,score01FinishDate,Game01,Player01);
+        Score scorePlayer02Game01 = new Score(0f,score01FinishDate,Game01,Player02);
         repositoryScores.save(scorePlayer01Game01);
         repositoryScores.save(scorePlayer02Game01);
         gamePlayerPlayer01Game01.setScore(scorePlayer01Game01);
@@ -1233,8 +1252,8 @@ public class DataInitializer implements CommandLineRunner {
 
         Date score02FinishDate= new Date();
 
-        Score scorePlayer03Game02 = new Score(0L,score02FinishDate,Game02,Player03);
-        Score scorePlayer04Game02 = new Score(1L,score02FinishDate,Game02,Player04);
+        Score scorePlayer03Game02 = new Score(0f,score02FinishDate,Game02,Player03);
+        Score scorePlayer04Game02 = new Score(1f,score02FinishDate,Game02,Player04);
         repositoryScores.save(scorePlayer03Game02);
         repositoryScores.save(scorePlayer04Game02);
         gamePlayerPlayer03Game02.setScore(scorePlayer03Game02);
@@ -1243,14 +1262,24 @@ public class DataInitializer implements CommandLineRunner {
         repositoryGamePlayer.save(gamePlayerPlayer04Game02);
 
         Date score03FinishDate= new Date();
-        Score scorePlayer05Game03 = new Score(1L,score03FinishDate,Game03,Player05);
-        Score scorePlayer06Game03 = new Score(1L,score03FinishDate,Game03,Player06);
+        Score scorePlayer05Game03 = new Score(0.5f,score03FinishDate,Game03,Player05);
+        Score scorePlayer06Game03 = new Score(0.5f,score03FinishDate,Game03,Player06);
         repositoryScores.save(scorePlayer05Game03);
         repositoryScores.save(scorePlayer06Game03);
         gamePlayerPlayer05Game03.setScore(scorePlayer05Game03);
         gamePlayerPlayer06Game03.setScore(scorePlayer06Game03);
         repositoryGamePlayer.save(gamePlayerPlayer05Game03);
         repositoryGamePlayer.save(gamePlayerPlayer06Game03);
+
+        Date score04FinishDate= new Date();
+        Score scorePlayer09Game06 = new Score(0.5f,score04FinishDate,Game06,Player09);
+        Score scorePlayer10Game06 = new Score(0.5f,score04FinishDate,Game06,Player10);
+        repositoryScores.save(scorePlayer09Game06);
+        repositoryScores.save(scorePlayer10Game06);
+        gamePlayerPlayer09Game06.setScore(scorePlayer09Game06);
+        gamePlayerPlayer10Game06.setScore(scorePlayer10Game06);
+        repositoryGamePlayer.save(gamePlayerPlayer09Game06);
+        repositoryGamePlayer.save(gamePlayerPlayer10Game06);
 
     }
 }

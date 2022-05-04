@@ -25,7 +25,7 @@ public class Score {
         this.id = id;
     }
 
-    public Long score;
+    public Float score;
     public Date finishDate;
     @ManyToOne
     @JoinColumn(name="GAME_ID")
@@ -36,18 +36,18 @@ public class Score {
     private Player player;
 
 
-    public Score(Long score, Date finishDate, Game game, Player player) {
+    public Score(Float score, Date finishDate, Game game, Player player) {
         this.score = score;
         this.finishDate = finishDate;
         this.game = game;
         this.player = player;
     }
 
-    public Long getScore() {
+    public Float getScore() {
         return score;
     }
 
-    public void setScore(Long score) {
+    public void setScore(Float score) {
         this.score = score;
     }
 
