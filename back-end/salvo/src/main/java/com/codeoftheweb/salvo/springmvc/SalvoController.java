@@ -70,7 +70,8 @@ public class SalvoController {
                 .collect(Collectors
                         .groupingBy(listTemp_05-> extractGameId(listTemp_05.toString())));
         //log.info(String.valueOf(listTemp03));
-
+        //List<GamePlayer> listTemp02= gamePlayerRepository.findAll();
+        //System.out.println(listTemp02.size());
         return listTemp03;
     }
     //@Autowired

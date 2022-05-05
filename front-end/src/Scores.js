@@ -4,12 +4,13 @@ import alasql from "alasql";
 //import React, {useEffect, useState} from "react";
 var GamesBackend='/api/games';
 
-//function unique_id() {
-//    return uuidv4()
-//}
+/*function unique_id() {
+    return uuidv4()
+}*/
 
 function getPlayersWithScores(arrayGamePlayerObjects) {
-   let res = alasql('SELECT player,score FROM ?  WHERE score',[arrayGamePlayerObjects]);
+   let res = alasql('SELECT player,score FROM ? WHERE score',[arrayGamePlayerObjects]);
+   console.log(res);
    return res;
 }
 export const Scores = () => {
@@ -19,18 +20,17 @@ export const Scores = () => {
             {
                 var listGamePlayers=[];
                 const listGames=response.data;
+                if (typeof(listGames) !== 'undefined') {
                 const keysListGames=Object.keys(listGames);
-                for (const key in keysListGames ){
-                    //console.log(listGames[key]);
-                    if (typeof(listGames[key]) !== 'undefined'){
-                        listGames[key].map(gamePlayer=>{listGamePlayers.push(gamePlayer)})
-                    }
-                }
-               return getPlayersWithScores(listGamePlayers);
+                keysListGames.map(keyGames=>{
+                    listGames[keyGames].map(gameplayer=>listGamePlayers.push(gameplayer))
+                })}
+                getPlayersWithScores(listGamePlayers);
+                return (listGamePlayers)
 
             }
         )
-    console.log(getScores());
+    getScores();
     return <div></div>
     //useEffect(()=>getScores(),[])
 
@@ -49,4 +49,5 @@ export const Scores = () => {
                         {gameplayer_temp.player.email} </li>))))}
             </ul>)
 
-    }*/}
+    }*/
+}
