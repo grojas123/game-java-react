@@ -13,7 +13,7 @@ function getPlayersWithScores(arrayGamePlayerObjects) {
    let res = alasql('SELECT player->id , ARRAY(_) AS gamePlayer_player FROM ? WHERE score IS NOT NULL GROUP BY player->id',[arrayGamePlayerObjects]);
    let scores_per_all_players_count=[];
    res.map(scores=>{
-                    let scores_per_player_count={player:{},losses:0,wins:0,tides:0};
+                    let scores_per_player_count={player:{},losses:0,wins:0,tides:0,total:0};
                     scores.gamePlayer_player.map(score=> {
                                                             scores_per_player_count.player=score.player;
                                                             switch (score.score.score){
@@ -29,9 +29,13 @@ function getPlayersWithScores(arrayGamePlayerObjects) {
                                                                     default:
                                                                     console.log("No value in scores_per_player_count")
                                                                                     }
-                                                            })
+                                                            scores_per_player_count.total=scores_per_player_count.losses+scores_per_player_count.tides+scores_per_player_count.wins;
+                                                            }
+
+                                                            )
         scores_per_all_players_count.push(scores_per_player_count)
     })
+
     //console.log(scores_per_all_players_count);
     return scores_per_all_players_count;
 }
