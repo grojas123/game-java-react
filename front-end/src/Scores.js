@@ -10,11 +10,32 @@ var GamesBackend='/api/games';
 
 function getPlayersWithScores(arrayGamePlayerObjects) {
    //console.log(arrayGamePlayerObjects);
-   let res = alasql('SELECT player->id , ARRAY(_) AS gamePlayer_per_player FROM ? WHERE score GROUP BY player->id',[arrayGamePlayerObjects]);
-    console.log(res);
-
-    return 1;
+   let res = alasql('SELECT player->id , ARRAY(_) AS gamePlayer_player FROM ? WHERE score IS NOT NULL GROUP BY player->id',[arrayGamePlayerObjects]);
+   let scores_per_all_players_count=[];
+   res.map(scores=>{
+                    let scores_per_player_count={player:{},losses:0,wins:0,tides:0};
+                    scores.gamePlayer_player.map(score=> {
+                                                            scores_per_player_count.player=score.player;
+                                                            switch (score.score.score){
+                                                                    case 0:
+                                                                        scores_per_player_count.losses=scores_per_player_count.losses+1;
+                                                                        break;
+                                                                    case 0.5 :
+                                                                        scores_per_player_count.tides=scores_per_player_count.tides+1;
+                                                                        break;
+                                                                    case 1 :
+                                                                        scores_per_player_count.wins=scores_per_player_count.wins+1;
+                                                                        break;
+                                                                    default:
+                                                                    console.log("No value in scores_per_player_count")
+                                                                                    }
+                                                            })
+        scores_per_all_players_count.push(scores_per_player_count)
+    })
+    //console.log(scores_per_all_players_count);
+    return scores_per_all_players_count;
 }
+
 export const Scores = () => {
     //const [listScores, setScores] = useState({});
     const getScores = () =>axios.get(GamesBackend)
@@ -28,11 +49,11 @@ export const Scores = () => {
                     listGames[keyGames].map(gameplayer=>listGamePlayers.push(gameplayer))
                 })}
                 getPlayersWithScores(listGamePlayers);
-                return (listGamePlayers)
+                return getPlayersWithScores(listGamePlayers)
 
             }
         )
-    getScores();
+    console.log(getScores());
     return <div></div>
     //useEffect(()=>getScores(),[])
 
