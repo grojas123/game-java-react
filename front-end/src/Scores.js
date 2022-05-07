@@ -1,15 +1,14 @@
-//import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuidv4 } from 'uuid';
 import axios from "axios";
 import alasql from "alasql";
-//import React, {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 var GamesBackend='/api/games';
 
-/*function unique_id() {
+function unique_id() {
     return uuidv4()
-}*/
+}
 
 function getPlayersWithScores(arrayGamePlayerObjects) {
-   //console.log(arrayGamePlayerObjects);
    let res = alasql('SELECT player->id , ARRAY(_) AS gamePlayer_player FROM ? WHERE score IS NOT NULL GROUP BY player->id',[arrayGamePlayerObjects]);
    let scores_per_all_players_count=[];
    res.map(scores=>{
@@ -30,18 +29,14 @@ function getPlayersWithScores(arrayGamePlayerObjects) {
                                                                     console.log("No value in scores_per_player_count")
                                                                                     }
                                                             scores_per_player_count.total=scores_per_player_count.losses+scores_per_player_count.tides+scores_per_player_count.wins;
-                                                            }
-
-                                                            )
+                                                            })
         scores_per_all_players_count.push(scores_per_player_count)
     })
-
-    //console.log(scores_per_all_players_count);
     return scores_per_all_players_count;
 }
 
 export const Scores = () => {
-    //const [listScores, setScores] = useState({});
+    const [listScores, setScores] = useState({});
     const getScores = () =>axios.get(GamesBackend)
         .then((response)=>
             {
@@ -52,29 +47,28 @@ export const Scores = () => {
                 keysListGames.map(keyGames=>{
                     listGames[keyGames].map(gameplayer=>listGamePlayers.push(gameplayer))
                 })}
-                getPlayersWithScores(listGamePlayers);
-                return getPlayersWithScores(listGamePlayers)
-
+                const listScores=getPlayersWithScores(listGamePlayers);
+                setScores(listScores);
             }
         )
-    console.log(getScores());
-    return <div></div>
-    //useEffect(()=>getScores(),[])
 
-   /* if (typeof(listScores) !== 'undefined') {
-        const keysList=Object.keys(listScores);
-        //console.log(keysList);
+    useEffect(()=>getScores(),[])
+
+   if (typeof(listScores.map) !== 'undefined') {
         return (
-            <ul>
-                {keysList.map(key => (listScores[key].map(gameplayer_temp =>
-                    (<li className="d-flex justify-content-start" key={unique_id()}>
-                        {gameplayer_temp.game_id} {" "}
-                        {gameplayer_temp.creation_date} {" "}
-                        {gameplayer_temp.player.id} {" "}
-                        {gameplayer_temp.player.firstName} {" "}
-                        {gameplayer_temp.player.lastName} {" "}
-                        {gameplayer_temp.player.email} </li>))))}
-            </ul>)
+            <div>
+                <table className="table table-sm table-bordered">
+                    <thead><tr key={unique_id()}><th>Player</th><th>Total</th><th>Wins</th><th>Losses</th><th>Tides</th></tr>
+                    </thead>
+                    <tbody>
+               {listScores.map(score => (
+                  <tr key={unique_id()}><td>{score.player.firstName}{" "}{score.player.lastName}</td><td>{score.total}</td><td>{score.wins}</td><td>{score.losses}</td><td>{score.tides}</td>
+                  </tr>))}
 
-    }*/
+                    </tbody>
+                </table>
+            </div>
+        )
+
+    } else {return <div></div>}
 }
