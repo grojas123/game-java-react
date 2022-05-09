@@ -9,7 +9,8 @@ function unique_id() {
 }
 
 function getPlayersWithScores(arrayGamePlayerObjects) {
-   let res = alasql('SELECT player->id , ARRAY(_) AS gamePlayer_player FROM ? WHERE score IS NOT NULL GROUP BY player->id',[arrayGamePlayerObjects]);
+   //console.log(arrayGamePlayerObjects);
+    let res = alasql('SELECT player->id , ARRAY(_) AS gamePlayer_player FROM ? WHERE score IS NOT NULL GROUP BY player->id',[arrayGamePlayerObjects]);
    let scores_per_all_players_count=[];
    res.map(scores=>{
                     let scores_per_player_count={player:{},losses:0,wins:0,tides:0,total:0};
@@ -32,6 +33,7 @@ function getPlayersWithScores(arrayGamePlayerObjects) {
                                                             })
         scores_per_all_players_count.push(scores_per_player_count)
     })
+   // console.log(scores_per_all_players_count);
     return scores_per_all_players_count;
 }
 
