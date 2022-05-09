@@ -28,7 +28,7 @@ function getPlayersWithScores(arrayGamePlayerObjects) {
                                                                     default:
                                                                     console.log("No value in scores_per_player_count")
                                                                                     }
-                                                            scores_per_player_count.total=scores_per_player_count.losses+scores_per_player_count.tides+scores_per_player_count.wins;
+                                                            scores_per_player_count.total=scores_per_player_count.tides/2+scores_per_player_count.wins;
                                                             })
         scores_per_all_players_count.push(scores_per_player_count)
     })
