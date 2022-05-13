@@ -33,9 +33,12 @@ public class DataInitializer implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
+    // TO create the user for H2 aka the user in console
+        Player sa = new Player("sa", "h2","sa@example.com","$2a$12$ayfYkqv4wEA4laY.sXIUX.puNwU8BfOq8Ts7Gcg2j13qrRlJsF5Ni");
+        sa.setRole("ADMIN");
+        repositoryPlayers.save(sa);
+
         // Save Players
-
-
 
     //Data to creation of Games
     //_______________________________________________________________________________________________________
@@ -45,8 +48,10 @@ public class DataInitializer implements CommandLineRunner {
         Game Game01 = new Game("Game 01", game_creation_date01);
         repositoryGames.save(Game01);
 
-        Player Player01 = new Player("Player", "01","player01@example.com");
-        Player Player02 = new Player("Player", "02","player02@example.com");
+        Player Player01 = new Player("Player", "01","player01@example.com","$2a$12$ayfYkqv4wEA4laY.sXIUX.puNwU8BfOq8Ts7Gcg2j13qrRlJsF5Ni");
+        Player01.setRole("ADMIN");
+        Player Player02 = new Player("Player", "02","player02@example.com","$2a$12$ayfYkqv4wEA4laY.sXIUX.puNwU8BfOq8Ts7Gcg2j13qrRlJsF5Ni");
+        Player02.setRole("ADMIN");
         repositoryPlayers.save(Player01);
         repositoryPlayers.save(Player02);
         // To Create the Board of Player01 in Game01
@@ -272,8 +277,10 @@ public class DataInitializer implements CommandLineRunner {
         Game Game02 = new Game("Game 02", game_creation_date02);
         repositoryGames.save(Game02);
 
-        Player Player03 = new Player("Player", "03","player03@example.com");
-        Player Player04 = new Player("Player", "04","player04@example.com");
+        Player Player03 = new Player("Player", "03","player03@example.com","$2a$12$ayfYkqv4wEA4laY.sXIUX.puNwU8BfOq8Ts7Gcg2j13qrRlJsF5Ni");
+        Player03.setRole("ADMIN");
+        Player Player04 = new Player("Player", "04","player04@example.com","$2a$12$ayfYkqv4wEA4laY.sXIUX.puNwU8BfOq8Ts7Gcg2j13qrRlJsF5Ni");
+        Player04.setRole("ADMIN");
         repositoryPlayers.save(Player03);
         repositoryPlayers.save(Player04);
         // To Create the Board of Player03 in Game02
@@ -488,8 +495,10 @@ public class DataInitializer implements CommandLineRunner {
         Game Game03 = new Game("Game 03", game_creation_date03);
         repositoryGames.save(Game03);
 
-        Player Player05 = new Player("Player", "05","player05@example.com");
-        Player Player06 = new Player("Player", "06","player06@example.com");
+        Player Player05 = new Player("Player", "05","player05@example.com","$2a$12$ayfYkqv4wEA4laY.sXIUX.puNwU8BfOq8Ts7Gcg2j13qrRlJsF5Ni");
+        Player Player06 = new Player("Player", "06","player06@example.com","$2a$12$ayfYkqv4wEA4laY.sXIUX.puNwU8BfOq8Ts7Gcg2j13qrRlJsF5Ni");
+        Player05.setRole("ADMIN");
+        Player06.setRole("ADMIN");
         repositoryPlayers.save(Player05);
         repositoryPlayers.save(Player06);
 
@@ -776,7 +785,8 @@ public class DataInitializer implements CommandLineRunner {
         listLocationsSalvoesPlayer07Game04.add(locationSalvo68);
         listLocationsSalvoesPlayer07Game04.add(locationSalvo69);
 
-        Player Player07 = new Player("Player", "07","player07@example.com");
+        Player Player07 = new Player("Player", "07","player07@example.com","$2a$12$ayfYkqv4wEA4laY.sXIUX.puNwU8BfOq8Ts7Gcg2j13qrRlJsF5Ni");
+        Player07.setRole("ADMIN");
         repositoryPlayers.save(Player07);
 
         Date gamePlayer07Date = new Date();
@@ -859,7 +869,8 @@ public class DataInitializer implements CommandLineRunner {
         listLocationsSalvoesPlayer08Game04.add(locationSalvo82);
         listLocationsSalvoesPlayer08Game04.add(locationSalvo83);
 
-        Player Player08 = new Player("Player", "08","player08@example.com");
+        Player Player08 = new Player("Player", "08","player08@example.com","$2a$12$ayfYkqv4wEA4laY.sXIUX.puNwU8BfOq8Ts7Gcg2j13qrRlJsF5Ni");
+        Player08.setRole("ADMIN");
         repositoryPlayers.save(Player08);
 
         Date gamePlayer08Date = new Date();
@@ -949,7 +960,8 @@ public class DataInitializer implements CommandLineRunner {
         listLocationsSalvoesPlayer09Game05.add(locationSalvo93);
         listLocationsSalvoesPlayer09Game05.add(locationSalvo94);
 
-        Player Player09 = new Player("Player", "09","player09@example.com");
+        Player Player09 = new Player("Player", "09","player09@example.com","$2a$12$ayfYkqv4wEA4laY.sXIUX.puNwU8BfOq8Ts7Gcg2j13qrRlJsF5Ni");
+        Player09.setRole("ADMIN");
         repositoryPlayers.save(Player09);
 
         Date gamePlayer09Date = new Date();
@@ -1048,7 +1060,8 @@ public class DataInitializer implements CommandLineRunner {
         listLocationsSalvoesPlayer10Game05.add(locationSalvo112);
         listLocationsSalvoesPlayer10Game05.add(locationSalvo113);
 
-        Player Player10 = new Player("Player", "10","player10@example.com");
+        Player Player10 = new Player("Player", "10","player10@example.com","$2a$12$ayfYkqv4wEA4laY.sXIUX.puNwU8BfOq8Ts7Gcg2j13qrRlJsF5Ni");
+        Player10.setRole("ADMIN");
         repositoryPlayers.save(Player10);
 
         Date gamePlayer10Date = new Date();

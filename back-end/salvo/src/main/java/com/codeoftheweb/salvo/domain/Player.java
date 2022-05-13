@@ -19,12 +19,17 @@ public class Player {
     private String lastName;
     private String email;
 
+    private String password;
+
+    private String role;
+
     public Player() { }
 
-    public Player(String first, String last, String email) {
+    public Player(String first, String last, String email,String password) {
         this.firstName = first;
         this.lastName = last;
         this.email=email;
+        this.password=password;
     }
 
     @OneToMany(mappedBy = "player")
@@ -47,6 +52,23 @@ public class Player {
     }
     public String getEmail() {return email;}
     public void setEmail(String email) {this.email = email;}
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
     public Long getId() {
         return id;
     }
