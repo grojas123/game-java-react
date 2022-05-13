@@ -3,6 +3,8 @@ package com.codeoftheweb.salvo.bootstrap;
 import com.codeoftheweb.salvo.domain.*;
 import com.codeoftheweb.salvo.repositories.*;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import java.util.*;
@@ -15,6 +17,9 @@ public class DataInitializer implements CommandLineRunner {
         calendar.add(Calendar.HOUR_OF_DAY, hours);
         return calendar.getTime();
     }
+    String password = "password";
+    PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+    String encodedPassword = passwordEncoder.encode(password);
     private final GameRepository repositoryGames;
     private final PlayerRepository repositoryPlayers;
     private final GamePlayerRepository repositoryGamePlayer;
@@ -34,7 +39,7 @@ public class DataInitializer implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
     // TO create the user for H2 aka the user in console
-        Player sa = new Player("sa", "h2","sa@example.com","$2a$12$ayfYkqv4wEA4laY.sXIUX.puNwU8BfOq8Ts7Gcg2j13qrRlJsF5Ni");
+        Player sa = new Player("sa", "h2","sa@example.com",encodedPassword);
         sa.setRole("ADMIN");
         repositoryPlayers.save(sa);
 
@@ -48,9 +53,9 @@ public class DataInitializer implements CommandLineRunner {
         Game Game01 = new Game("Game 01", game_creation_date01);
         repositoryGames.save(Game01);
 
-        Player Player01 = new Player("Player", "01","player01@example.com","$2a$12$ayfYkqv4wEA4laY.sXIUX.puNwU8BfOq8Ts7Gcg2j13qrRlJsF5Ni");
+        Player Player01 = new Player("Player", "01","player01@example.com",encodedPassword);
         Player01.setRole("ADMIN");
-        Player Player02 = new Player("Player", "02","player02@example.com","$2a$12$ayfYkqv4wEA4laY.sXIUX.puNwU8BfOq8Ts7Gcg2j13qrRlJsF5Ni");
+        Player Player02 = new Player("Player", "02","player02@example.com",encodedPassword);
         Player02.setRole("ADMIN");
         repositoryPlayers.save(Player01);
         repositoryPlayers.save(Player02);
@@ -277,9 +282,9 @@ public class DataInitializer implements CommandLineRunner {
         Game Game02 = new Game("Game 02", game_creation_date02);
         repositoryGames.save(Game02);
 
-        Player Player03 = new Player("Player", "03","player03@example.com","$2a$12$ayfYkqv4wEA4laY.sXIUX.puNwU8BfOq8Ts7Gcg2j13qrRlJsF5Ni");
+        Player Player03 = new Player("Player", "03","player03@example.com",encodedPassword);
         Player03.setRole("ADMIN");
-        Player Player04 = new Player("Player", "04","player04@example.com","$2a$12$ayfYkqv4wEA4laY.sXIUX.puNwU8BfOq8Ts7Gcg2j13qrRlJsF5Ni");
+        Player Player04 = new Player("Player", "04","player04@example.com",encodedPassword);
         Player04.setRole("ADMIN");
         repositoryPlayers.save(Player03);
         repositoryPlayers.save(Player04);
@@ -495,8 +500,8 @@ public class DataInitializer implements CommandLineRunner {
         Game Game03 = new Game("Game 03", game_creation_date03);
         repositoryGames.save(Game03);
 
-        Player Player05 = new Player("Player", "05","player05@example.com","$2a$12$ayfYkqv4wEA4laY.sXIUX.puNwU8BfOq8Ts7Gcg2j13qrRlJsF5Ni");
-        Player Player06 = new Player("Player", "06","player06@example.com","$2a$12$ayfYkqv4wEA4laY.sXIUX.puNwU8BfOq8Ts7Gcg2j13qrRlJsF5Ni");
+        Player Player05 = new Player("Player", "05","player05@example.com",encodedPassword);
+        Player Player06 = new Player("Player", "06","player06@example.com",encodedPassword);
         Player05.setRole("ADMIN");
         Player06.setRole("ADMIN");
         repositoryPlayers.save(Player05);
@@ -785,7 +790,7 @@ public class DataInitializer implements CommandLineRunner {
         listLocationsSalvoesPlayer07Game04.add(locationSalvo68);
         listLocationsSalvoesPlayer07Game04.add(locationSalvo69);
 
-        Player Player07 = new Player("Player", "07","player07@example.com","$2a$12$ayfYkqv4wEA4laY.sXIUX.puNwU8BfOq8Ts7Gcg2j13qrRlJsF5Ni");
+        Player Player07 = new Player("Player", "07","player07@example.com",encodedPassword);
         Player07.setRole("ADMIN");
         repositoryPlayers.save(Player07);
 
@@ -869,7 +874,7 @@ public class DataInitializer implements CommandLineRunner {
         listLocationsSalvoesPlayer08Game04.add(locationSalvo82);
         listLocationsSalvoesPlayer08Game04.add(locationSalvo83);
 
-        Player Player08 = new Player("Player", "08","player08@example.com","$2a$12$ayfYkqv4wEA4laY.sXIUX.puNwU8BfOq8Ts7Gcg2j13qrRlJsF5Ni");
+        Player Player08 = new Player("Player", "08","player08@example.com",encodedPassword);
         Player08.setRole("ADMIN");
         repositoryPlayers.save(Player08);
 
@@ -960,7 +965,7 @@ public class DataInitializer implements CommandLineRunner {
         listLocationsSalvoesPlayer09Game05.add(locationSalvo93);
         listLocationsSalvoesPlayer09Game05.add(locationSalvo94);
 
-        Player Player09 = new Player("Player", "09","player09@example.com","$2a$12$ayfYkqv4wEA4laY.sXIUX.puNwU8BfOq8Ts7Gcg2j13qrRlJsF5Ni");
+        Player Player09 = new Player("Player", "09","player09@example.com",encodedPassword);
         Player09.setRole("ADMIN");
         repositoryPlayers.save(Player09);
 
@@ -1060,7 +1065,7 @@ public class DataInitializer implements CommandLineRunner {
         listLocationsSalvoesPlayer10Game05.add(locationSalvo112);
         listLocationsSalvoesPlayer10Game05.add(locationSalvo113);
 
-        Player Player10 = new Player("Player", "10","player10@example.com","$2a$12$ayfYkqv4wEA4laY.sXIUX.puNwU8BfOq8Ts7Gcg2j13qrRlJsF5Ni");
+        Player Player10 = new Player("Player", "10","player10@example.com",encodedPassword);
         Player10.setRole("ADMIN");
         repositoryPlayers.save(Player10);
 
