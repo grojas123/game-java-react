@@ -7,7 +7,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
-public class PlayerDetailsServiceImpl implements UserDetailsService {
+public class UserDetailsServiceImpl implements UserDetailsService {
     @Autowired
     private PlayerRepository playerRepository;
 
@@ -20,6 +20,6 @@ public class PlayerDetailsServiceImpl implements UserDetailsService {
             throw new UsernameNotFoundException("Could not find user");
         }
 
-        return new MyPlayerDetails(player);
+        return new MyUserDetails(player);
     }
 }

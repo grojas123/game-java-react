@@ -5,9 +5,9 @@ import com.codeoftheweb.salvo.domain.Player;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.GrantedAuthority;
-public class MyPlayerDetails implements UserDetails {
+public class MyUserDetails implements UserDetails {
     private Player player;
-    public MyPlayerDetails(Player player){
+    public MyUserDetails(Player player){
         this.player=player;
     }
     @Override

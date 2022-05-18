@@ -1,6 +1,7 @@
 package com.codeoftheweb.salvo.domain;
 
 import com.codeoftheweb.salvo.repositories.GamePlayerRepository;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.GenericGenerator;
 
 import java.util.List;
@@ -52,7 +53,7 @@ public class Player {
     }
     public String getEmail() {return email;}
     public void setEmail(String email) {this.email = email;}
-
+    @JsonIgnore
     public String getPassword() {
         return password;
     }
