@@ -14,6 +14,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
+
+
     @Bean
     public UserDetailsService userDetailsService() {
         return new UserDetailsServiceImpl();
@@ -45,8 +47,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/console/**").permitAll()
                 .anyRequest().authenticated()
+
                 .and()
-                .formLogin().loginProcessingUrl("/api/login").permitAll()
+                .formLogin()
+                    .loginProcessingUrl("/api/login")
+                    .permitAll()
                 .and()
                 .logout().logoutUrl("/api/logout").permitAll();
 

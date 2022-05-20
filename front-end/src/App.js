@@ -5,7 +5,7 @@ import {Games} from './Games'
 import {GameBoard} from './GameView'
 import { Routes,Route } from 'react-router';
 import {Scores} from "./Scores";
-import ValidatedLoginForm from "./ValidatedLoginForm";
+import LoginForm from "./login/LoginForm";
 
 function App() {
   return (
@@ -15,7 +15,7 @@ function App() {
             <Route path="/games" element ={<Games/>}/>
             <Route path="/scores" element ={<Scores/>}/>
             <Route path="/gameboard/:gameid/:gamernumber" element={<GameBoard/>}/>
-            <Route path="/login" element={<ValidatedLoginForm/>}/>
+            <Route path="/login" element={<LoginForm/>}/>
         </Routes>
     </div>
   );
