@@ -1,6 +1,9 @@
 package com.codeoftheweb.salvo.config;
 
 import com.codeoftheweb.salvo.security.UserDetailsServiceImpl;
+//import com.codeoftheweb.salvo.springmvc.SalvoController;
+//import org.slf4j.Logger;
+//import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -8,8 +11,10 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+//import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+//import org.springframework.web.bind.annotation.GetMapping;
 
 @Configuration
 @EnableWebSecurity
@@ -43,20 +48,25 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/").permitAll().and()
+                .antMatchers("/").permitAll()
+                .and()
                 .authorizeRequests()
                 .antMatchers("/console/**").permitAll()
                 .anyRequest().authenticated()
-
                 .and()
                 .formLogin()
-                    .loginProcessingUrl("/api/login")
-                    .permitAll()
+                    .loginProcessingUrl("/api/login").permitAll()
+                    .successForwardUrl("/api/actualuser")
                 .and()
-                .logout().logoutUrl("/api/logout").permitAll();
+                .logout()
+                    .logoutUrl("/api/logout").permitAll()
+                .logoutSuccessUrl("/api/actualuser");
+
 
         http.csrf().disable();
         http.headers().frameOptions().disable();
     }
+
+
 
 }

@@ -17,7 +17,7 @@ public class SalvoApplication {
         SpringApplication.run(SalvoApplication.class, args);
     }
 
-    @Bean
+   @Bean
     public WebMvcConfigurer corsConfigurer() {
         return new WebMvcConfigurer() {
             @Override

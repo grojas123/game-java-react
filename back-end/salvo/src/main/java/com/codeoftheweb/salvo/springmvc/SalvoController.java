@@ -13,6 +13,8 @@ import java.util.regex.Pattern;
 import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.stereotype.Controller;
 //import org.springframework.ui.ModelMap;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,7 +28,6 @@ import java.util.stream.Collectors;
 @RequestMapping("/api")
 public class SalvoController {
 
-
     private String extractGameId(String stringToSearch) {
         String regex = "(?<=game_id=)(.*\\n?)(?=,\\splayer=)";
         Pattern pattern = Pattern.compile(regex);
@@ -39,7 +40,12 @@ public class SalvoController {
     @Autowired
     private GameRepository gamesRepository;
     private Object listTemp05;
-
+    @RequestMapping("/actualuser")
+    public Object actualUser(){
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        //System.out.println(auth.getDetails());
+        return auth.getPrincipal();
+    }
     @RequestMapping("/games_ids")
     public List<Long> getAllGamesIds() {
         List<Long> listTemp = new ArrayList<>();
