@@ -3,6 +3,8 @@ package com.codeoftheweb.salvo.domain;
 import com.codeoftheweb.salvo.repositories.GamePlayerRepository;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.GenericGenerator;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.List;
 
@@ -53,13 +55,14 @@ public class Player {
     }
     public String getEmail() {return email;}
     public void setEmail(String email) {this.email = email;}
-    @JsonIgnore
+    //@JsonIgnore
     public String getPassword() {
         return password;
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        PasswordEncoder encoder = new BCryptPasswordEncoder();
+        this.password = encoder.encode(password);
     }
 
     public String getRole() {
