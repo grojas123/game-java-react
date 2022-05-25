@@ -4,6 +4,7 @@ import com.codeoftheweb.salvo.domain.Game;
 import com.codeoftheweb.salvo.domain.GamePlayer;
 import com.codeoftheweb.salvo.repositories.GamePlayerRepository;
 import com.codeoftheweb.salvo.repositories.GameRepository;
+import com.codeoftheweb.salvo.repositories.PlayerRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -51,6 +52,13 @@ public class SalvoController {
     //log.info(String.valueOf(listTemp));
     return listTemp;
 }
+    @Autowired
+    private PlayerRepository playerRepository;
+
+    @RequestMapping("/checkuser/{username}")
+    public boolean checkUser(@PathVariable String username){
+        return playerRepository.findByEmail(username)!=null ;
+    };
 
     private Map<String, Object> makePlayersPerGameDTO(GamePlayer gamePlayer) {
         Map<String, Object> dto = new LinkedHashMap<String, Object>();
