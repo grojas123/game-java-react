@@ -57,6 +57,8 @@ public class SalvoController {
 
     @RequestMapping("/checkuser/{username}")
     public boolean checkUser(@PathVariable String username){
+        //System.out.println(playerRepository.findByEmail(username));
+        //System.out.println(playerRepository.findByEmail(username)!=null);
         return playerRepository.findByEmail(username)!=null ;
     };
 

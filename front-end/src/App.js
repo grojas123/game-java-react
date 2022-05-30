@@ -20,7 +20,7 @@ function App() {
             <Route path="/regplayer" element ={<RegUsers/>}/>
             <Route path="/gameboard/:gameid/:gamernumber" element={<GameBoard/>}/>
             <Route path="/login" element={<LoginForm/>}/>
-            <Route path="/logout" element={<LogoutUser/>}/>
+             <Route path="/logout" element={<LogoutUser/>}/>
         </Routes>
     </div>
   );
