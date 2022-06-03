@@ -8,6 +8,9 @@ import {Scores} from "./Scores";
 import LoginForm from "./forms/LoginForm";
 import {RegUsers} from "./forms/RegPlayers";
 import {LogoutUser} from "./LogoutPlayer";
+import {NavLink} from "react-router-dom";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faHome, faRegistered} from "@fortawesome/free-solid-svg-icons";
 
 function App() {
   return (
@@ -22,6 +25,7 @@ function App() {
             <Route path="/login" element={<LoginForm/>}/>
             <Route path="/logout" element={<LogoutUser/>}/>
         </Routes>
+
     </div>
   );
 }

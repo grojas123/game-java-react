@@ -3,8 +3,10 @@ import { Formik } from 'formik';
 import axios from "axios";
 //import {Games} from "../Games";
 import {useNavigate} from "react-router";
+//import Button from "bootstrap/js/src/button";
 
 const LoginForm = () => {
+
     const navigate = useNavigate();
     const handleClick = () => {
         navigate("/games");
@@ -61,7 +63,9 @@ const LoginForm = () => {
         <div><b>{errorValidation ? 'Error the combination user/password invalid':''}</b></div>
 
     <div>
-
+        <button onClick={()=>navigate('/regplayer')}>
+            Register a user
+        </button>
         <h1>Login</h1>
         <Formik
             initialValues={{ email: '', password: '' }}

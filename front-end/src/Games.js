@@ -1,12 +1,14 @@
 import React, {useEffect, useState} from "react";
 import { v4 as uuidv4 } from 'uuid';
 import axios from "axios";
+import {useNavigate} from "react-router";
 var GamesBackend='/api/games';
 function unique_id() {
     return uuidv4()
 }
 
 export const Games = () => {
+    const navigate = useNavigate();
     var username=localStorage.getItem('username');
     const [listGames, setGames] = useState({});
     const getGames = () =>axios.get(GamesBackend)
@@ -25,6 +27,9 @@ export const Games = () => {
            return (
                <div>
                    <h3>Logged user: {username}</h3>
+                   <button onClick={()=>navigate('/logout')}>
+                       Logout user
+                   </button>
                <ul>
                   {keysList.map(key => (listGames[key].map(gameplayer_temp =>
                       (<li className="d-flex justify-content-start" key={unique_id()}>
