@@ -5,8 +5,8 @@ import {Games} from './Games'
 import {GameBoard} from './GameView'
 import { Routes,Route } from 'react-router';
 import {Scores} from "./Scores";
-import LoginForm from "./login/LoginForm";
-import {RegUsers} from "./RegPlayers";
+import LoginForm from "./forms/LoginForm";
+import {RegUsers} from "./forms/RegPlayers";
 import {LogoutUser} from "./LogoutPlayer";
 
 function App() {

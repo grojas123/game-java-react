@@ -6,8 +6,8 @@ function unique_id() {
     return uuidv4()
 }
 
-
 export const Games = () => {
+    var username=localStorage.getItem('username');
     const [listGames, setGames] = useState({});
     const getGames = () =>axios.get(GamesBackend)
         .then((response)=>
@@ -23,6 +23,8 @@ export const Games = () => {
           const keysList=Object.keys(listGames);
           //console.log(keysList);
            return (
+               <div>
+                   <h3>Logged user: {username}</h3>
                <ul>
                   {keysList.map(key => (listGames[key].map(gameplayer_temp =>
                       (<li className="d-flex justify-content-start" key={unique_id()}>
@@ -32,6 +34,7 @@ export const Games = () => {
                           {gameplayer_temp.player.firstName} {" "}
                           {gameplayer_temp.player.lastName} {" "}
                           {gameplayer_temp.player.email} </li>))))}
-               </ul>)
+               </ul>
+               </div>)
 
 }}

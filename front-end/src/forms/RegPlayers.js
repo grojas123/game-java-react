@@ -5,7 +5,6 @@ var PlayersBackend='/rest/players';
 var CheckUserBackend='/api/checkuser'
 
 async function CheckUserBackendDatabase(email){
-
     let CheckUserBackendTemp=CheckUserBackend+'/'+email;
     const checkFoundUserPromise = await axios.get(CheckUserBackendTemp)
         .then(function (response) {
@@ -28,12 +27,10 @@ function AddPlayer(firstName,lastName,email,password) {
 
 export const RegPlayerForm=() =>{
      const validateEmailAsync = async email =>{
-        if(email!=="") {var userOnDatabase=await CheckUserBackendDatabase(email)};
             if (email === 0 || email.replace(/^\s+|\s+$/gm, '').length === 0) { return  'Required :';}
             else if (email.length === 0) { return  'The email must be no empty ';}
             else if (!/^[A-Z\d._%+-]+@[A-Z\d.-]+\.[A-Z]{2,4}$/i.test(email)) { return  'Invalid email address :';}
-            else if (userOnDatabase) { return  'email in use :';  }
-        ;
+            else if (await CheckUserBackendDatabase(email)) { return  'Email Address used :';  }
     }
 
     const validationFirstName = value => {
@@ -52,7 +49,6 @@ export const RegPlayerForm=() =>{
 
 
     const validationPassword = value => {
-        //var errorMessage;
         if (value === 0 || value.replace(/^\s+|\s+$/gm, '').length === 0)
         {return  'Required :'; }
         else if (value.length === 0)  { return  'The Password must be no empty'; }
@@ -63,10 +59,8 @@ export const RegPlayerForm=() =>{
             initialValues={{ firstName: '', lastName: '', email: '',password:'' }}
 
             onSubmit={(values, {resetForm}) => {
-
                 AddPlayer(values.firstName,values.lastName,values.email,values.password);
                 resetForm();
-
             }}
         >
             {({ errors, touched }) =>(
