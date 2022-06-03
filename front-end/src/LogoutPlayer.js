@@ -12,8 +12,8 @@ function DoLogout() {
     axios.post(LogoutBackend, data)
         .then(response => {
             localStorage.removeItem("username")
-
-            console.log(response.data);})
+            //console.log(response.data);
+        })
         .catch(error => {
                             console.error('Something went wrong!', error);});
                          }

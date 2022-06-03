@@ -1,8 +1,8 @@
 //import logo from './logo.svg';
-import './App.css';
-import {Users} from './ManagePlayers'
-import {Games} from './Games'
-import {GameBoard} from './GameView'
+//import './App.css';
+import {Users} from './ListPlayers';
+import {Games} from './Games';
+import {GameBoard} from './GameView';
 import { Routes,Route } from 'react-router';
 import {Scores} from "./Scores";
 import LoginForm from "./forms/LoginForm";
@@ -20,7 +20,7 @@ function App() {
             <Route path="/regplayer" element ={<RegUsers/>}/>
             <Route path="/gameboard/:gameid/:gamernumber" element={<GameBoard/>}/>
             <Route path="/login" element={<LoginForm/>}/>
-             <Route path="/logout" element={<LogoutUser/>}/>
+            <Route path="/logout" element={<LogoutUser/>}/>
         </Routes>
     </div>
   );

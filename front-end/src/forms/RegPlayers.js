@@ -1,5 +1,6 @@
 import axios from 'axios';
 import {Field, Form, Formik} from 'formik';
+import {useNavigate} from "react-router";
 
 var PlayersBackend='/rest/players';
 var CheckUserBackend='/api/checkuser'
@@ -26,6 +27,7 @@ function AddPlayer(firstName,lastName,email,password) {
                                               }
 
 export const RegPlayerForm=() =>{
+    const navigate = useNavigate();
      const validateEmailAsync = async email =>{
             if (email === 0 || email.replace(/^\s+|\s+$/gm, '').length === 0) { return  'Required :';}
             else if (email.length === 0) { return  'The email must be no empty ';}
@@ -61,6 +63,7 @@ export const RegPlayerForm=() =>{
             onSubmit={(values, {resetForm}) => {
                 AddPlayer(values.firstName,values.lastName,values.email,values.password);
                 resetForm();
+                setTimeout(function () { navigate('/users'); }, 200)
             }}
         >
             {({ errors, touched }) =>(
