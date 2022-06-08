@@ -7,9 +7,19 @@ function unique_id() {
     return uuidv4()
 }
 
+const compareTwoValues =(value01,value02) =>{
+      //console.log(gameplayerdata)
+    //console.log(value01)
+    //console.log(value02)
+    if (value01===value02)
+        return  true
+    else
+        return false
+}
+
 export const Games = () => {
     const navigate = useNavigate();
-    var username=localStorage.getItem('username');
+    var LocalUsername=localStorage.getItem('username');
     const [listGames, setGames] = useState({});
     const getGames = () =>axios.get(GamesBackend)
         .then((response)=>
@@ -24,21 +34,26 @@ export const Games = () => {
     if (typeof(listGames) !== 'undefined') {
           const keysList=Object.keys(listGames);
           //console.log(keysList);
+          //console.log(listGames);
            return (
                <div>
-                   <h3>Logged user: {username}</h3>
+                   <h3>Logged user: {LocalUsername}</h3>
                    <button onClick={()=>navigate('/logout')}>
                        Logout user
                    </button>
                <ul>
-                  {keysList.map(key => (listGames[key].map(gameplayer_temp =>
+                  {keysList.map(key => (listGames[key].map((gameplayer_temp,index) =>
+
                       (<li className="d-flex justify-content-start" key={unique_id()}>
                           {gameplayer_temp.game_id} {" "}
                           {gameplayer_temp.creation_date} {" "}
                           {gameplayer_temp.player.id} {" "}
                           {gameplayer_temp.player.firstName} {" "}
                           {gameplayer_temp.player.lastName} {" "}
-                          {gameplayer_temp.player.email} </li>))))}
+                          {gameplayer_temp.player.email} {" "}
+                          {compareTwoValues(gameplayer_temp.player.email,LocalUsername)? <button onClick={()=>navigate('/gameboard/'+ gameplayer_temp.game_id+'/'+index)}>
+                              Go to game </button>:<></>}
+                      </li>))))}
                </ul>
                </div>)
 
