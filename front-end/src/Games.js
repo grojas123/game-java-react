@@ -8,13 +8,7 @@ function unique_id() {
 }
 
 const compareTwoValues =(value01,value02) =>{
-      //console.log(gameplayerdata)
-    //console.log(value01)
-    //console.log(value02)
-    if (value01===value02)
-        return  true
-    else
-        return false
+    return value01 === value02;
 }
 
 export const Games = () => {

@@ -120,7 +120,7 @@ const LoginForm = () => {
                         value={values.password}
                     />
                     <button type="submit" disabled={isSubmitting}>
-                        Submit
+                        Login
                     </button>
                 </form>
             )}

@@ -26,11 +26,14 @@ public class GamePlayer {
     @JoinColumn(name="SCORE_ID")
     private Score score;
 
+
     @OneToMany(mappedBy = "gamePlayer")
     private List<Ship> ships;
 
     @OneToMany(mappedBy = "gamePlayer")
     private List<Salvo> salvoes;
+
+
     private Date gamePlayerCreationDate;
 
     public GamePlayer() { }

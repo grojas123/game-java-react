@@ -78,6 +78,7 @@ public class Player {
         return id;
     }
 
+
     public List getGames(GamePlayerRepository repositoryGamePlayer) {
 
         return repositoryGamePlayer.findByPlayer_Id(id);};
