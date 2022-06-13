@@ -19,9 +19,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -29,7 +29,7 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping("/api")
 public class SalvoController {
-
+    PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
     private String extractGameId(String stringToSearch) {
         String regex = "(?<=game_id=)(.*\\n?)(?=,\\splayer=)";
         Pattern pattern = Pattern.compile(regex);
@@ -41,12 +41,30 @@ public class SalvoController {
     private static final Logger log = LoggerFactory.getLogger(SalvoController.class);
     @Autowired
     private GameRepository gamesRepository;
-    private Object listTemp05;
+   // private Object listTemp05;
+
+
+
     @RequestMapping("/actualuser")
     public Object actualUser(){
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         //System.out.println(auth.getDetails());
         return auth.getPrincipal();
+    }
+
+    @RequestMapping(value="/regplayer", method = RequestMethod.POST, consumes = "application/json")
+    public Player RegisterUser(@RequestBody JSONObject postPayload){
+        JSONObject playerData = postPayload;
+        String firstName=(String) playerData.get("firstName");
+        String lastName= (String) playerData.get("lastName");
+        String email=(String) playerData.get("email");
+        String password=(String) playerData.get("password");
+        String passwordEncoded =passwordEncoder.encode(password);
+        Player newPlayer = new Player(firstName,lastName,email,passwordEncoded);
+        newPlayer.setRole("ADMIN");
+        playerRepository.save(newPlayer);
+        Player newPlayerSaved=playerRepository.getById(newPlayer.getId());
+        return newPlayerSaved;
     }
     @RequestMapping("/games_ids")
     public List<Long> getAllGamesIds() {
@@ -123,6 +141,8 @@ private JSONObject getNamesPlayerOnGamePlayer(List<GamePlayer> listGamePlayer) {
 };
     @RequestMapping("/v2/gameview/{gameid}")
     public Object getGamePlayer01(@PathVariable Long gameid) {
+
+
         //To get the actual Player in the session
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String currentPlayerEmail = authentication.getName();

@@ -2,7 +2,7 @@ import axios from 'axios';
 import {Field, Form, Formik} from 'formik';
 import {useNavigate} from "react-router";
 
-var PlayersBackend='/rest/players';
+var PlayersBackend='/api/regplayer';
 var CheckUserBackend='/api/checkuser'
 
 async function CheckUserBackendDatabase(email){
