@@ -10,7 +10,7 @@ import net.minidev.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.lang.instrument.Instrumentation;
+//import java.lang.instrument.Instrumentation;
 import java.util.function.Predicate;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -18,7 +18,7 @@ import java.util.regex.Pattern;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
+//import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
@@ -41,10 +41,11 @@ public class SalvoController {
     private static final Logger log = LoggerFactory.getLogger(SalvoController.class);
     @Autowired
     private GameRepository gamesRepository;
-   // private Object listTemp05;
 
-
-
+    @RequestMapping("/players")
+    public List<Player> playerList(){
+        return playerRepository.findAll();
+    }
     @RequestMapping("/actualuser")
     public Object actualUser(){
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -54,17 +55,16 @@ public class SalvoController {
 
     @RequestMapping(value="/regplayer", method = RequestMethod.POST, consumes = "application/json")
     public Player RegisterUser(@RequestBody JSONObject postPayload){
-        JSONObject playerData = postPayload;
-        String firstName=(String) playerData.get("firstName");
-        String lastName= (String) playerData.get("lastName");
-        String email=(String) playerData.get("email");
-        String password=(String) playerData.get("password");
+        String firstName=(String) postPayload.get("firstName");
+        String lastName= (String) postPayload.get("lastName");
+        String email=(String) postPayload.get("email");
+        String password=(String) postPayload.get("password");
+        String role=(String) postPayload.get("role");
         String passwordEncoded =passwordEncoder.encode(password);
         Player newPlayer = new Player(firstName,lastName,email,passwordEncoded);
-        newPlayer.setRole("ADMIN");
+        newPlayer.setRole(role);
         playerRepository.save(newPlayer);
-        Player newPlayerSaved=playerRepository.getById(newPlayer.getId());
-        return newPlayerSaved;
+        return playerRepository.getById(newPlayer.getId());
     }
     @RequestMapping("/games_ids")
     public List<Long> getAllGamesIds() {

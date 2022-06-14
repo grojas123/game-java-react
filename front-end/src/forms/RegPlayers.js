@@ -2,11 +2,11 @@ import axios from 'axios';
 import {Field, Form, Formik} from 'formik';
 import {useNavigate} from "react-router";
 
-var PlayersBackend='/api/regplayer';
-var CheckUserBackend='/api/checkuser'
+var RegPlayersEndPoint='/api/regplayer';
+var CheckUserEndPoint='/api/checkuser'
 
 async function CheckUserBackendDatabase(email){
-    let CheckUserBackendTemp=CheckUserBackend+'/'+email;
+    let CheckUserBackendTemp=CheckUserEndPoint+'/'+email;
     const checkFoundUserPromise = await axios.get(CheckUserBackendTemp)
         .then(function (response) {
              return response})
@@ -20,7 +20,7 @@ async function CheckUserBackendDatabase(email){
 function AddPlayer(firstName,lastName,email,password) {
 
     const data = { firstName: firstName, lastName: lastName,email: email,password: password,role:'ADMIN' };
-    axios.post(PlayersBackend, data)
+    axios.post(RegPlayersEndPoint, data)
         .then(response => {console.log(response.data);})
         .catch(error => {
                             console.error('Something went wrong!', error);});
