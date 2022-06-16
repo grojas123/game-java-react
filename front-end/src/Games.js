@@ -36,7 +36,7 @@ export const Games = () => {
                        Logout user
                    </button>
                <ul>
-                  {keysList.map(key => (listGames[key].map((gameplayer_temp,index) =>
+                  {keysList.map(key => (listGames[key].map((gameplayer_temp) =>
 
                       (<li className="d-flex justify-content-start" key={unique_id()}>
                           {gameplayer_temp.game_id} {" "}
@@ -45,7 +45,7 @@ export const Games = () => {
                           {gameplayer_temp.player.firstName} {" "}
                           {gameplayer_temp.player.lastName} {" "}
                           {gameplayer_temp.player.email} {" "}
-                          {compareTwoValues(gameplayer_temp.player.email,LocalUsername)? <button onClick={()=>navigate('/gameboard/'+ gameplayer_temp.game_id+'/'+index)}>
+                          {compareTwoValues(gameplayer_temp.player.email,LocalUsername)? <button onClick={()=>navigate('/gameboard/'+ gameplayer_temp.game_id)}>
                               Go to game </button>:<></>}
                       </li>))))}
                </ul>

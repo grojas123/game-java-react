@@ -133,11 +133,13 @@ private JSONObject getNamesPlayerOnGamePlayer(List<GamePlayer> listGamePlayer) {
     String email = playerTemp.getEmail();
     String firstName=playerTemp.getFirstName();
     String lastName=playerTemp.getLastName();
-    JSONObject jsonToReturn = new JSONObject();
-    jsonToReturn.put("email",email);
-    jsonToReturn.put("firstName",firstName);
-    jsonToReturn.put("lastName",lastName);
-    return jsonToReturn;
+    JSONObject jsonPlayerData = new JSONObject();
+    jsonPlayerData.put("email",email);
+    jsonPlayerData.put("firstName",firstName);
+    jsonPlayerData.put("lastName",lastName);
+    JSONObject jsonPlayer = new JSONObject();
+    jsonPlayer.put("player",jsonPlayerData);
+    return jsonPlayer;
 };
     @RequestMapping("/v2/gameview/{gameid}")
     public Object getGamePlayer01(@PathVariable Long gameid) {

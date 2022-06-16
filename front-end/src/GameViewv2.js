@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import axios from "axios";
 import {useParams} from "react-router";
-var GameViewBackend='/api/gameview01/'
+var GameViewBackend='/api/v2/gameview/'
 const tableGridTemplateShips= [
 
     {
@@ -402,7 +402,9 @@ const GetMapShips=(GameViewGameShips) =>{
     return tableMapWithShips;
 }
 export const GameBoard = () => {
-    var { gameid,gamernumber } = useParams();
+    var gamernumber=0;
+    var { gameid } = useParams();
+    //console.log("Call GameBoard")
     return (
         <div>{PlayerShipsBoard(gameid,gamernumber)} {PlayerSalvoesBoard(gameid,gamernumber)}</div>
     )
@@ -412,6 +414,7 @@ export const GameBoard = () => {
 const PlayerShipsBoard=(gameid,gamernumber) =>{
     var otherplayernumber=1-gamernumber;
     const GameViewBackendWithGameid=GameViewBackend+gameid;
+    //console.log(GameViewBackendWithGameid);
     const [, setPlayerShips] = useState({});
     const getGameView = () =>axios.get(GameViewBackendWithGameid)
         .then((response)=>
