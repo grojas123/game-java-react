@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import { Formik } from 'formik';
 import axios from "axios";
-//import {Games} from "../Games";
+//import {ListGames} from "../ListGames";
 import {useNavigate} from "react-router";
 //import Button from "bootstrap/js/src/button";
 

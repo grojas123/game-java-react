@@ -1,7 +1,8 @@
 //import logo from './logo.svg';
 //import './App.css';
 import {Users} from './ListPlayers';
-import {Games} from './Games';
+import {ListGames} from './ListGames';
+import {AddGame} from './forms/CreateGame';
 /*import {GetBoardDataVariable} from './GameViewv3';*/
 /*import {GameBoard} from './GameView';*/
 import {GameBoard} from './GameViewv2';
@@ -17,7 +18,8 @@ function App() {
     <div className="App">
         <Routes>
             <Route path="/" element ={<LoginForm/>}/>
-            <Route path="/games" element ={<Games/>}/>
+            <Route path="/games" element ={<ListGames/>}/>
+            <Route path="/creategame" element={<AddGame/>}/>
             <Route path="/scores" element ={<Scores/>}/>
             <Route path="/users" element ={<Users/>}/>
             <Route path="/regplayer" element ={<RegUsers/>}/>

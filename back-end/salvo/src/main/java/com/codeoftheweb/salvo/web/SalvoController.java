@@ -102,7 +102,7 @@ public class SalvoController {
     private GamePlayerRepository gamePlayerRepository;
 
 
-    @RequestMapping("/games")
+    @GetMapping("/games")
     public Object getAllGamePlayersPerGame(){
         List listTemp= gamePlayerRepository.findAll()
                 .stream()
@@ -116,6 +116,13 @@ public class SalvoController {
         //System.out.println(listTemp02.size());
         return listTemp03;
     }
+
+    @PostMapping(value="/games",consumes = "application/json")
+    public Object createGame(){
+       Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String currentPlayerEmail = authentication.getName();
+        return "Backend Response";
+    };
     //@Autowired
     //private ShipRepository shipRepository;
    // @RequestMapping("/ships")
@@ -128,7 +135,6 @@ public class SalvoController {
          return gamePlayerRepository.findByGame_Id(gameid);
     };
 private JSONObject getNamesPlayerOnGamePlayer(List<GamePlayer> listGamePlayer) {
-    //System.out.println(listGamePlayer);
     Player playerTemp=listGamePlayer.get(0).getPlayer();
     String email = playerTemp.getEmail();
     String firstName=playerTemp.getFirstName();
@@ -143,7 +149,6 @@ private JSONObject getNamesPlayerOnGamePlayer(List<GamePlayer> listGamePlayer) {
 };
     @RequestMapping("/v2/gameview/{gameid}")
     public Object getGamePlayer01(@PathVariable Long gameid) {
-
 
         //To get the actual Player in the session
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();

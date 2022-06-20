@@ -11,7 +11,7 @@ const compareTwoValues =(value01,value02) =>{
     return value01 === value02;
 }
 
-export const Games = () => {
+export const ListGames = () => {
     const navigate = useNavigate();
     var LocalUsername=localStorage.getItem('username');
     const [listGames, setGames] = useState({});
