@@ -83,7 +83,7 @@ public class DataInitializer implements CommandLineRunner {
         locationShip05Cruiser.add("090501");
         locationShip05Cruiser.add("090601");
         locationShip05Cruiser.add("090701");
-        List<List<String>> listLocationsShipsPlayer01Game01 = new ArrayList<>();;
+        List<List<String>> listLocationsShipsPlayer01Game01 = new ArrayList<>();
         listLocationsShipsPlayer01Game01.add(locationShip01Destroyer);
         listLocationsShipsPlayer01Game01.add(locationShip02Battleship);
         listLocationsShipsPlayer01Game01.add(locationShip03AircraftCarrier);

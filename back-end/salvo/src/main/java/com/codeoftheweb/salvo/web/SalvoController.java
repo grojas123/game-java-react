@@ -1,11 +1,10 @@
 package com.codeoftheweb.salvo.web;
 
+import com.codeoftheweb.salvo.bootstrap.CreateBoard;
 import com.codeoftheweb.salvo.domain.Game;
 import com.codeoftheweb.salvo.domain.GamePlayer;
 import com.codeoftheweb.salvo.domain.Player;
-import com.codeoftheweb.salvo.repositories.GamePlayerRepository;
-import com.codeoftheweb.salvo.repositories.GameRepository;
-import com.codeoftheweb.salvo.repositories.PlayerRepository;
+import com.codeoftheweb.salvo.repositories.*;
 import net.minidev.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -41,6 +40,10 @@ public class SalvoController {
     private static final Logger log = LoggerFactory.getLogger(SalvoController.class);
     @Autowired
     private GameRepository gamesRepository;
+    @Autowired
+    private ShipRepository repositoryShips;
+    @Autowired
+    private SalvoRepository repositorySalvoes;
 
     @RequestMapping("/players")
     public List<Player> playerList(){
@@ -99,21 +102,19 @@ public class SalvoController {
        return gamesRepository.findAll();
    }
     @Autowired
-    private GamePlayerRepository gamePlayerRepository;
+    private GamePlayerRepository repositoryGamePlayer;
 
 
     @GetMapping("/games")
     public Object getAllGamePlayersPerGame(){
-        List listTemp= gamePlayerRepository.findAll()
+        List listTemp= repositoryGamePlayer.findAll()
                 .stream()
                 .map(gamePlayer_temp -> makePlayersPerGameDTO(gamePlayer_temp))
                 .collect(Collectors.toList());
         Object listTemp03= listTemp.stream()
                 .collect(Collectors
                         .groupingBy(listTemp_05-> extractGameId(listTemp_05.toString())));
-        //log.info(String.valueOf(listTemp03));
-        //List<GamePlayer> listTemp02= gamePlayerRepository.findAll();
-        //System.out.println(listTemp02.size());
+
         return listTemp03;
     }
 
@@ -121,18 +122,23 @@ public class SalvoController {
     public Object createGame(){
        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String currentPlayerEmail = authentication.getName();
-        return "Backend Response";
+        Player currentPlayer= playerRepository.findByEmail(currentPlayerEmail);
+        String firstName=currentPlayer.getFirstName();
+        String lastName=currentPlayer.getLastName();
+        String nameOfGame="Game of"+" "+firstName+" "+ lastName;
+        Date dateCreationGame=new Date();
+        Game newGame= new Game(nameOfGame,dateCreationGame);
+        gamesRepository.save(newGame);
+        List<List<String>> listLocationsShipsCurrentPlayerNewGame = new ArrayList<>();
+        List<List<String>> listLocationsSalvoesCurrentPlayerNewGame = new ArrayList<>();
+        CreateBoard boardPlayer01Game01 = new CreateBoard(currentPlayer,newGame,dateCreationGame,listLocationsShipsCurrentPlayerNewGame,listLocationsSalvoesCurrentPlayerNewGame,repositoryShips,repositorySalvoes,repositoryGamePlayer);
+
+        return boardPlayer01Game01.getBoard();
     };
-    //@Autowired
-    //private ShipRepository shipRepository;
-   // @RequestMapping("/ships")
-    //public List<Ship> getAllShips(){
-     //   return shipRepository.findAll();
-    //};
 
    @RequestMapping("/gameview/{gameid}")
     public List<GamePlayer> getGamePlayer(@PathVariable Long gameid) {
-         return gamePlayerRepository.findByGame_Id(gameid);
+         return repositoryGamePlayer.findByGame_Id(gameid);
     };
 private JSONObject getNamesPlayerOnGamePlayer(List<GamePlayer> listGamePlayer) {
     Player playerTemp=listGamePlayer.get(0).getPlayer();
@@ -147,8 +153,20 @@ private JSONObject getNamesPlayerOnGamePlayer(List<GamePlayer> listGamePlayer) {
     jsonPlayer.put("player",jsonPlayerData);
     return jsonPlayer;
 };
+private JSONObject getEmptyPlayer(){
+    String email ="";
+    String firstName="";
+    String lastName="";
+    JSONObject jsonPlayerData = new JSONObject();
+    jsonPlayerData.put("email",email);
+    jsonPlayerData.put("firstName",firstName);
+    jsonPlayerData.put("lastName",lastName);
+    JSONObject jsonPlayer = new JSONObject();
+    jsonPlayer.put("player",jsonPlayerData);
+    return jsonPlayer;
+}
     @RequestMapping("/v2/gameview/{gameid}")
-    public Object getGamePlayer01(@PathVariable Long gameid) {
+    public Object getGamePlayerV2(@PathVariable Long gameid) {
 
         //To get the actual Player in the session
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -156,7 +174,7 @@ private JSONObject getNamesPlayerOnGamePlayer(List<GamePlayer> listGamePlayer) {
         Player activePlayer=playerRepository.findByEmail(currentPlayerEmail);
         Long activePlayerid=activePlayer.getId();
         //To get the pair of GamePlayers of the gameid
-        List<GamePlayer> gamePlayerListByGameId=gamePlayerRepository.findByGame_Id(gameid);
+        List<GamePlayer> gamePlayerListByGameId=repositoryGamePlayer.findByGame_Id(gameid);
        // To get the GamePlayer of the actual Player
         Predicate<GamePlayer> byActivePlayerId = gamePlayer -> gamePlayer.getPlayer().getId().equals(activePlayerid);
         List<GamePlayer> gamePlayerActual= (List<GamePlayer>) gamePlayerListByGameId.stream().filter(byActivePlayerId).collect(Collectors.toList());
@@ -166,15 +184,20 @@ private JSONObject getNamesPlayerOnGamePlayer(List<GamePlayer> listGamePlayer) {
             // To get the GamePlayer of the opponent Player
             Predicate<GamePlayer> byOpponentPlayer = gamePlayer -> !gamePlayer.getPlayer().getId().equals(activePlayerid);
             List<GamePlayer> gamePlayerOpponentUser= (List<GamePlayer>) gamePlayerListByGameId.stream().filter(byOpponentPlayer).collect(Collectors.toList());
-            JSONObject PlayerOpponentNames=getNamesPlayerOnGamePlayer(gamePlayerOpponentUser);
-            //To create the board of the actual Player to return
             List<Object> boardActualPlayer = new ArrayList<Object>();
-            boardActualPlayer.add(gamePlayerActual.get(0));
-            boardActualPlayer.add(PlayerOpponentNames);
+            if (gamePlayerOpponentUser.size()!=0) {
+                JSONObject PlayerOpponentNames=getNamesPlayerOnGamePlayer(gamePlayerOpponentUser);
+                //To create the board of the actual Player to return
+                boardActualPlayer.add(gamePlayerActual.get(0));
+                boardActualPlayer.add(PlayerOpponentNames);}
+            else {// If Opponent Player is not present the data of the Opponent will be empty
+                boardActualPlayer.add(gamePlayerActual.get(0));
+                boardActualPlayer.add(getEmptyPlayer());}
 
-            return boardActualPlayer;
-                                        }
-        else{
+
+            return boardActualPlayer;}
+
+        else{// If the actual Player no belong to the game the array data will be empty
             return new ArrayList<Object>();
         }
     };

@@ -1,31 +1,39 @@
 import axios from "axios";
 import {useState} from "react";
 const CreateGameEndPoint="/api/games"
-export function AddGame() {
-    const [isUserValidated, setPlayerValidation] = useState(false);
+export async  function AddGamePromise() {
     const data = {};
-    const UNAUTHORIZED = 401;
-   axios.post(CreateGameEndPoint, data)
-        .then(response => {console.log(response.data);})
+    var createGameResponse = await axios.post(CreateGameEndPoint, data)
+        .then(response => response)
         .catch(error => {
             console.error('Something went wrong!', error);});
-    axios.interceptors.response.use(
-        response => {
-            setPlayerValidation(true)
-            return response},
-        error => {
-            const {status} = error.response;
-            if (status === UNAUTHORIZED) {
-                setPlayerValidation(false);
-                console.log("No Authorized",status);
-            }
-            return Promise.reject(error);
+       return createGameResponse;
+}
+
+export const CreateGameButton=() =>{
+    const [playerData,setPlayerData]=useState({});
+    const [isUserValidated,setUserValidation]=useState(true);
+
+    async function CreateGame(){
+        var dataGameCreate = await AddGamePromise();
+        //console.log(dataGameCreate);
+        if (typeof(dataGameCreate) !== "undefined"){
+            setPlayerData(dataGameCreate);
+            setUserValidation(true)
+
         }
+        else if (typeof(dataGameCreate) == "undefined")
+        {setUserValidation(false)}
 
-    );
-    console.log(isUserValidated);
-    if (isUserValidated) {return <div> You can create games</div> }
-    else {return  <div> You dont did login cannot create games</div>}
+    }
+    console.log(playerData)
+if (isUserValidated) {
+    return <div>
 
+        <button onClick={CreateGame}>AddGame</button>
 
+    </div>;}
+else return <div><button onClick={CreateGame}>AddGame</button>
+    User is no validated, pls do login and try again</div>
+    /*return <GetDataBackendCreateGame/>*/
 }
