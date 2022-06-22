@@ -132,7 +132,7 @@ public class SalvoController {
         List<List<String>> listLocationsShipsCurrentPlayerNewGame = new ArrayList<>();
         List<List<String>> listLocationsSalvoesCurrentPlayerNewGame = new ArrayList<>();
         CreateBoard boardPlayer01Game01 = new CreateBoard(currentPlayer,newGame,dateCreationGame,listLocationsShipsCurrentPlayerNewGame,listLocationsSalvoesCurrentPlayerNewGame,repositoryShips,repositorySalvoes,repositoryGamePlayer);
-
+        //List<GamePlayer> BoardList =newGame.getGamePlayers();
         return boardPlayer01Game01.getBoard();
     };
 

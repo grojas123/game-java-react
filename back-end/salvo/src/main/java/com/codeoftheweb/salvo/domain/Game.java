@@ -46,6 +46,7 @@ public class Game {
         return id;
     }
 
+
     public List getPlayers(GamePlayerRepository repositoryGamePlayer) {return  repositoryGamePlayer.findByGame_Id(id);} ;
     public String toString() {
         return id + " " + gameName + " " + creationGameDate ;

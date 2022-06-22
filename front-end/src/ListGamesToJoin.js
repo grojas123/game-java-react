@@ -7,35 +7,40 @@ function unique_id() {
     return uuidv4()
 }
 
-const compareTwoValues =(value01,value02) =>{
-    return value01 === value02;
-}
-/*const getSizeMap=(map)=>{
-    return map.size;
-}*/
+export const ListGamesToJoin = () => {
 
-export const ListGames = () => {
     const navigate = useNavigate();
     var LocalUsername=localStorage.getItem('username');
     const [listGames, setGames] = useState({});
-    const getGames = () =>axios.get(GamesBackend)
+    const getGames = async () =>axios.get(GamesBackend)
         .then((response)=>
             {
                 const listGames=response.data;
                 //console.log(listGames);
-                setGames(listGames);
+                  return(listGames);
             }
         )
-    useEffect(()=>getGames(),[])
+    const getGamesData= async () =>{
+        let listGamesData = await getGames();
+        const keysList01=Object.keys(listGamesData);
+        keysList01.map(function (key)
+            {if(listGamesData[key].length===1)
+                return listGamesData[key]
+                else return delete listGamesData[key]});
+        //console.log(resultmap);
+        // console.log(listGamesData);
+        setGames(listGamesData);
+    }
+    useEffect(()=>getGamesData(),[])
 
     if (typeof(listGames) !== 'undefined') {
           const keysList=Object.keys(listGames);
-          //console.log(keysList);
-          //console.log(listGames);
+
 
            return (
                <div>
                    <h3>Logged user: {LocalUsername}</h3>
+                   <h3>Games waiting pairs to game</h3>
                    <button onClick={()=>navigate('/logout')}>
                        Logout user
                    </button>
@@ -49,8 +54,8 @@ export const ListGames = () => {
                           {gameplayer_temp.player.firstName} {" "}
                           {gameplayer_temp.player.lastName} {" "}
                           {gameplayer_temp.player.email} {" "}
-                          {compareTwoValues(gameplayer_temp.player.email,LocalUsername)? <button onClick={()=>navigate('/gameboard/'+ gameplayer_temp.game_id)}>
-                              Rejoin to the game </button>:<></>}
+                           <button onClick={()=>navigate('/gameboard/'+ gameplayer_temp.game_id)}>
+                              Join to the game </button>:<></>
                       </li>))))}
                </ul>
                </div>)
