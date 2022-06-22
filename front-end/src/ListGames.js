@@ -2,6 +2,7 @@ import React, {useEffect, useState} from "react";
 import { v4 as uuidv4 } from 'uuid';
 import axios from "axios";
 import {useNavigate} from "react-router";
+import {ListGamesToJoin} from "./ListGamesToJoin";
 var GamesBackend='/api/games';
 function unique_id() {
     return uuidv4()
@@ -50,9 +51,10 @@ export const ListGames = () => {
                           {gameplayer_temp.player.lastName} {" "}
                           {gameplayer_temp.player.email} {" "}
                           {compareTwoValues(gameplayer_temp.player.email,LocalUsername)? <button onClick={()=>navigate('/gameboard/'+ gameplayer_temp.game_id)}>
-                              Rejoin to the game </button>:<></>}
+                              Join to the game </button>:<></>}
                       </li>))))}
                </ul>
+                   <ListGamesToJoin/>
                </div>)
 
 }}

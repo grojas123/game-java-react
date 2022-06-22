@@ -129,14 +129,27 @@ public class SalvoController {
         Date dateCreationGame=new Date();
         Game newGame= new Game(nameOfGame,dateCreationGame);
         gamesRepository.save(newGame);
-        List<List<String>> listLocationsShipsCurrentPlayerNewGame = new ArrayList<>();
-        List<List<String>> listLocationsSalvoesCurrentPlayerNewGame = new ArrayList<>();
-        CreateBoard boardPlayer01Game01 = new CreateBoard(currentPlayer,newGame,dateCreationGame,listLocationsShipsCurrentPlayerNewGame,listLocationsSalvoesCurrentPlayerNewGame,repositoryShips,repositorySalvoes,repositoryGamePlayer);
+        List<List<String>> listLocationsShipsCurrentPlayer = new ArrayList<>();
+        List<List<String>> listLocationsSalvoesCurrentPlayer = new ArrayList<>();
+        CreateBoard boardPlayerGame = new CreateBoard(currentPlayer,newGame,dateCreationGame,listLocationsShipsCurrentPlayer,listLocationsSalvoesCurrentPlayer,repositoryShips,repositorySalvoes,repositoryGamePlayer);
         //List<GamePlayer> BoardList =newGame.getGamePlayers();
-        return boardPlayer01Game01.getBoard();
+        return boardPlayerGame.getBoard();
     };
 
-   @RequestMapping("/gameview/{gameid}")
+    @PostMapping(value="/games/join/{gameid}")
+    public Object joinGame(@PathVariable Long gameid){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String currentPlayerEmail = authentication.getName();
+        Player currentPlayer= playerRepository.findByEmail(currentPlayerEmail);
+        Game gameToJoin = gamesRepository.findById(gameid).orElse(null);
+        Date dateCreationGame=new Date();
+        List<List<String>> listLocationsShipsCurrentPlayer = new ArrayList<>();
+        List<List<String>> listLocationsSalvoesCurrentPlayer = new ArrayList<>();
+        CreateBoard boardPlayerGame = new CreateBoard(currentPlayer,gameToJoin,dateCreationGame,listLocationsShipsCurrentPlayer,listLocationsSalvoesCurrentPlayer,repositoryShips,repositorySalvoes,repositoryGamePlayer);
+        return boardPlayerGame.getBoard();
+    };
+
+    @RequestMapping("/gameview/{gameid}")
     public List<GamePlayer> getGamePlayer(@PathVariable Long gameid) {
          return repositoryGamePlayer.findByGame_Id(gameid);
     };
