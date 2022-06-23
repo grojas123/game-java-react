@@ -30,7 +30,7 @@ export const CreateGameButton=() =>{
 if (isUserValidated) {
     return <div>
 
-        <button onClick={CreateGame}>AddGame</button>
+        <button onClick={CreateGame}>Create New Game</button>
 
     </div>;}
 else return <div><button onClick={CreateGame}>AddGame</button>

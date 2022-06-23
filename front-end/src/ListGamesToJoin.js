@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useCallback, useEffect, useState} from "react";
 import { v4 as uuidv4 } from 'uuid';
 import axios from "axios";
 import {useNavigate} from "react-router";
@@ -21,14 +21,10 @@ export const ListGamesToJoin = () => {
             })
             .catch(error => {
                 console.error('Something went wrong!', error);});
-
+        //forceUpdate();
     }
 
-   /* function JoinGamev2(gameid){
-        JoinGame(gameid);
 
-    }*/
-  /*  var LocalUsername=localStorage.getItem('username');*/
     const [listGames, setGames] = useState({});
     const getGames = async () =>axios.get(GamesBackend)
         .then((response)=>
@@ -59,7 +55,7 @@ export const ListGamesToJoin = () => {
            return (
                <div>
                   {/* <h3>Logged user: {LocalUsername}</h3>*/}
-                   <h3>Games waiting pairs to game</h3>
+                   <h3>Games waiting pairs to play</h3>
              {/*      <button onClick={()=>navigate('/logout')}>
                        Logout user
                    </button>*/}
@@ -74,7 +70,7 @@ export const ListGamesToJoin = () => {
                           {gameplayer_temp.player.lastName} {" "}
                           {gameplayer_temp.player.email} {" "}
                            <button onClick={()=>{JoinGame(gameplayer_temp.game_id)}}>
-                              Join to the game </button>:<></>
+                              Join to the game </button><></>
                       </li>))))}
                </ul>
                </div>)
