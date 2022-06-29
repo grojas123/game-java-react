@@ -9,18 +9,20 @@ function unique_id() {
 
 export const ListGamesToJoin = () => {
     const navigate = useNavigate();
+   /* const [statusJoin,setStatusJoin]=useState('');*/
     var LocalUsername=localStorage.getItem('username');
     function JoinGame(gameid) {
         var JoinGameEndPoint=GamesBackend+"/join/"+gameid;
 
         axios.post(JoinGameEndPoint)
             .then(response => {
-
-                console.log(response.data);
+                  console.log(response.data);
 
             })
             .catch(error => {
-                console.error('Something went wrong!', error);});
+                console.error('Something went wrong!', error)
+                /*var statusJoinNew='The game have a opponent';
+                setStatusJoin(statusJoinNew)*/;});
         //forceUpdate();
     }
 
@@ -75,6 +77,7 @@ export const ListGamesToJoin = () => {
                           {gameplayer_temp.player.firstName} {" "}
                           {gameplayer_temp.player.lastName} {" "}
                           {gameplayer_temp.player.email} {" "}
+                        {/*  {statusJoin}*/}
                            <button onClick={()=>{JoinGameGetListGames(gameplayer_temp.game_id)}}>
                               Join to the game </button><></>
                       </li>))))}

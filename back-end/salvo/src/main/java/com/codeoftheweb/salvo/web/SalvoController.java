@@ -15,6 +15,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 //import org.springframework.security.core.userdetails.UserDetails;
@@ -142,11 +144,14 @@ public class SalvoController {
         String currentPlayerEmail = authentication.getName();
         Player currentPlayer= playerRepository.findByEmail(currentPlayerEmail);
         Game gameToJoin = gamesRepository.findById(gameid).orElse(null);
-        Date dateCreationGame=new Date();
-        List<List<String>> listLocationsShipsCurrentPlayer = new ArrayList<>();
-        List<List<String>> listLocationsSalvoesCurrentPlayer = new ArrayList<>();
-        CreateBoard boardPlayerGame = new CreateBoard(currentPlayer,gameToJoin,dateCreationGame,listLocationsShipsCurrentPlayer,listLocationsSalvoesCurrentPlayer,repositoryShips,repositorySalvoes,repositoryGamePlayer);
-    return boardPlayerGame.getBoard();
+        Long countGamePlayers =repositoryGamePlayer.findByGame_Id(gameid).stream().count();
+        if (countGamePlayers==1) {
+            Date dateCreationGame=new Date();
+            List<List<String>> listLocationsShipsCurrentPlayer = new ArrayList<>();
+            List<List<String>> listLocationsSalvoesCurrentPlayer = new ArrayList<>();
+            CreateBoard boardPlayerGame = new CreateBoard(currentPlayer,gameToJoin,dateCreationGame,listLocationsShipsCurrentPlayer,listLocationsSalvoesCurrentPlayer,repositoryShips,repositorySalvoes,repositoryGamePlayer);
+            return boardPlayerGame.getBoard();}
+        else return new ResponseEntity<>("The game have a pair", HttpStatus.FORBIDDEN);
     };
 
     @RequestMapping("/gameview/{gameid}")
