@@ -1,5 +1,6 @@
 package com.codeoftheweb.salvo.domain;
 import com.codeoftheweb.salvo.repositories.GamePlayerRepository;
+import org.hibernate.annotations.BatchSize;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;

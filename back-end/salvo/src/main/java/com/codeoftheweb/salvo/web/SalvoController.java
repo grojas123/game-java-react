@@ -146,7 +146,7 @@ public class SalvoController {
         List<List<String>> listLocationsShipsCurrentPlayer = new ArrayList<>();
         List<List<String>> listLocationsSalvoesCurrentPlayer = new ArrayList<>();
         CreateBoard boardPlayerGame = new CreateBoard(currentPlayer,gameToJoin,dateCreationGame,listLocationsShipsCurrentPlayer,listLocationsSalvoesCurrentPlayer,repositoryShips,repositorySalvoes,repositoryGamePlayer);
-        return boardPlayerGame.getBoard();
+    return boardPlayerGame.getBoard();
     };
 
     @RequestMapping("/gameview/{gameid}")

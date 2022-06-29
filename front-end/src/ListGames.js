@@ -16,7 +16,9 @@ const compareTwoValues =(value01,value02) =>{
     return map.size;
 }*/
 
+
 export const ListGames = () => {
+
     const navigate = useNavigate();
     var LocalUsername=localStorage.getItem('username');
     const [listGames, setGames] = useState({});
@@ -56,8 +58,10 @@ export const ListGames = () => {
                               Return to the game </button>:<></>}
                       </li>))))}
                </ul>
-                   <ListGamesToJoin/>
-                   <CreateGameButton/>
+                   <CreateGameButton setGames={setGames}/>
+                  {/* <ListGamesToJoin/>*/}
+
+
                </div>)
 
 }}
