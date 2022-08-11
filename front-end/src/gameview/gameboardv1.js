@@ -119,23 +119,22 @@ export const GameBoardv1=()=>{
          }
         return shipTransformedBackEndCoordinates
     }
-    function transformShipCoordinates(){
+    function transformShipsCoordinatesToBackend(){
         let grid=document.getElementById('grid1').gridstack
-        let gridItems=grid.getGridItems() // This give the array of the GrisStackElements I need to do a
-        // map of this adding the double function about how response to the ondblclick function
-        // grid.update to update the gridStackElement
+        let gridItems=grid.getGridItems()
         let arrayElementShips=[]
         gridItems.map((item)=>(arrayElementShips.push(item.gridstackNode)))
-
+        let arrayShipsBackEndCoordinates=[]
         arrayElementShips.map((element)=>{
-            let shipBackend={'shipName':element.id,'locations':[]};
-            shipBackend['locations'].push(translateFrontEndToBackendShip(element))
-            console.log(shipBackend)
-            //This is the place when I need to create a function to for each ship to send a post to create the ship in the backend
-
+                let shipBackend={'shipName':element.id,'locations':[]};
+                shipBackend['locations'].push(translateFrontEndToBackendShip(element))
+                arrayShipsBackEndCoordinates.push(shipBackend)
         }
         )
-
+        return arrayShipsBackEndCoordinates
+    }
+    const saveShipsBackend=()=>{
+        console.log(transformShipsCoordinatesToBackend())
     }
 
     const updateElement=()=>{
@@ -170,7 +169,7 @@ export const GameBoardv1=()=>{
            {/* {<button onClick={()=>updateElement()}>Update element</button>}*/}
             {<button onClick={()=>stopDragDrop()}>Stop Drag and Drop</button>}
             {<button onClick={()=>changeContent()}>Change content</button>}
-            {<button onClick={()=>transformShipCoordinates()}>Transform the ships into Backend Coordinates</button>}
+            {<button onClick={()=>saveShipsBackend()}>Save the ships into Backend</button>}
             <p>Ships</p>
             <div className="grid-stack border border-primary" id="grid1"></div>
             <p>Salvos</p>

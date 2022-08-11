@@ -13,7 +13,7 @@ import {RegUsers} from "./forms/RegPlayers";
 import {LogoutUser} from "./LogoutPlayer";
 import {ListGamesToJoin} from "./ListGamesToJoin";
 import {ShipsOnGamePlayer} from "./forms/CreateShips";
-import {GameBoardv1} from "./gameview/gamboardv1";
+import {GameBoardv1} from "./gameview/gameboardv1";
 
 
 function App() {
