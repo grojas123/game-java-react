@@ -1148,6 +1148,24 @@ public class DataInitializer implements CommandLineRunner {
         gamePlayerPlayer10Game06.setScore(scorePlayer06Game06);
         repositoryGamePlayer.save(gamePlayerPlayer09Game06);
         repositoryGamePlayer.save(gamePlayerPlayer10Game06);
+        //Create game 07 to test add Ships
+          Date game_creation_date07= addHoursToJavaUtilDate(game_creation_date01,4);
+            Game Game07 = new Game("Game 07", game_creation_date07);
+            repositoryGames.save(Game07);
+        //GamePlayer First of the Game07
+            Date gamePlayer13Date = new Date();
+            List<List<String>> listLocationsShipsPlayer07Game07 = new ArrayList<>();
+            List<List<String>> listLocationsSalvoesPlayer07Game07 = new ArrayList<>();
+
+            CreateBoard boardPlayer07Game07 = new CreateBoard(Player07,Game07,gamePlayer13Date,listLocationsShipsPlayer07Game07,listLocationsSalvoesPlayer07Game07,repositoryShips,repositorySalvoes,repositoryGamePlayer);
+            GamePlayer gamePlayerPlayer07Game07=boardPlayer07Game07.getBoard();
+        //GamePlayer Second of the Game07
+            Date gamePlayer14Date = new Date();
+            List<List<String>> listLocationsShipsPlayer08Game07 = new ArrayList<>();
+            List<List<String>> listLocationsSalvoesPlayer08Game07 = new ArrayList<>();
+            //GamePlayer First of the Game07
+            CreateBoard boardPlayer08Game07 = new CreateBoard(Player08,Game07,gamePlayer14Date,listLocationsShipsPlayer08Game07,listLocationsSalvoesPlayer08Game07,repositoryShips,repositorySalvoes,repositoryGamePlayer);
+            GamePlayer gamePlayerPlayer08Game07=boardPlayer08Game07.getBoard();
 
     }
 }

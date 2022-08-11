@@ -53,7 +53,8 @@ export const ListGamesToJoin = () => {
 
     function JoinGameGetListGames(gameid){
         JoinGame(gameid)
-        setTimeout(function () {getGamesData()},500);
+        /*setTimeout(function () {getGamesData()},500);*/
+        setTimeout(function () {navigate('/games')},500);
     }
     if (typeof(listGamesToJoin) !== 'undefined') {
           const keysList=Object.keys(listGamesToJoin);

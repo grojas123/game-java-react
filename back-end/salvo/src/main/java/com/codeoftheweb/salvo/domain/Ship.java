@@ -1,6 +1,5 @@
 package com.codeoftheweb.salvo.domain;
 
-import com.codeoftheweb.salvo.domain.GamePlayer;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -13,7 +12,7 @@ public class Ship {
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
     @GenericGenerator(name = "native", strategy = "native")
     private Long id;
-    private String shipType;
+    private String shipName;
 
 
     public Ship() {
@@ -27,18 +26,18 @@ public class Ship {
     @JoinColumn(name = "game_player")
     private GamePlayer gamePlayer;
 
-    public Ship(String shipType, List<String> locations){
-        this.shipType=shipType;
+    public Ship(String shipName, List<String> locations){
+        this.shipName = shipName;
        this.locations=locations;
 
      }
 
 
-    public String getShipType() {
-        return shipType;
+    public String getShipName() {
+        return shipName;
     }
 
-    public void setShipType(String shipType) {
+    public void setShipName(String shipType) {
         shipType = shipType;
     }
 

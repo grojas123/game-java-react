@@ -424,6 +424,7 @@ const PlayerShipsBoard=(gameid,gamernumber) =>{
                 boardplayers[otherplayernumber].email =response.data[otherplayernumber].player.email;
                 //console.log(boardplayers[gamernumber].email,' ',boardplayers[otherplayernumber].email)
                 let mapShipsTemp=GetMapShips(GameViewGameShipsGamer);
+                console.log(JSON.stringify(mapShipsTemp))
                 setPlayerShips(mapShipsTemp);
 
             }
