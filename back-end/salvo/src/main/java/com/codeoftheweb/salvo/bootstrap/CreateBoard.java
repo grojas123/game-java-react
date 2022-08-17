@@ -64,16 +64,16 @@ public class CreateBoard {
 
             switch (locationShip.size()){
                 case 2:
-                    typeShip="Destroyer";
+                    typeShip="Ship 01";
                     break;
                 case 3:
-                    typeShip="Submarine";
+                    typeShip="Ship 02";
                     break;
                 case 4:
-                    typeShip="Battleship";
+                    typeShip="Ship 03";
                     break;
                 case 5:
-                    typeShip="Aircraft Carrier";
+                    typeShip="Ship 04";
                     break;
                 default:
                     typeShip="Unknown Type";

@@ -3,7 +3,7 @@ import {GridStack} from "gridstack";
 import 'gridstack/dist/gridstack.css';
 import 'gridstack/dist/h5/gridstack-dd-native';
 import "./gameboardv1.css";
-export const GameBoardv1=()=>{
+export const GameBoardV1=()=>{
     let serializedData = [
         {id:"ship00",x: 0, y: 0, w: 5,h: 1,autoPosition:false,content: 'ship00 0/5'},
         {id:"ship01",x: 1, y: 2, w: 1,h: 3,autoPosition:false,content: 'ship01 0/3'},

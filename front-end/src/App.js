@@ -13,11 +13,12 @@ import {RegUsers} from "./forms/RegPlayers";
 import {LogoutUser} from "./LogoutPlayer";
 import {ListGamesToJoin} from "./ListGamesToJoin";
 import {ShipsOnGamePlayer} from "./forms/CreateShips";
-import {GameBoardv1} from "./gameview/gameboardv1";
-
+import {GameBoardV2} from "./gameview/gameBoardV2";
+import {Suspense} from "react";
 
 function App() {
   return (
+      <Suspense fallback={<h1>Loading</h1>}>
     <div className="App">
         <Routes>
             <Route path="/" element ={<LoginForm/>}/>
@@ -30,13 +31,14 @@ function App() {
             <Route path="/saveships" element={<ShipsOnGamePlayer/>}/>
          {/*  <Route path="/getdata" element={<GetBoardDataVariable/>}/>*/}
             {/*<Route path="/gameboard/:gameid/:gamernumber" element={<GameBoard/>}/>*/}
-            <Route path="/gameboardnew" element={<GameBoardv1/>}/>
+            <Route path="/gameboardnew/:gameid" element={<GameBoardV2/>}/>
             <Route path="/gameboard/:gameid" element={<GameBoard/>}/>
             <Route path="/login" element={<LoginForm/>}/>
             <Route path="/logout" element={<LogoutUser/>}/>
         </Routes>
 
     </div>
+      </Suspense>
   );
 }
 
