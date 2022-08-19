@@ -63,6 +63,9 @@ public class CreateBoard {
             String typeShip;
 
             switch (locationShip.size()){
+                case 1:
+                    typeShip="Ship 00";
+                    break;
                 case 2:
                     typeShip="Ship 01";
                     break;

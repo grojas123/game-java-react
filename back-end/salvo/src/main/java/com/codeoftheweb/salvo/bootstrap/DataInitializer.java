@@ -63,7 +63,7 @@ public class DataInitializer implements CommandLineRunner {
 
         List<String> locationShip01Destroyer = new ArrayList<>();
         locationShip01Destroyer.add("010201");
-        locationShip01Destroyer.add("020201");
+       // locationShip01Destroyer.add("020201");
         List<String> locationShip02Battleship = new ArrayList<>();
         locationShip02Battleship.add("050201");
         locationShip02Battleship.add("060201");
@@ -82,7 +82,7 @@ public class DataInitializer implements CommandLineRunner {
         List<String> locationShip05Cruiser = new ArrayList<>();
         locationShip05Cruiser.add("090501");
         locationShip05Cruiser.add("090601");
-        locationShip05Cruiser.add("090701");
+        //locationShip05Cruiser.add("090701");
         List<List<String>> listLocationsShipsPlayer01Game01 = new ArrayList<>();
         listLocationsShipsPlayer01Game01.add(locationShip01Destroyer);
         listLocationsShipsPlayer01Game01.add(locationShip02Battleship);

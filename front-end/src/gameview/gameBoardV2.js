@@ -9,40 +9,84 @@ import {useParams} from "react-router";
 export const GameBoardV2=()=>{
 
     var { gameid } = useParams();
-    const {data,isError,isLoading}=GetGameDataBackend(gameid);
-    const translateShipBackendToFront=(ship)=>{
-        let shipId=ship.shipName;
-        let shipLocations=ship.locations;
-        console.log(checkOrientationShip(shipLocations))
-    }
-    const checkOrientationShip=(shipLocations)=>{
-        let orientation=shipLocations.every(location=>{
-            if(location.slice(0,1)===shipLocations[0].slice(0,1))
-            return 'vertical'
-            else if (location.slice(2,3)===shipLocations[0].slice(2,3))
-            return 'horizontal'
-        })
-        return orientation
-    }
+    const {databackend,isError,isLoading}=GetGameDataBackend(gameid);
+
 
     const translateBackendToFront=(data)=>{
+        //console.log(data)
+        const translateShipBackendToFront=(ship)=>{
+
+            const checkOrientationShip=(shipLocations)=>{
+                const orientationVertical=shipLocations.every(location=>{
+                    //console.log("location.substring(0,2) ",location.substring(0,2),"shipLocations[0].substring(0,2) ",shipLocations[0].substring(0,2))
+                    if(location.substring(0,2)===shipLocations[0].substring(0,2))
+                        return true;})
+                const orientationHorizontal=shipLocations.every(
+                    location=>{
+                    //console.log("location.substring(0,2) ",location.substring(3,5),"shipLocations[0].substring(0,2) ",shipLocations[0].substring(3,5))
+                    if(location.substring(2,4)===shipLocations[0].substring(2,4))
+                        return true;}
+                )
+                const orientationPoint=shipLocations.every(
+                    location=>{
+                        if(location.substring(0,2)===shipLocations[0].substring(0,2) && location.substring(2,4)===shipLocations[0].substring(2,4))
+                            return true
+                    }
+                )
+                if (orientationVertical) return 'vertical';
+                else if (orientationHorizontal) return 'horizontal'
+                else if (orientationPoint) return 'point'
+
+            }
+
+            let shipId=ship.shipName;
+            let shipLocations=ship.locations;
+            let x=parseInt(shipLocations[0].substring(0,2));
+            let y=parseInt(shipLocations[0].substring(2,4));
+            let w=0;
+            let h=0;
+            let shipLength=shipLocations.length;
+            //console.log(shipLocations,checkOrientationShip(shipLocations),x,y,shipLength)
+            switch (checkOrientationShip(shipLocations)){
+                case 'horizontal':
+                    w=parseInt(shipLength);
+                    h=1;
+                    break
+                case 'vertical':
+                    w=1;
+                    h=parseInt(shipLength);
+                    break
+                case 'point':
+                    w=1;
+                    h=1;
+                    break;
+                default:
+                    w=1;
+                    h=1;
+            }
+            let frontEndLocation={id:shipId,x: x, y: y, w: w,h: h,autoPosition:false,content: shipId+" "+"0/"+shipLength}
+            return frontEndLocation;
+        }
+
         //console.log(data[0])
         let game=data[0].game;
         let gameId=data[0].game.id;
         let salvoesBackend=data[0].salvoes;
-        let shipsBackend=data[0].ships.map((ship)=>translateShipBackendToFront(ship));
+        let dataBackendTransformedFrontend=[];
+        data[0].ships.map((ship)=>dataBackendTransformedFrontend.push(translateShipBackendToFront(ship)));
         //console.log(game,gameId,salvoesBackend,shipsBackend)
+        return dataBackendTransformedFrontend;
     }
-    translateBackendToFront(data);
+    let serializedData=translateBackendToFront(databackend);
 
-    let serializedData = [
+ /*   let serializedData = [
         {id:"ship00",x: 0, y: 0, w: 5,h: 1,autoPosition:false,content: 'ship00 0/5'},
         {id:"ship01",x: 1, y: 2, w: 1,h: 3,autoPosition:false,content: 'ship01 0/3'},
         {id:"ship02",x: 2, y: 3, w: 1,h: 4,autoPosition:false,content: 'ship02 0/4'},
         {id:"ship03",x: 3, y: 4, w: 2,h: 1,autoPosition:false,content: 'ship03 0/2'},
         {id:"ship04",x: 4, y: 5, w: 2,h: 1,autoPosition:false,content: 'ship04 0/2'}
     ];
-
+*/
     var gridOptionsShips = {column: 10,disableResize:true,maxRow:10,row:10,float:true};
     var gridOptionsSalvos = {column: 10,disableResize:true,maxRow:11,row:10,float:true};
 

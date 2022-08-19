@@ -13,7 +13,7 @@ const GetGameDataBackend=(gameid)=>{
     const GameViewBackendGameid='/api/v2/gameview/'+gameid
     const {data,error}=useSwrTest(GameViewBackendGameid);
     return {
-        data: data,
+        databackend: data,
         isLoading: !error && !data,
         isError: error
     }
