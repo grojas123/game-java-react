@@ -176,9 +176,9 @@ public class DataInitializer implements CommandLineRunner {
 
         List<String> locationShip06Battleship = new ArrayList<>();
         locationShip06Battleship.add("010101");
-        locationShip06Battleship.add("020101");
-        locationShip06Battleship.add("020101");
-        locationShip06Battleship.add("040101");
+        //locationShip06Battleship.add("020101");
+        //locationShip06Battleship.add("020101");
+        //locationShip06Battleship.add("040101");
         List<String> locationShip07Submarine = new ArrayList<>();
         locationShip07Submarine.add("010701");
         locationShip07Submarine.add("010801");
@@ -191,7 +191,7 @@ public class DataInitializer implements CommandLineRunner {
         List<String> locationShip09Submarine = new ArrayList<>();
         locationShip09Submarine.add("100401");
         locationShip09Submarine.add("100501");
-        locationShip09Submarine.add("100601");
+        //locationShip09Submarine.add("100601");
         List<String> locationShip10AircraftCarrier = new ArrayList<>();
         locationShip10AircraftCarrier.add("051001");
         locationShip10AircraftCarrier.add("061001");
@@ -292,8 +292,8 @@ public class DataInitializer implements CommandLineRunner {
 
         List<String> locationShip11Submarine = new ArrayList<>();
         locationShip11Submarine.add("030201");
-        locationShip11Submarine.add("040201");
-        locationShip11Submarine.add("050201");
+        //locationShip11Submarine.add("040201");
+       // locationShip11Submarine.add("050201");
         List<String> locationShip12AircraftCarrier = new ArrayList<>();
         locationShip12AircraftCarrier.add("050501");
         locationShip12AircraftCarrier.add("060501");
@@ -308,7 +308,7 @@ public class DataInitializer implements CommandLineRunner {
         List<String> locationShip14Carrier = new ArrayList<>();
         locationShip14Carrier.add("080901");
         locationShip14Carrier.add("090901");
-        locationShip14Carrier.add("100901");
+        //locationShip14Carrier.add("100901");
         List<String> locationShip15Destroyer = new ArrayList<>();
         locationShip15Destroyer.add("011001");
         locationShip15Destroyer.add("021001");
@@ -388,8 +388,8 @@ public class DataInitializer implements CommandLineRunner {
         locationShip16AircraftCarrier.add("010501");
         List<String> locationShip17Submarine = new ArrayList<>();
         locationShip17Submarine.add("070201");
-        locationShip17Submarine.add("070301");
-        locationShip17Submarine.add("070401");
+        //locationShip17Submarine.add("070301");
+        //locationShip17Submarine.add("070401");
         List<String> locationShip18Cruiser = new ArrayList<>();
         locationShip18Cruiser.add("070701");
         locationShip18Cruiser.add("070801");
@@ -452,9 +452,9 @@ public class DataInitializer implements CommandLineRunner {
         List<String> locationSalvo20_14 = new ArrayList<>();
         locationSalvo20_14.add("031002");
         List<String> locationSalvo20_15 = new ArrayList<>();
-        locationSalvo20_15.add("100902");
+        locationSalvo20_15.add("090902");
         List<String> locationSalvo20_16 = new ArrayList<>();
-        locationSalvo20_16.add("101002");
+        locationSalvo20_16.add("091002");
 
         List<List<String>> listLocationsSalvoesPlayer04Game02 = new ArrayList<>();
         listLocationsSalvoesPlayer04Game02.add(locationSalvo16);
@@ -511,8 +511,8 @@ public class DataInitializer implements CommandLineRunner {
 
         List<String> locationShip21Submarine = new ArrayList<>();
         locationShip21Submarine.add("030201");
-        locationShip21Submarine.add("040201");
-        locationShip21Submarine.add("050201");
+        //locationShip21Submarine.add("040201");
+        //locationShip21Submarine.add("050201");
         List<String> locationShip22AircraftCarrier = new ArrayList<>();
         locationShip22AircraftCarrier.add("040701");
         locationShip22AircraftCarrier.add("050701");
@@ -527,10 +527,10 @@ public class DataInitializer implements CommandLineRunner {
         locationShip24Cruiser.add("030901");
         locationShip24Cruiser.add("031001");
         List<String> locationShip25BattleShip = new ArrayList<>();
-        locationShip25BattleShip.add("100201");
-        locationShip25BattleShip.add("100301");
-        locationShip25BattleShip.add("100401");
-        locationShip25BattleShip.add("100501");
+        locationShip25BattleShip.add("090201");
+        locationShip25BattleShip.add("090301");
+        locationShip25BattleShip.add("090401");
+        locationShip25BattleShip.add("090501");
 
         List<List<String>> listLocationsShipsPlayer05Game03 = new ArrayList<>();
         listLocationsShipsPlayer05Game03.add(locationShip21Submarine);
@@ -606,8 +606,8 @@ public class DataInitializer implements CommandLineRunner {
 
         List<String> locationShip26Cruiser = new ArrayList<>();
         locationShip26Cruiser.add("020601");
-        locationShip26Cruiser.add("020701");
-        locationShip26Cruiser.add("020801");
+        //locationShip26Cruiser.add("020701");
+        //locationShip26Cruiser.add("020801");
         List<String> locationShip27BattleShip = new ArrayList<>();
         locationShip27BattleShip.add("030401");
         locationShip27BattleShip.add("040401");
@@ -729,8 +729,8 @@ public class DataInitializer implements CommandLineRunner {
 
         List<String> locationShip31 = new ArrayList<>();
         locationShip31.add("010101");
-        locationShip31.add("010201");
-        locationShip31.add("010301");
+        //locationShip31.add("010201");
+        //locationShip31.add("010301");
         List<String> locationShip32 = new ArrayList<>();
         locationShip32.add("030401");
         locationShip32.add("040401");
@@ -802,8 +802,8 @@ public class DataInitializer implements CommandLineRunner {
         // Ship creation
         List<String> locationShip36 = new ArrayList<>();
         locationShip36.add("010101");
-        locationShip36.add("010201");
-        locationShip36.add("010301");
+        //locationShip36.add("010201");
+        //locationShip36.add("010301");
         List<String> locationShip37 = new ArrayList<>();
         locationShip37.add("020801");
         locationShip37.add("020901");
@@ -813,10 +813,12 @@ public class DataInitializer implements CommandLineRunner {
         locationShip38.add("040401");
         locationShip38.add("050401");
         locationShip38.add("060401");
+        locationShip38.add("070401");
         List<String> locationShip39 = new ArrayList<>();
         locationShip39.add("050101");
         locationShip39.add("060101");
         locationShip39.add("070101");
+        locationShip39.add("080101");
         List<String> locationShip40 = new ArrayList<>();
         locationShip40.add("080601");
         locationShip40.add("090601");
@@ -900,16 +902,17 @@ public class DataInitializer implements CommandLineRunner {
         // Creation of Ships
         List<String> locationShip41 = new ArrayList<>();
         locationShip41.add("010201");
-        locationShip41.add("020201");
-        locationShip41.add("030201");
+        //locationShip41.add("020201");
+        //locationShip41.add("030201");
         List<String> locationShip42 = new ArrayList<>();
         locationShip42.add("010501");
         locationShip42.add("020501");
-        locationShip42.add("030501");
+        //locationShip42.add("030501");
         List<String> locationShip43 = new ArrayList<>();
         locationShip43.add("050101");
         locationShip43.add("050201");
         locationShip43.add("050301");
+        locationShip43.add("050401");
         List<String> locationShip44 = new ArrayList<>();
         locationShip44.add("040901");
         locationShip44.add("050901");
@@ -917,9 +920,9 @@ public class DataInitializer implements CommandLineRunner {
         locationShip44.add("070901");
         locationShip44.add("080901");
         List<String> locationShip45 = new ArrayList<>();
-        locationShip45.add("100801");
-        locationShip45.add("100901");
-        locationShip45.add("101001");
+        locationShip45.add("090701");
+        locationShip45.add("090801");
+        locationShip45.add("090901");
 
         List<List<String>> listLocationsShipsPlayer09Game05 = new ArrayList<>();
         listLocationsShipsPlayer09Game05.add(locationShip41);
@@ -977,16 +980,17 @@ public class DataInitializer implements CommandLineRunner {
         // Creation of Ships
         List<String> locationShip46 = new ArrayList<>();
         locationShip46.add("010101");
-        locationShip46.add("010201");
-        locationShip46.add("010301");
+       // locationShip46.add("010201");
+       // locationShip46.add("010301");
         List<String> locationShip47 = new ArrayList<>();
+        locationShip47.add("010701");
         locationShip47.add("010801");
         locationShip47.add("010901");
-        locationShip47.add("011001");
         List<String> locationShip48 = new ArrayList<>();
         locationShip48.add("050101");
         locationShip48.add("060101");
         locationShip48.add("070101");
+        locationShip48.add("080101");
         List<String> locationShip49 = new ArrayList<>();
         locationShip49.add("050401");
         locationShip49.add("060401");
@@ -1154,14 +1158,64 @@ public class DataInitializer implements CommandLineRunner {
             repositoryGames.save(Game07);
         //GamePlayer First of the Game07
             Date gamePlayer13Date = new Date();
+            List<String> locationShip5100 = new ArrayList<>();
+            locationShip5100.add("000001");
+            List<String> locationShip5201 = new ArrayList<>();
+            locationShip5201.add("030201");
+            locationShip5201.add("030301");
+            List<String> locationShip5302 = new ArrayList<>();
+            locationShip5302.add("070001");
+            locationShip5302.add("080001");
+            locationShip5302.add("090001");
+            List<String> locationShip5403 = new ArrayList<>();
+            locationShip5403.add("050501");
+            locationShip5403.add("050601");
+            locationShip5403.add("050701");
+            locationShip5403.add("050801");
+            List<String> locationShip5504 = new ArrayList<>();
+            locationShip5504.add("070401");
+            locationShip5504.add("070501");
+            locationShip5504.add("070601");
+            locationShip5504.add("070701");
+            locationShip5504.add("070801");
             List<List<String>> listLocationsShipsPlayer07Game07 = new ArrayList<>();
+            listLocationsShipsPlayer07Game07.add(locationShip5100);
+            listLocationsShipsPlayer07Game07.add(locationShip5201);
+            listLocationsShipsPlayer07Game07.add(locationShip5302);
+            listLocationsShipsPlayer07Game07.add(locationShip5403);
+            listLocationsShipsPlayer07Game07.add(locationShip5504);
             List<List<String>> listLocationsSalvoesPlayer07Game07 = new ArrayList<>();
 
             CreateBoard boardPlayer07Game07 = new CreateBoard(Player07,Game07,gamePlayer13Date,listLocationsShipsPlayer07Game07,listLocationsSalvoesPlayer07Game07,repositoryShips,repositorySalvoes,repositoryGamePlayer);
             GamePlayer gamePlayerPlayer07Game07=boardPlayer07Game07.getBoard();
         //GamePlayer Second of the Game07
-            Date gamePlayer14Date = new Date();
+        Date gamePlayer14Date = new Date();
+            List<String> locationShip5600 = new ArrayList<>();
+            locationShip5600.add("000001");
+            List<String> locationShip5701 = new ArrayList<>();
+            locationShip5701.add("030201");
+            locationShip5701.add("030301");
+            List<String> locationShip5802 = new ArrayList<>();
+            locationShip5802.add("070001");
+            locationShip5802.add("080001");
+            locationShip5802.add("090001");
+            List<String> locationShip5903 = new ArrayList<>();
+            locationShip5903.add("050501");
+            locationShip5903.add("050601");
+            locationShip5903.add("050701");
+            locationShip5903.add("050801");
+            List<String> locationShip6004 = new ArrayList<>();
+            locationShip6004.add("070401");
+            locationShip6004.add("070501");
+            locationShip6004.add("070601");
+            locationShip6004.add("070701");
+            locationShip6004.add("070801");
             List<List<String>> listLocationsShipsPlayer08Game07 = new ArrayList<>();
+            listLocationsShipsPlayer08Game07.add(locationShip5600);
+            listLocationsShipsPlayer08Game07.add(locationShip5701);
+            listLocationsShipsPlayer08Game07.add(locationShip5802);
+            listLocationsShipsPlayer08Game07.add(locationShip5903);
+            listLocationsShipsPlayer08Game07.add(locationShip6004);
             List<List<String>> listLocationsSalvoesPlayer08Game07 = new ArrayList<>();
             //GamePlayer First of the Game07
             CreateBoard boardPlayer08Game07 = new CreateBoard(Player08,Game07,gamePlayer14Date,listLocationsShipsPlayer08Game07,listLocationsSalvoesPlayer08Game07,repositoryShips,repositorySalvoes,repositoryGamePlayer);
