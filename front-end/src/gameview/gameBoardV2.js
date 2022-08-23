@@ -248,7 +248,7 @@ export const GameBoardV2=()=>{
            {/* {<button onClick={()=>updateElement()}>Update element</button>}*/}
             {<button onClick={()=>stopDragDrop()}>Stop Drag and Drop</button>}
             {<button onClick={()=>changeContent()}>Change content</button>}
-            {<button onClick={()=>saveShipsBackend()}>Save the ships into Backend</button>}
+            {<button onClick={()=>saveShipsBackend()}>Update the positions ships Backend</button>}
 
             <p>Ships</p>
             <div className="grid-stack border border-primary" id="grid1"></div>
