@@ -4,6 +4,7 @@ import com.codeoftheweb.salvo.bootstrap.CreateBoard;
 import com.codeoftheweb.salvo.domain.Game;
 import com.codeoftheweb.salvo.domain.GamePlayer;
 import com.codeoftheweb.salvo.domain.Player;
+import com.codeoftheweb.salvo.domain.Ship;
 import com.codeoftheweb.salvo.repositories.*;
 import net.minidev.json.JSONObject;
 import org.slf4j.Logger;
@@ -161,6 +162,24 @@ public class SalvoController {
         CreateBoard boardPlayerGame = new CreateBoard(currentPlayer,newGame,dateCreationGame,listLocationsShipsCurrentPlayer,listLocationsSalvoesCurrentPlayer,repositoryShips,repositorySalvoes,repositoryGamePlayer);
         //List<GamePlayer> BoardList =newGame.getGamePlayers();
         return boardPlayerGame.getBoard();
+    };
+    @PostMapping(value="/updateships/{gameid}" ,consumes = "application/json")
+    public Object UpdateShips(@PathVariable Long gameid ,@RequestBody JSONObject postPayload){
+        //System.out.println(postPayload);
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String currentPlayerEmail = authentication.getName();
+        Player currentPlayer= playerRepository.findByEmail(currentPlayerEmail);
+        List<GamePlayer> gamePlayerList=repositoryGamePlayer.findByGame_Id(gameid);
+        GamePlayer gamePlayer00=gamePlayerList.get(0);
+        GamePlayer gamePlayer01=gamePlayerList.get(1);
+        String player00email =gamePlayer00.getPlayer().getEmail();
+        String player01email =gamePlayer01.getPlayer().getEmail();
+        String currentPlayeremail=currentPlayer.getEmail();
+        List<Ship> listShipsToUpdate=new ArrayList<>();
+        if(currentPlayeremail==player00email) {listShipsToUpdate =gamePlayer00.getShips();}
+        else if(currentPlayeremail==player01email) {listShipsToUpdate=gamePlayer01.getShips();}
+
+        return listShipsToUpdate;
     };
     public List<List<String>> ConvertFromBackEndShipsCoordinates(JSONObject FrontEndData){
         List<List<String>> listCoordinatesBackEnd = new ArrayList<>();

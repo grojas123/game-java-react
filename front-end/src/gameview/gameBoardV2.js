@@ -5,6 +5,7 @@ import 'gridstack/dist/h5/gridstack-dd-native';
 import "./gameboardv1.css";
 import GetGameDataBackend from "./getGameDataBackend";
 import {useParams} from "react-router";
+import {UpdateShips} from "../forms/UpdateShips";
 
 export const GameBoardV2=()=>{
 
@@ -210,8 +211,11 @@ export const GameBoardV2=()=>{
         return arrayShipsBackEndCoordinates
     }
 
-    const saveShipsBackend=()=>{
-        console.log(transformShipsCoordinatesToBackend())
+    const saveShipsBackend=(gameid)=>{
+        let data=transformShipsCoordinatesToBackend();
+        //console.log({...data});
+        // {...data} is for transform the array in an object because the end point is expecting an object
+        UpdateShips({...data},gameid)
     }
 
 
@@ -248,7 +252,7 @@ export const GameBoardV2=()=>{
            {/* {<button onClick={()=>updateElement()}>Update element</button>}*/}
             {<button onClick={()=>stopDragDrop()}>Stop Drag and Drop</button>}
             {<button onClick={()=>changeContent()}>Change content</button>}
-            {<button onClick={()=>saveShipsBackend()}>Update the positions ships Backend</button>}
+            {<button onClick={()=>saveShipsBackend(gameid)}>Update the positions ships Backend</button>}
 
             <p>Ships</p>
             <div className="grid-stack border border-primary" id="grid1"></div>
