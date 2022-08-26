@@ -163,9 +163,30 @@ public class SalvoController {
         //List<GamePlayer> BoardList =newGame.getGamePlayers();
         return boardPlayerGame.getBoard();
     };
+    private LinkedHashMap FindShipFrontend(JSONObject listShipsFrontend,String shipname){
+        LinkedHashMap ShipFound=new LinkedHashMap();
+        for(String key:listShipsFrontend.keySet()){
+            //System.out.println(listShipsFrontend.get(key));
+            LinkedHashMap ship= (LinkedHashMap) listShipsFrontend.get(key);
+            if(shipname.equals(ship.get("shipName"))){
+                ShipFound=ship;
+            };
+        }
+
+        return ShipFound;};
+   private List<Ship> UpdateShipsBackend(JSONObject listShipsFrontend,List<Ship> listShipsBackend){
+       List<Ship> shipsBackendUpdated=new ArrayList<>();
+       listShipsBackend.forEach(shipBackend->{
+           LinkedHashMap shipFrontend=FindShipFrontend(listShipsFrontend,shipBackend.getShipName());
+           List<ArrayList> locationsShipFrontend= (List<ArrayList>) shipFrontend.get("locations");
+           shipBackend.setLocations(locationsShipFrontend.get(0));
+           shipsBackendUpdated.add(repositoryShips.save(shipBackend));
+
+       });
+            return shipsBackendUpdated;
+   };
     @PostMapping(value="/updateships/{gameid}" ,consumes = "application/json")
-    public Object UpdateShips(@PathVariable Long gameid ,@RequestBody JSONObject postPayload){
-        //System.out.println(postPayload);
+    public List<Ship> UpdateShips(@PathVariable Long gameid ,@RequestBody JSONObject listShipsFrontend){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String currentPlayerEmail = authentication.getName();
         Player currentPlayer= playerRepository.findByEmail(currentPlayerEmail);
@@ -175,26 +196,26 @@ public class SalvoController {
         String player00email =gamePlayer00.getPlayer().getEmail();
         String player01email =gamePlayer01.getPlayer().getEmail();
         String currentPlayeremail=currentPlayer.getEmail();
-        List<Ship> listShipsToUpdate=new ArrayList<>();
-        if(currentPlayeremail==player00email) {listShipsToUpdate =gamePlayer00.getShips();}
-        else if(currentPlayeremail==player01email) {listShipsToUpdate=gamePlayer01.getShips();}
+        List<Ship> listShipsBackend=new ArrayList<>();
+        if(currentPlayeremail==player00email) {listShipsBackend =gamePlayer00.getShips();}
+        else if(currentPlayeremail==player01email) {listShipsBackend=gamePlayer01.getShips();}
 
-        return listShipsToUpdate;
+        return UpdateShipsBackend(listShipsFrontend,listShipsBackend);
     };
-    public List<List<String>> ConvertFromBackEndShipsCoordinates(JSONObject FrontEndData){
+/*    public List<List<String>> ConvertFromBackEndShipsCoordinates(JSONObject FrontEndData){
         List<List<String>> listCoordinatesBackEnd = new ArrayList<>();
 
 
         List<List<String>> listTemp = new ArrayList<>();
         return listTemp;
-    }
-@PostMapping(value="/games/players/{gameplayerid}/ships" ,consumes = "application/json")
+    }*/
+/*@PostMapping(value="/games/players/{gameplayerid}/ships" ,consumes = "application/json")
 public Object SaveShips(@PathVariable Long gameplayerid ,@RequestBody JSONObject postPayload){
     System.out.println(gameplayerid);
     System.out.println(postPayload);
     ConvertFromBackEndShipsCoordinates(postPayload);
     return '1';
-}
+}*/
     @PostMapping(value="/games/join/{gameid}")
     public Object joinGame(@PathVariable Long gameid){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();

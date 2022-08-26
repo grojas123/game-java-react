@@ -184,7 +184,7 @@ export const GameBoardV2=()=>{
                         shipTransformedBackEndCoordinates.push(shipBackEndLocationV)
                         break
                     case 'point':
-                        let shipBackEndLocationP=''+element.x+'0'+element.y+statusShip;
+                        let shipBackEndLocationP='0'+element.x+'0'+element.y+statusShip;
                         shipTransformedBackEndCoordinates.push(shipBackEndLocationP)
                         break
                     default:
