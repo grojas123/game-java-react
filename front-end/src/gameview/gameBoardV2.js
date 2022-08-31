@@ -15,7 +15,7 @@ export const GameBoardV2=()=>{
 
     const translateBackendToFront=(data)=>{
         //console.log(data)
-        const translateShipBackendToFront=(ship)=>{
+        const translateBackendToFront=(ship)=>{
 
             const checkOrientationShip=(shipLocations)=>{
                 const orientationVertical=shipLocations.every(location=>{
@@ -74,20 +74,13 @@ export const GameBoardV2=()=>{
         let gameId=data[0].game.id;
         let salvoesBackend=data[0].salvoes;
         let dataBackendTransformedFrontend=[];
-        data[0].ships.map((ship)=>dataBackendTransformedFrontend.push(translateShipBackendToFront(ship)));
+        data[0].ships.map((ship)=>dataBackendTransformedFrontend.push(translateBackendToFront(ship)));
         //console.log(game,gameId,salvoesBackend,shipsBackend)
         return dataBackendTransformedFrontend;
     }
     let serializedData=translateBackendToFront(databackend);
 
- /*   let serializedData = [
-        {id:"ship00",x: 0, y: 0, w: 5,h: 1,autoPosition:false,content: 'ship00 0/5'},
-        {id:"ship01",x: 1, y: 2, w: 1,h: 3,autoPosition:false,content: 'ship01 0/3'},
-        {id:"ship02",x: 2, y: 3, w: 1,h: 4,autoPosition:false,content: 'ship02 0/4'},
-        {id:"ship03",x: 3, y: 4, w: 2,h: 1,autoPosition:false,content: 'ship03 0/2'},
-        {id:"ship04",x: 4, y: 5, w: 2,h: 1,autoPosition:false,content: 'ship04 0/2'}
-    ];
-*/
+
     var gridOptionsShips = {column: 10,disableResize:true,maxRow:10,row:10,float:true};
     var gridOptionsSalvos = {column: 10,disableResize:true,maxRow:11,row:10,float:true};
 

@@ -202,20 +202,7 @@ public class SalvoController {
 
         return UpdateShipsBackend(listShipsFrontend,listShipsBackend);
     };
-/*    public List<List<String>> ConvertFromBackEndShipsCoordinates(JSONObject FrontEndData){
-        List<List<String>> listCoordinatesBackEnd = new ArrayList<>();
 
-
-        List<List<String>> listTemp = new ArrayList<>();
-        return listTemp;
-    }*/
-/*@PostMapping(value="/games/players/{gameplayerid}/ships" ,consumes = "application/json")
-public Object SaveShips(@PathVariable Long gameplayerid ,@RequestBody JSONObject postPayload){
-    System.out.println(gameplayerid);
-    System.out.println(postPayload);
-    ConvertFromBackEndShipsCoordinates(postPayload);
-    return '1';
-}*/
     @PostMapping(value="/games/join/{gameid}")
     public Object joinGame(@PathVariable Long gameid){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
