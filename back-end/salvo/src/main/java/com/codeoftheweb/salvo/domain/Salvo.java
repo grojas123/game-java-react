@@ -12,7 +12,7 @@ public class Salvo {
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
     @GenericGenerator(name = "native", strategy = "native")
     private Long id;
-    private String salvoType;
+    private String salvoId;
 
 
     public Salvo() {
@@ -26,18 +26,18 @@ public class Salvo {
     @JoinColumn(name = "game_player")
     private GamePlayer gamePlayer;
 
-    public Salvo(String salvoType, List<String> locations){
-        this.salvoType=salvoType;
+    public Salvo(String salvoId, List<String> locations){
+        this.salvoId =salvoId;
         this.locations=locations;
 
     }
 
-    public String getSalvoType() {
-        return salvoType;
+    public String getSalvoId() {
+        return salvoId;
     }
 
-    public void setSalvoType(String salvoType) {
-        this.salvoType = salvoType;
+    public void setSalvoId(String salvoId) {
+        this.salvoId = salvoId;
     }
 
     public List<String> getLocations() {

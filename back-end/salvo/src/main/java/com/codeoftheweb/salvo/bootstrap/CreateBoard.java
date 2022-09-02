@@ -88,9 +88,9 @@ public class CreateBoard {
             ;};
 
         for (final List<String> locationSalvo:listLocationSalvoes) {
-            String typeSalvo;
-            typeSalvo="Normal";
-            Salvo salvo = new Salvo(typeSalvo,locationSalvo);
+            String SalvoId;
+            SalvoId=locationSalvo.get(0).substring(0,4);
+            Salvo salvo = new Salvo(SalvoId,locationSalvo);
             salvoRepository.save(salvo);
             salvoesList.add(salvo);
         }

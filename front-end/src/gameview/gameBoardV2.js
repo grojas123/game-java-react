@@ -13,7 +13,7 @@ export const GameBoardV2=()=>{
     const {databackend,isError,isLoading}=GetGameDataBackend(gameid);
 
 
-    const translateBackendToFront=(data)=>{
+    const translateBackendToFrontShips=(data)=>{
         //console.log(data)
         const translateBackendToFront=(ship)=>{
 
@@ -70,17 +70,82 @@ export const GameBoardV2=()=>{
         }
 
         //console.log(data[0])
-        let game=data[0].game;
-        let gameId=data[0].game.id;
-        let salvoesBackend=data[0].salvoes;
+        //let game=data[0].game;
+        //let gameId=data[0].game.id;
+        //let salvoesBackend=data[0].salvoes;
         let dataBackendTransformedFrontend=[];
         data[0].ships.map((ship)=>dataBackendTransformedFrontend.push(translateBackendToFront(ship)));
         //console.log(game,gameId,salvoesBackend,shipsBackend)
         return dataBackendTransformedFrontend;
     }
-    let serializedData=translateBackendToFront(databackend);
+    let serializedShipsData=translateBackendToFrontShips(databackend);
 
+    const translateBackendToFrontSalvoes=(data)=>{
+        //console.log(data)
+        const translateBackendToFront=(salvo)=>{
 
+            const checkOrientationShip=(salvoLocations)=>{
+                const orientationVertical=salvoLocations.every(location=>{
+                    //console.log("location.substring(0,2) ",location.substring(0,2),"shipLocations[0].substring(0,2) ",shipLocations[0].substring(0,2))
+                    if(location.substring(0,2)===salvoLocations[0].substring(0,2))
+                        return true;})
+                const orientationHorizontal=salvoLocations.every(
+                    location=>{
+                        //console.log("location.substring(0,2) ",location.substring(3,5),"shipLocations[0].substring(0,2) ",shipLocations[0].substring(3,5))
+                        if(location.substring(2,4)===salvoLocations[0].substring(2,4))
+                            return true;}
+                )
+                const orientationPoint=salvoLocations.every(
+                    location=>{
+                        if(location.substring(0,2)===salvoLocations[0].substring(0,2) && location.substring(2,4)===salvoLocations[0].substring(2,4))
+                            return true
+                    }
+                )
+                if (orientationVertical) return 'vertical';
+                else if (orientationHorizontal) return 'horizontal'
+                else if (orientationPoint) return 'point'
+
+            }
+
+            let salvoId=salvo.salvoId;
+            let salvoLocations=salvo.locations;
+            let x=parseInt(salvoLocations[0].substring(0,2));
+            let y=parseInt(salvoLocations[0].substring(2,4));
+            let w=0;
+            let h=0;
+            let salvoLength=salvoLocations.length;
+            switch (checkOrientationShip(salvoLocations)){
+                case 'horizontal':
+                    w=parseInt(salvoLength);
+                    h=1;
+                    break
+                case 'vertical':
+                    w=1;
+                    h=parseInt(salvoLength);
+                    break
+                case 'point':
+                    w=1;
+                    h=1;
+                    break;
+                default:
+                    w=1;
+                    h=1;
+            }
+            let frontEndLocation={id:salvoId,x: x, y: y, w: w,h: h,autoPosition:false,content: salvoId}
+            return frontEndLocation;
+        }
+
+        //console.log(data[0])
+        //let game=data[0].game;
+        //let gameId=data[0].game.id;
+        //let salvoesBackend=data[0].salvoes;
+        let dataBackendTransformedFrontend=[];
+        data[0].salvoes.map((salvo)=>dataBackendTransformedFrontend.push(translateBackendToFront(salvo)));
+        //console.log(game,gameId,salvoesBackend,shipsBackend)
+        return dataBackendTransformedFrontend;
+    }
+    let serializedSalvoesData=translateBackendToFrontSalvoes(databackend);
+    //console.log(serializedSalvoesData);
     var gridOptionsShips = {column: 10,disableResize:true,maxRow:10,row:10,float:true};
     var gridOptionsSalvos = {column: 10,disableResize:true,maxRow:11,row:10,float:true};
 
@@ -94,16 +159,7 @@ export const GameBoardV2=()=>{
         grid.update(elementToUpdate,{x:elementToUpdate.gridstackNode.x, y: elementToUpdate.gridstackNode.y, w: elementToUpdateH,h: elementToUpdateW,autoPosition:false,content: elementToUpdate.content})
     }
 
-    const createElementsSalvos=()=>{
-        let elementsSalvos=[];
-        for(let x=0;x<=9;x++){
-            for(let y=0;y<=9;y++){
-                let salvoId=""+x+y;
-                elementsSalvos.push({id:salvoId,x: x, y: y, w: 1,h: 1,autoPosition:false,content: salvoId,noMove:true})
-            }
-        }
-        return elementsSalvos;
-    }
+
     const dblClickSalvos=(elementToUpdate,grid)=>{
         console.log(elementToUpdate.gridstackNode.x,elementToUpdate.gridstackNode.y)
 
@@ -113,7 +169,7 @@ export const GameBoardV2=()=>{
         const cellWidth=38;
         let grid01 = GridStack.init(gridOptionsShips,document.getElementById('grid1'));
         grid01.removeAll()
-        grid01.load(serializedData)
+        grid01.load(serializedShipsData)
         grid01.cellHeight(cellHeight)
         grid01.cellWidth(cellWidth)
         let grid01Elements=grid01.getGridItems();
@@ -122,10 +178,10 @@ export const GameBoardV2=()=>{
         grid02.removeAll()
         grid02.cellHeight(cellHeight)
         grid02.cellWidth(cellWidth);
-        grid02.load(createElementsSalvos())
+        grid02.load(serializedSalvoesData)
         let grid02Elements=grid02.getGridItems();
         grid02Elements.map((gridItem)=>(gridItem.ondblclick=(()=>dblClickSalvos(gridItem,grid02))))
-        //console.log("use Effect ran")
+
     });
 
 

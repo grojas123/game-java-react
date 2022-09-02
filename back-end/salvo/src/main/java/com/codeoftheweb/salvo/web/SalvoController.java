@@ -120,9 +120,24 @@ public class SalvoController {
 
         return listTemp03;
     }
-
+    private List<List<String>> createSalvoesList(){
+        List<List<String>> SalvoesList = new ArrayList<>();
+        String statusSalvoes="01";
+        for(Integer x=0;x<=9;x++){
+            for(Integer y=0;y<=9;y++){
+                String xStringValue="0"+x;
+                String yStringValue="0"+y;
+                String locationStatusSalvoes=xStringValue+yStringValue+statusSalvoes;
+                List<String> locationSalvo = new ArrayList<>();
+                locationSalvo.add(locationStatusSalvoes);
+                SalvoesList.add(locationSalvo);
+            }
+        }
+        return SalvoesList;
+    }
     @PostMapping(value="/games",consumes = "application/json")
     public Object createGame(){
+
        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String currentPlayerEmail = authentication.getName();
         Player currentPlayer= playerRepository.findByEmail(currentPlayerEmail);
@@ -158,7 +173,7 @@ public class SalvoController {
         listLocationsShipsCurrentPlayer.add(locationShip02);
         listLocationsShipsCurrentPlayer.add(locationShip03);
         listLocationsShipsCurrentPlayer.add(locationShip04);
-        List<List<String>> listLocationsSalvoesCurrentPlayer = new ArrayList<>();
+        List<List<String>> listLocationsSalvoesCurrentPlayer = createSalvoesList();
         CreateBoard boardPlayerGame = new CreateBoard(currentPlayer,newGame,dateCreationGame,listLocationsShipsCurrentPlayer,listLocationsSalvoesCurrentPlayer,repositoryShips,repositorySalvoes,repositoryGamePlayer);
         //List<GamePlayer> BoardList =newGame.getGamePlayers();
         return boardPlayerGame.getBoard();
