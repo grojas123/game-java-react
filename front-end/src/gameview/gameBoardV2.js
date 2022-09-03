@@ -111,6 +111,8 @@ export const GameBoardV2=()=>{
             let salvoLocations=salvo.locations;
             let x=parseInt(salvoLocations[0].substring(0,2));
             let y=parseInt(salvoLocations[0].substring(2,4));
+            let status="0"+salvoLocations[0].substring(5,7);
+            //console.log(salvoLocations[0],status)
             let w=0;
             let h=0;
             let salvoLength=salvoLocations.length;
@@ -121,6 +123,7 @@ export const GameBoardV2=()=>{
                     break
                 case 'vertical':
                     w=1;
+
                     h=parseInt(salvoLength);
                     break
                 case 'point':
@@ -131,12 +134,31 @@ export const GameBoardV2=()=>{
                     w=1;
                     h=1;
             }
-            let frontEndLocation={id:salvoId,x: x, y: y, w: w,h: h,autoPosition:false,content: salvoId}
+            let formatSalvoDefault;
+            let formatSalvoStatus01=`<p class='text-white bg-success'>${salvoId}-${status}<p/>`;
+            let formatSalvoStatus02=`<p class='text-white bg-warning'>${salvoId}-${status}<p/>`;
+            let formatSalvoStatus03=`<p class='text-white bg-danger'>${salvoId}-${status}<p/>`;
+
+            switch (status){
+                case "01":
+                    formatSalvoDefault=formatSalvoStatus01;
+                    break;
+                case "02":
+                    formatSalvoDefault=formatSalvoStatus02;
+                    break;
+                case "03":
+                    formatSalvoDefault=formatSalvoStatus03;
+                    break;
+                default:
+                    formatSalvoDefault=formatSalvoStatus01;
+            }
+            let frontEndLocation={id:salvoId,x: x, y: y, w: w,h: h,noMove:true,autoPosition:false,content:formatSalvoDefault}
             return frontEndLocation;
         }
 
         //console.log(data[0])
         //let game=data[0].game;
+
         //let gameId=data[0].game.id;
         //let salvoesBackend=data[0].salvoes;
         let dataBackendTransformedFrontend=[];
@@ -161,8 +183,10 @@ export const GameBoardV2=()=>{
 
 
     const dblClickSalvos=(elementToUpdate,grid)=>{
-        console.log(elementToUpdate.gridstackNode.x,elementToUpdate.gridstackNode.y)
-
+        //console.log(elementToUpdate.gridstackNode);
+        let slavoPosition="0"+elementToUpdate.gridstackNode.x+"0"+elementToUpdate.gridstackNode.y;
+        let salvoStatus="0"+elementToUpdate.gridstackNode.content.substring(6,8);
+        console.log("slavoPosition",slavoPosition,"salvoStatus",salvoStatus)
     }
     useEffect(() => {
         const cellHeight=38;

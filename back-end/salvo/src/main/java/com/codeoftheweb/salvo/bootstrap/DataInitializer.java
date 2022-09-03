@@ -74,6 +74,7 @@ public class DataInitializer implements CommandLineRunner {
     // Creation of Game01
     //_______________________________________________________________________________________________________
         String statusSalvoHit="02";
+        String statusSalvoNoHit="03";
 
         Date game_creation_date01 = new Date();
         Game Game01 = new Game("Game 01", game_creation_date01);
@@ -140,7 +141,7 @@ public class DataInitializer implements CommandLineRunner {
 
         updateSalvo(salvoesPlayer01Game01,"0601",statusSalvoHit);
 
-        updateSalvo(salvoesPlayer01Game01,"0606",statusSalvoHit);
+        updateSalvo(salvoesPlayer01Game01,"0606",statusSalvoNoHit);
 
         updateSalvo(salvoesPlayer01Game01,"0409",statusSalvoHit);
         updateSalvo(salvoesPlayer01Game01,"0509",statusSalvoHit);

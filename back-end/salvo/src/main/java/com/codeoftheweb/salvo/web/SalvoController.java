@@ -1,10 +1,7 @@
 package com.codeoftheweb.salvo.web;
 
 import com.codeoftheweb.salvo.bootstrap.CreateBoard;
-import com.codeoftheweb.salvo.domain.Game;
-import com.codeoftheweb.salvo.domain.GamePlayer;
-import com.codeoftheweb.salvo.domain.Player;
-import com.codeoftheweb.salvo.domain.Ship;
+import com.codeoftheweb.salvo.domain.*;
 import com.codeoftheweb.salvo.repositories.*;
 import net.minidev.json.JSONObject;
 import org.slf4j.Logger;
@@ -135,6 +132,15 @@ public class SalvoController {
         }
         return SalvoesList;
     }
+    private Salvo updateSalvo(List<Salvo> Salvoes, String locationToUpdate, String status){
+        Predicate<Salvo> byLocation=salvo -> salvo.getLocations().get(0).substring(0,4).equals(locationToUpdate);
+        List<Salvo> listSalvoToUpdate=Salvoes.stream().filter(byLocation).collect(Collectors.toList());
+        List<String> locationToUpdateSalvo = new ArrayList<>();
+        String locationNewStatusSalvoes=listSalvoToUpdate.get(0).getLocations().get(0).substring(0,4)+status;
+        locationToUpdateSalvo.add(locationNewStatusSalvoes);
+        listSalvoToUpdate.get(0).setLocations(locationToUpdateSalvo);
+        return repositorySalvoes.save(listSalvoToUpdate.get(0));
+    };
     @PostMapping(value="/games",consumes = "application/json")
     public Object createGame(){
 
@@ -216,6 +222,24 @@ public class SalvoController {
         else if(currentPlayeremail==player01email) {listShipsBackend=gamePlayer01.getShips();}
 
         return UpdateShipsBackend(listShipsFrontend,listShipsBackend);
+    };
+
+    @PostMapping(value="/updatesalvo/{gameid}" ,consumes = "application/json")
+    public List<Ship> UpdateSalvo(@PathVariable Long gameid ,@RequestBody JSONObject salvoFrontend){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String currentPlayerEmail = authentication.getName();
+        Player currentPlayer= playerRepository.findByEmail(currentPlayerEmail);
+        List<GamePlayer> gamePlayerList=repositoryGamePlayer.findByGame_Id(gameid);
+        GamePlayer gamePlayer00=gamePlayerList.get(0);
+        GamePlayer gamePlayer01=gamePlayerList.get(1);
+        String player00email =gamePlayer00.getPlayer().getEmail();
+        String player01email =gamePlayer01.getPlayer().getEmail();
+        String currentPlayeremail=currentPlayer.getEmail();
+        List<Salvo> listSalvoBackend=new ArrayList<>();
+        if(currentPlayeremail==player00email) {listSalvoBackend =gamePlayer00.getSalvoes();}
+        else if(currentPlayeremail==player01email) {listSalvoBackend=gamePlayer01.getSalvoes();}
+        //updateSalvo(listSalvoBackend,salvoFrontend,"02");
+        return new ArrayList<>();
     };
 
     @PostMapping(value="/games/join/{gameid}")
