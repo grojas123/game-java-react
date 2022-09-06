@@ -73,8 +73,8 @@ public class DataInitializer implements CommandLineRunner {
     //_______________________________________________________________________________________________________
     // Creation of Game01
     //_______________________________________________________________________________________________________
-        String statusSalvoHit="02";
-        String statusSalvoNoHit="03";
+        String statusSalvoFired="02";
+        //String statusSalvoNoHit="03";
 
         Date game_creation_date01 = new Date();
         Game Game01 = new Game("Game 01", game_creation_date01);
@@ -91,23 +91,23 @@ public class DataInitializer implements CommandLineRunner {
         List<String> locationShip01Destroyer = new ArrayList<>();
         locationShip01Destroyer.add("010201");
         List<String> locationShip02Battleship = new ArrayList<>();
-        locationShip02Battleship.add("050201");
-        locationShip02Battleship.add("060201");
-        locationShip02Battleship.add("070201");
-        locationShip02Battleship.add("080201");
+        locationShip02Battleship.add("040101");
+        locationShip02Battleship.add("050101");
+        locationShip02Battleship.add("060101");
+        locationShip02Battleship.add("070101");
         List<String> locationShip03AircraftCarrier = new ArrayList<>();
-        locationShip03AircraftCarrier.add("030601");
-        locationShip03AircraftCarrier.add("030701");
-        locationShip03AircraftCarrier.add("030801");
-        locationShip03AircraftCarrier.add("030901");
-        locationShip03AircraftCarrier.add("031001");
+        locationShip03AircraftCarrier.add("020501");
+        locationShip03AircraftCarrier.add("020601");
+        locationShip03AircraftCarrier.add("020701");
+        locationShip03AircraftCarrier.add("020801");
+        locationShip03AircraftCarrier.add("020901");
         List<String> locationShip04Submarine = new ArrayList<>();
-        locationShip04Submarine.add("070801");
-        locationShip04Submarine.add("070901");
-        locationShip04Submarine.add("071001");
+        locationShip04Submarine.add("060701");
+        locationShip04Submarine.add("060801");
+        locationShip04Submarine.add("060901");
         List<String> locationShip05Cruiser = new ArrayList<>();
-        locationShip05Cruiser.add("090501");
-        locationShip05Cruiser.add("090601");
+        locationShip05Cruiser.add("080401");
+        locationShip05Cruiser.add("080501");
         List<List<String>> listLocationsShipsPlayer01Game01 = new ArrayList<>();
         listLocationsShipsPlayer01Game01.add(locationShip01Destroyer);
         listLocationsShipsPlayer01Game01.add(locationShip02Battleship);
@@ -121,66 +121,62 @@ public class DataInitializer implements CommandLineRunner {
         CreateBoard boardPlayer01Game01 = new CreateBoard(Player01,Game01,gamePlayer01Date,listLocationsShipsPlayer01Game01,listLocationsSalvoesPlayer01Game01,repositoryShips,repositorySalvoes,repositoryGamePlayer);
         GamePlayer gamePlayerPlayer01Game01=boardPlayer01Game01.getBoard();
         List<Salvo> salvoesPlayer01Game01=gamePlayerPlayer01Game01.getSalvoes();
-        updateSalvo(salvoesPlayer01Game01,"0000",statusSalvoHit);
-        updateSalvo(salvoesPlayer01Game01,"0100",statusSalvoHit);
-        updateSalvo(salvoesPlayer01Game01,"0200",statusSalvoHit);
-        updateSalvo(salvoesPlayer01Game01,"0300",statusSalvoHit);
+        updateSalvo(salvoesPlayer01Game01,"0000",statusSalvoFired);
+        updateSalvo(salvoesPlayer01Game01,"0100",statusSalvoFired);
+        updateSalvo(salvoesPlayer01Game01,"0200",statusSalvoFired);
+        updateSalvo(salvoesPlayer01Game01,"0300",statusSalvoFired);
 
-        updateSalvo(salvoesPlayer01Game01,"0006",statusSalvoHit);
-        updateSalvo(salvoesPlayer01Game01,"0007",statusSalvoHit);
-        updateSalvo(salvoesPlayer01Game01,"0008",statusSalvoHit);
-        updateSalvo(salvoesPlayer01Game01,"0009",statusSalvoHit);
+        updateSalvo(salvoesPlayer01Game01,"0006",statusSalvoFired);
+        updateSalvo(salvoesPlayer01Game01,"0007",statusSalvoFired);
+        updateSalvo(salvoesPlayer01Game01,"0008",statusSalvoFired);
+        updateSalvo(salvoesPlayer01Game01,"0009",statusSalvoFired);
 
-        updateSalvo(salvoesPlayer01Game01,"0207",statusSalvoHit);
+        updateSalvo(salvoesPlayer01Game01,"0207",statusSalvoFired);
 
-        updateSalvo(salvoesPlayer01Game01,"0303",statusSalvoHit);
+        updateSalvo(salvoesPlayer01Game01,"0303",statusSalvoFired);
 
-        updateSalvo(salvoesPlayer01Game01,"0405",statusSalvoHit);
-        updateSalvo(salvoesPlayer01Game01,"0505",statusSalvoHit);
-        updateSalvo(salvoesPlayer01Game01,"0605",statusSalvoHit);
+        updateSalvo(salvoesPlayer01Game01,"0405",statusSalvoFired);
+        updateSalvo(salvoesPlayer01Game01,"0505",statusSalvoFired);
+        updateSalvo(salvoesPlayer01Game01,"0605",statusSalvoFired);
 
-        updateSalvo(salvoesPlayer01Game01,"0601",statusSalvoHit);
+        updateSalvo(salvoesPlayer01Game01,"0601",statusSalvoFired);
 
-        updateSalvo(salvoesPlayer01Game01,"0606",statusSalvoNoHit);
+        updateSalvo(salvoesPlayer01Game01,"0606",statusSalvoFired);
 
-        updateSalvo(salvoesPlayer01Game01,"0409",statusSalvoHit);
-        updateSalvo(salvoesPlayer01Game01,"0509",statusSalvoHit);
-        updateSalvo(salvoesPlayer01Game01,"0609",statusSalvoHit);
-        updateSalvo(salvoesPlayer01Game01,"0709",statusSalvoHit);
-        updateSalvo(salvoesPlayer01Game01,"0809",statusSalvoHit);
-        updateSalvo(salvoesPlayer01Game01,"0909",statusSalvoHit);
+        updateSalvo(salvoesPlayer01Game01,"0409",statusSalvoFired);
+        updateSalvo(salvoesPlayer01Game01,"0509",statusSalvoFired);
+        updateSalvo(salvoesPlayer01Game01,"0609",statusSalvoFired);
+        updateSalvo(salvoesPlayer01Game01,"0709",statusSalvoFired);
+        updateSalvo(salvoesPlayer01Game01,"0809",statusSalvoFired);
+        updateSalvo(salvoesPlayer01Game01,"0909",statusSalvoFired);
 
-        updateSalvo(salvoesPlayer01Game01,"0902",statusSalvoHit);
-        updateSalvo(salvoesPlayer01Game01,"0903",statusSalvoHit);
-        updateSalvo(salvoesPlayer01Game01,"0904",statusSalvoHit);
-        updateSalvo(salvoesPlayer01Game01,"0905",statusSalvoHit);
+        updateSalvo(salvoesPlayer01Game01,"0902",statusSalvoFired);
+        updateSalvo(salvoesPlayer01Game01,"0903",statusSalvoFired);
+        updateSalvo(salvoesPlayer01Game01,"0904",statusSalvoFired);
+        updateSalvo(salvoesPlayer01Game01,"0905",statusSalvoFired);
 
         // To Create the Board of Player02 in Game01
 
         List<String> locationShip06Battleship = new ArrayList<>();
         locationShip06Battleship.add("010101");
-        //locationShip06Battleship.add("020101");
-        //locationShip06Battleship.add("020101");
-        //locationShip06Battleship.add("040101");
         List<String> locationShip07Submarine = new ArrayList<>();
-        locationShip07Submarine.add("010701");
-        locationShip07Submarine.add("010801");
-        locationShip07Submarine.add("010901");
-        locationShip07Submarine.add("011001");
+        locationShip07Submarine.add("000601");
+        locationShip07Submarine.add("000701");
+        locationShip07Submarine.add("000801");
+        locationShip07Submarine.add("000901");
         List<String> locationShip08Cruiser = new ArrayList<>();
-        locationShip08Cruiser.add("050601");
-        locationShip08Cruiser.add("060601");
-        locationShip08Cruiser.add("070601");
+        locationShip08Cruiser.add("040501");
+        locationShip08Cruiser.add("050501");
         List<String> locationShip09Submarine = new ArrayList<>();
-        locationShip09Submarine.add("100401");
-        locationShip09Submarine.add("100501");
-        //locationShip09Submarine.add("100601");
+        locationShip09Submarine.add("090301");
+        locationShip09Submarine.add("090401");
+        locationShip09Submarine.add("090501");
         List<String> locationShip10AircraftCarrier = new ArrayList<>();
-        locationShip10AircraftCarrier.add("051001");
-        locationShip10AircraftCarrier.add("061001");
-        locationShip10AircraftCarrier.add("071001");
-        locationShip10AircraftCarrier.add("081001");
-        locationShip10AircraftCarrier.add("091001");
+        locationShip10AircraftCarrier.add("040901");
+        locationShip10AircraftCarrier.add("050901");
+        locationShip10AircraftCarrier.add("060901");
+        locationShip10AircraftCarrier.add("070901");
+        locationShip10AircraftCarrier.add("080901");
         List<List<String>> listLocationsShipsPlayer02Game01 = new ArrayList<>();
         listLocationsShipsPlayer02Game01.add(locationShip06Battleship);
         listLocationsShipsPlayer02Game01.add(locationShip07Submarine);
@@ -195,38 +191,38 @@ public class DataInitializer implements CommandLineRunner {
         GamePlayer gamePlayerPlayer02Game01=boardPlayer02Game01.getBoard();
         List<Salvo> salvoesPlayer02Game01=gamePlayerPlayer02Game01.getSalvoes();
 
-        updateSalvo(salvoesPlayer02Game01,"0006",statusSalvoHit);
+        updateSalvo(salvoesPlayer02Game01,"0006",statusSalvoFired);
 
-        updateSalvo(salvoesPlayer02Game01,"0201",statusSalvoHit);
+        updateSalvo(salvoesPlayer02Game01,"0201",statusSalvoFired);
 
-        updateSalvo(salvoesPlayer02Game01,"0205",statusSalvoHit);
-        updateSalvo(salvoesPlayer02Game01,"0206",statusSalvoHit);
-        updateSalvo(salvoesPlayer02Game01,"0207",statusSalvoHit);
-        updateSalvo(salvoesPlayer02Game01,"0208",statusSalvoHit);
-        updateSalvo(salvoesPlayer02Game01,"0209",statusSalvoHit);
+        updateSalvo(salvoesPlayer02Game01,"0205",statusSalvoFired);
+        updateSalvo(salvoesPlayer02Game01,"0206",statusSalvoFired);
+        updateSalvo(salvoesPlayer02Game01,"0207",statusSalvoFired);
+        updateSalvo(salvoesPlayer02Game01,"0208",statusSalvoFired);
+        updateSalvo(salvoesPlayer02Game01,"0209",statusSalvoFired);
 
-        updateSalvo(salvoesPlayer02Game01,"0401",statusSalvoHit);
+        updateSalvo(salvoesPlayer02Game01,"0401",statusSalvoFired);
 
-        updateSalvo(salvoesPlayer02Game01,"0404",statusSalvoHit);
-        updateSalvo(salvoesPlayer02Game01,"0504",statusSalvoHit);
+        updateSalvo(salvoesPlayer02Game01,"0404",statusSalvoFired);
+        updateSalvo(salvoesPlayer02Game01,"0504",statusSalvoFired);
 
-        updateSalvo(salvoesPlayer02Game01,"0409",statusSalvoHit);
-        updateSalvo(salvoesPlayer02Game01,"0509",statusSalvoHit);
+        updateSalvo(salvoesPlayer02Game01,"0409",statusSalvoFired);
+        updateSalvo(salvoesPlayer02Game01,"0509",statusSalvoFired);
 
-        updateSalvo(salvoesPlayer02Game01,"0601",statusSalvoHit);
-        updateSalvo(salvoesPlayer02Game01,"0701",statusSalvoHit);
+        updateSalvo(salvoesPlayer02Game01,"0601",statusSalvoFired);
+        updateSalvo(salvoesPlayer02Game01,"0701",statusSalvoFired);
 
-        updateSalvo(salvoesPlayer02Game01,"0608",statusSalvoHit);
+        updateSalvo(salvoesPlayer02Game01,"0608",statusSalvoFired);
 
-        updateSalvo(salvoesPlayer02Game01,"0707",statusSalvoHit);
+        updateSalvo(salvoesPlayer02Game01,"0707",statusSalvoFired);
 
-        updateSalvo(salvoesPlayer02Game01,"0805",statusSalvoHit);
+        updateSalvo(salvoesPlayer02Game01,"0805",statusSalvoFired);
 
-        updateSalvo(salvoesPlayer02Game01,"0903",statusSalvoHit);
+        updateSalvo(salvoesPlayer02Game01,"0903",statusSalvoFired);
 
-        updateSalvo(salvoesPlayer02Game01,"0907",statusSalvoHit);
+        updateSalvo(salvoesPlayer02Game01,"0907",statusSalvoFired);
         // Update the data between the two Boards created
-        UpdateShipsSalvos updateGame01SalvosAgainstShipsPlayer01Player02TwoWays= new UpdateShipsSalvos(gamePlayerPlayer01Game01,gamePlayerPlayer02Game01,repositoryShips);
+        UpdateShipsSalvos updateGame01SalvosAgainstShipsPlayer01Player02TwoWays= new UpdateShipsSalvos(gamePlayerPlayer01Game01,gamePlayerPlayer02Game01,repositoryShips,repositorySalvoes);
         updateGame01SalvosAgainstShipsPlayer01Player02TwoWays.UpdateSalvosAdversary();
         //_______________________________________________________________________________________________________
         // End of Game01
@@ -248,28 +244,25 @@ public class DataInitializer implements CommandLineRunner {
         // To Create the Board of Player03 in Game02
 
         List<String> locationShip11Submarine = new ArrayList<>();
-        locationShip11Submarine.add("030201");
-        //locationShip11Submarine.add("040201");
-       // locationShip11Submarine.add("050201");
+        locationShip11Submarine.add("020101");
         List<String> locationShip12AircraftCarrier = new ArrayList<>();
-        locationShip12AircraftCarrier.add("050501");
-        locationShip12AircraftCarrier.add("060501");
-        locationShip12AircraftCarrier.add("070501");
-        locationShip12AircraftCarrier.add("080501");
-        locationShip12AircraftCarrier.add("090501");
+        locationShip12AircraftCarrier.add("040401");
+        locationShip12AircraftCarrier.add("050401");
+        locationShip12AircraftCarrier.add("060401");
+        locationShip12AircraftCarrier.add("070401");
+        locationShip12AircraftCarrier.add("080401");
         List<String> locationShip13BattleShip = new ArrayList<>();
-        locationShip13BattleShip.add("030701");
-        locationShip13BattleShip.add("040701");
-        locationShip13BattleShip.add("050701");
-        locationShip13BattleShip.add("060701");
+        locationShip13BattleShip.add("020601");
+        locationShip13BattleShip.add("030601");
+        locationShip13BattleShip.add("040601");
+        locationShip13BattleShip.add("050601");
         List<String> locationShip14Carrier = new ArrayList<>();
-        locationShip14Carrier.add("080901");
-        locationShip14Carrier.add("090901");
-        //locationShip14Carrier.add("100901");
+        locationShip14Carrier.add("000901");
+        locationShip14Carrier.add("010901");
         List<String> locationShip15Destroyer = new ArrayList<>();
-        locationShip15Destroyer.add("011001");
-        locationShip15Destroyer.add("021001");
-        locationShip15Destroyer.add("031001");
+        locationShip15Destroyer.add("070801");
+        locationShip15Destroyer.add("080801");
+        locationShip15Destroyer.add("090801");
 
         List<List<String>> listLocationsShipsPlayer03Game02 = new ArrayList<>();
         listLocationsShipsPlayer03Game02.add(locationShip11Submarine);
@@ -284,58 +277,56 @@ public class DataInitializer implements CommandLineRunner {
         CreateBoard boardPlayer03Game02 = new CreateBoard(Player03,Game02,gamePlayer03Date,listLocationsShipsPlayer03Game02,listLocationsSalvoesPlayer03Game02,repositoryShips,repositorySalvoes,repositoryGamePlayer);
         GamePlayer gamePlayerPlayer03Game02=boardPlayer03Game02.getBoard();
         List<Salvo> salvoesPlayer03Game02=gamePlayerPlayer03Game02.getSalvoes();
-        updateSalvo(salvoesPlayer03Game02,"0000",statusSalvoHit);
+        updateSalvo(salvoesPlayer03Game02,"0000",statusSalvoFired);
 
-        updateSalvo(salvoesPlayer03Game02,"0006",statusSalvoHit);
+        updateSalvo(salvoesPlayer03Game02,"0006",statusSalvoFired);
 
-        updateSalvo(salvoesPlayer03Game02,"0108",statusSalvoHit);
+        updateSalvo(salvoesPlayer03Game02,"0108",statusSalvoFired);
 
-        updateSalvo(salvoesPlayer03Game02,"0203",statusSalvoHit);
+        updateSalvo(salvoesPlayer03Game02,"0203",statusSalvoFired);
 
-        updateSalvo(salvoesPlayer03Game02,"0309",statusSalvoHit);
+        updateSalvo(salvoesPlayer03Game02,"0309",statusSalvoFired);
 
-        updateSalvo(salvoesPlayer03Game02,"0402",statusSalvoHit);
-        updateSalvo(salvoesPlayer03Game02,"0403",statusSalvoHit);
+        updateSalvo(salvoesPlayer03Game02,"0402",statusSalvoFired);
+        updateSalvo(salvoesPlayer03Game02,"0403",statusSalvoFired);
 
-        updateSalvo(salvoesPlayer03Game02,"0405",statusSalvoHit);
+        updateSalvo(salvoesPlayer03Game02,"0405",statusSalvoFired);
 
-        updateSalvo(salvoesPlayer03Game02,"0601",statusSalvoHit);
-        updateSalvo(salvoesPlayer03Game02,"0602",statusSalvoHit);
-        updateSalvo(salvoesPlayer03Game02,"0603",statusSalvoHit);
+        updateSalvo(salvoesPlayer03Game02,"0601",statusSalvoFired);
+        updateSalvo(salvoesPlayer03Game02,"0602",statusSalvoFired);
+        updateSalvo(salvoesPlayer03Game02,"0603",statusSalvoFired);
 
-        updateSalvo(salvoesPlayer03Game02,"0607",statusSalvoHit);
+        updateSalvo(salvoesPlayer03Game02,"0607",statusSalvoFired);
 
-        updateSalvo(salvoesPlayer03Game02,"0705",statusSalvoHit);
+        updateSalvo(salvoesPlayer03Game02,"0705",statusSalvoFired);
 
-        updateSalvo(salvoesPlayer03Game02,"0900",statusSalvoHit);
+        updateSalvo(salvoesPlayer03Game02,"0900",statusSalvoFired);
 
-        updateSalvo(salvoesPlayer03Game02,"0906",statusSalvoHit);
+        updateSalvo(salvoesPlayer03Game02,"0906",statusSalvoFired);
 
-        updateSalvo(salvoesPlayer03Game02,"0909",statusSalvoHit);
+        updateSalvo(salvoesPlayer03Game02,"0909",statusSalvoFired);
         // To Create the Board of Player04 in Game02
 
         List<String> locationShip16AircraftCarrier = new ArrayList<>();
-        locationShip16AircraftCarrier.add("010101");
-        locationShip16AircraftCarrier.add("010201");
-        locationShip16AircraftCarrier.add("010301");
-        locationShip16AircraftCarrier.add("010401");
-        locationShip16AircraftCarrier.add("010501");
+        locationShip16AircraftCarrier.add("000001");
+        locationShip16AircraftCarrier.add("000101");
+        locationShip16AircraftCarrier.add("000201");
+        locationShip16AircraftCarrier.add("000301");
+        locationShip16AircraftCarrier.add("000401");
         List<String> locationShip17Submarine = new ArrayList<>();
-        locationShip17Submarine.add("070201");
-        //locationShip17Submarine.add("070301");
-        //locationShip17Submarine.add("070401");
+        locationShip17Submarine.add("090401");
         List<String> locationShip18Cruiser = new ArrayList<>();
-        locationShip18Cruiser.add("070701");
-        locationShip18Cruiser.add("070801");
-        locationShip18Cruiser.add("070901");
+        locationShip18Cruiser.add("060601");
+        locationShip18Cruiser.add("060701");
+        locationShip18Cruiser.add("060801");
         List<String> locationShip19Battleship = new ArrayList<>();
-        locationShip19Battleship.add("040601");
-        locationShip19Battleship.add("040701");
-        locationShip19Battleship.add("040801");
-        locationShip19Battleship.add("040901");
+        locationShip19Battleship.add("030501");
+        locationShip19Battleship.add("030601");
+        locationShip19Battleship.add("030701");
+        locationShip19Battleship.add("030801");
         List<String> locationShip20Destroyer = new ArrayList<>();
-        locationShip20Destroyer.add("100501");
-        locationShip20Destroyer.add("100601");
+        locationShip20Destroyer.add("060101");
+        locationShip20Destroyer.add("060201");
 
         List<List<String>> listLocationsShipsPlayer04Game02 = new ArrayList<>();
         listLocationsShipsPlayer04Game02.add(locationShip16AircraftCarrier);
@@ -356,39 +347,37 @@ public class DataInitializer implements CommandLineRunner {
         GamePlayer gamePlayerPlayer04Game02=boardPlayer04Game02.getBoard();
         List<Salvo> salvoesPlayer04Game02=gamePlayerPlayer04Game02.getSalvoes();
 
-        updateSalvo(salvoesPlayer04Game02,"0000",statusSalvoHit);
+        updateSalvo(salvoesPlayer04Game02,"0000",statusSalvoFired);
 
-        updateSalvo(salvoesPlayer04Game02,"0009",statusSalvoHit);
-        updateSalvo(salvoesPlayer04Game02,"0109",statusSalvoHit);
-        updateSalvo(salvoesPlayer04Game02,"0209",statusSalvoHit);
+        updateSalvo(salvoesPlayer04Game02,"0009",statusSalvoFired);
+        updateSalvo(salvoesPlayer04Game02,"0109",statusSalvoFired);
+        updateSalvo(salvoesPlayer04Game02,"0209",statusSalvoFired);
 
-        updateSalvo(salvoesPlayer04Game02,"0201",statusSalvoHit);
-        updateSalvo(salvoesPlayer04Game02,"0301",statusSalvoHit);
-        updateSalvo(salvoesPlayer04Game02,"0401",statusSalvoHit);
+        updateSalvo(salvoesPlayer04Game02,"0201",statusSalvoFired);
+        updateSalvo(salvoesPlayer04Game02,"0301",statusSalvoFired);
+        updateSalvo(salvoesPlayer04Game02,"0401",statusSalvoFired);
 
-        updateSalvo(salvoesPlayer04Game02,"0206",statusSalvoHit);
-        updateSalvo(salvoesPlayer04Game02,"0306",statusSalvoHit);
-        updateSalvo(salvoesPlayer04Game02,"0406",statusSalvoHit);
-        updateSalvo(salvoesPlayer04Game02,"0506",statusSalvoHit);
+        updateSalvo(salvoesPlayer04Game02,"0206",statusSalvoFired);
+        updateSalvo(salvoesPlayer04Game02,"0306",statusSalvoFired);
+        updateSalvo(salvoesPlayer04Game02,"0406",statusSalvoFired);
+        updateSalvo(salvoesPlayer04Game02,"0506",statusSalvoFired);
 
-        updateSalvo(salvoesPlayer04Game02,"0505",statusSalvoHit);
+        updateSalvo(salvoesPlayer04Game02,"0505",statusSalvoFired);
 
-        updateSalvo(salvoesPlayer04Game02,"0404",statusSalvoHit);
-        updateSalvo(salvoesPlayer04Game02,"0504",statusSalvoHit);
-        updateSalvo(salvoesPlayer04Game02,"0604",statusSalvoHit);
-        updateSalvo(salvoesPlayer04Game02,"0704",statusSalvoHit);
-        updateSalvo(salvoesPlayer04Game02,"0804",statusSalvoHit);
+        updateSalvo(salvoesPlayer04Game02,"0404",statusSalvoFired);
+        updateSalvo(salvoesPlayer04Game02,"0504",statusSalvoFired);
+        updateSalvo(salvoesPlayer04Game02,"0604",statusSalvoFired);
+        updateSalvo(salvoesPlayer04Game02,"0704",statusSalvoFired);
+        updateSalvo(salvoesPlayer04Game02,"0804",statusSalvoFired);
 
-        updateSalvo(salvoesPlayer04Game02,"0708",statusSalvoHit);
-        updateSalvo(salvoesPlayer04Game02,"0808",statusSalvoHit);
-        updateSalvo(salvoesPlayer04Game02,"0908",statusSalvoHit);
+        updateSalvo(salvoesPlayer04Game02,"0708",statusSalvoFired);
+        updateSalvo(salvoesPlayer04Game02,"0808",statusSalvoFired);
+        updateSalvo(salvoesPlayer04Game02,"0908",statusSalvoFired);
 
-        updateSalvo(salvoesPlayer04Game02,"0909",statusSalvoHit);
-
-
+        updateSalvo(salvoesPlayer04Game02,"0909",statusSalvoFired);
 
         //------------Update the two Boards
-        UpdateShipsSalvos updateGame02SalvosAgainstShipsPlayer03Player04TwoWays= new UpdateShipsSalvos(gamePlayerPlayer03Game02,gamePlayerPlayer04Game02,repositoryShips);
+        UpdateShipsSalvos updateGame02SalvosAgainstShipsPlayer03Player04TwoWays= new UpdateShipsSalvos(gamePlayerPlayer03Game02,gamePlayerPlayer04Game02,repositoryShips,repositorySalvoes);
         updateGame02SalvosAgainstShipsPlayer03Player04TwoWays.UpdateSalvosAdversary();
 
         //_______________________________________________________________________________________________________
@@ -414,8 +403,6 @@ public class DataInitializer implements CommandLineRunner {
 
         List<String> locationShip21Submarine = new ArrayList<>();
         locationShip21Submarine.add("030201");
-        //locationShip21Submarine.add("040201");
-        //locationShip21Submarine.add("050201");
         List<String> locationShip22AircraftCarrier = new ArrayList<>();
         locationShip22AircraftCarrier.add("040701");
         locationShip22AircraftCarrier.add("050701");
@@ -451,36 +438,34 @@ public class DataInitializer implements CommandLineRunner {
         CreateBoard boardPlayer05Game03 = new CreateBoard(Player05,Game03,gamePlayer05Date,listLocationsShipsPlayer05Game03,listLocationsSalvoesPlayer05Game03,repositoryShips,repositorySalvoes,repositoryGamePlayer);
         GamePlayer gamePlayerPlayer05Game03=boardPlayer05Game03.getBoard();
         List<Salvo> salvoesPlayer05Game03=gamePlayerPlayer05Game03.getSalvoes();
-        updateSalvo(salvoesPlayer05Game03,"0000",statusSalvoHit);
+        updateSalvo(salvoesPlayer05Game03,"0000",statusSalvoFired);
 
-        updateSalvo(salvoesPlayer05Game03,"0105",statusSalvoHit);
-        updateSalvo(salvoesPlayer05Game03,"0106",statusSalvoHit);
-        updateSalvo(salvoesPlayer05Game03,"0107",statusSalvoHit);
+        updateSalvo(salvoesPlayer05Game03,"0105",statusSalvoFired);
+        updateSalvo(salvoesPlayer05Game03,"0106",statusSalvoFired);
+        updateSalvo(salvoesPlayer05Game03,"0107",statusSalvoFired);
 
-        updateSalvo(salvoesPlayer05Game03,"0200",statusSalvoHit);
-        updateSalvo(salvoesPlayer05Game03,"0300",statusSalvoHit);
-        updateSalvo(salvoesPlayer05Game03,"0400",statusSalvoHit);
-        updateSalvo(salvoesPlayer05Game03,"0500",statusSalvoHit);
-        updateSalvo(salvoesPlayer05Game03,"0600",statusSalvoHit);
+        updateSalvo(salvoesPlayer05Game03,"0200",statusSalvoFired);
+        updateSalvo(salvoesPlayer05Game03,"0300",statusSalvoFired);
+        updateSalvo(salvoesPlayer05Game03,"0400",statusSalvoFired);
+        updateSalvo(salvoesPlayer05Game03,"0500",statusSalvoFired);
+        updateSalvo(salvoesPlayer05Game03,"0600",statusSalvoFired);
 
-        updateSalvo(salvoesPlayer05Game03,"0203",statusSalvoHit);
-        updateSalvo(salvoesPlayer05Game03,"0303",statusSalvoHit);
-        updateSalvo(salvoesPlayer05Game03,"0403",statusSalvoHit);
-        updateSalvo(salvoesPlayer05Game03,"0503",statusSalvoHit);
+        updateSalvo(salvoesPlayer05Game03,"0203",statusSalvoFired);
+        updateSalvo(salvoesPlayer05Game03,"0303",statusSalvoFired);
+        updateSalvo(salvoesPlayer05Game03,"0403",statusSalvoFired);
+        updateSalvo(salvoesPlayer05Game03,"0503",statusSalvoFired);
 
-        updateSalvo(salvoesPlayer05Game03,"0607",statusSalvoHit);
-        updateSalvo(salvoesPlayer05Game03,"0608",statusSalvoHit);
-        updateSalvo(salvoesPlayer05Game03,"0609",statusSalvoHit);
+        updateSalvo(salvoesPlayer05Game03,"0607",statusSalvoFired);
+        updateSalvo(salvoesPlayer05Game03,"0608",statusSalvoFired);
+        updateSalvo(salvoesPlayer05Game03,"0609",statusSalvoFired);
 
-        updateSalvo(salvoesPlayer05Game03,"0705",statusSalvoHit);
-        updateSalvo(salvoesPlayer05Game03,"0805",statusSalvoHit);
+        updateSalvo(salvoesPlayer05Game03,"0705",statusSalvoFired);
+        updateSalvo(salvoesPlayer05Game03,"0805",statusSalvoFired);
 
         // To Create the Board of Player06 in Game03
 
         List<String> locationShip26Cruiser = new ArrayList<>();
         locationShip26Cruiser.add("010601");
-        //locationShip26Cruiser.add("020701");
-        //locationShip26Cruiser.add("020801");
         List<String> locationShip27BattleShip = new ArrayList<>();
         locationShip27BattleShip.add("020301");
         locationShip27BattleShip.add("030301");
@@ -516,38 +501,39 @@ public class DataInitializer implements CommandLineRunner {
         Date gamePlayer06Date = new Date();
         CreateBoard boardPlayer06Game03 = new CreateBoard(Player06,Game03,gamePlayer06Date,listLocationsShipsPlayer06Game03,listLocationsSalvoesPlayer06Game03,repositoryShips,repositorySalvoes,repositoryGamePlayer);
         GamePlayer gamePlayerPlayer06Game03=boardPlayer06Game03.getBoard();
-        List<Salvo> salvoesPlayer06Game03=gamePlayerPlayer05Game03.getSalvoes();
+        List<Salvo> salvoesPlayer06Game03=gamePlayerPlayer06Game03.getSalvoes();
 
-        updateSalvo(salvoesPlayer06Game03,"0201",statusSalvoHit);
-        updateSalvo(salvoesPlayer06Game03,"0301",statusSalvoHit);
-        updateSalvo(salvoesPlayer06Game03,"0401",statusSalvoHit);
+        updateSalvo(salvoesPlayer06Game03,"0201",statusSalvoFired);
+        updateSalvo(salvoesPlayer06Game03,"0301",statusSalvoFired);
+        updateSalvo(salvoesPlayer06Game03,"0401",statusSalvoFired);
 
-        updateSalvo(salvoesPlayer06Game03,"0206",statusSalvoHit);
-        updateSalvo(salvoesPlayer06Game03,"0306",statusSalvoHit);
-        updateSalvo(salvoesPlayer06Game03,"0406",statusSalvoHit);
-        updateSalvo(salvoesPlayer06Game03,"0506",statusSalvoHit);
-        updateSalvo(salvoesPlayer06Game03,"0606",statusSalvoHit);
-        updateSalvo(salvoesPlayer06Game03,"0706",statusSalvoHit);
+        updateSalvo(salvoesPlayer06Game03,"0206",statusSalvoFired);
+        updateSalvo(salvoesPlayer06Game03,"0306",statusSalvoFired);
+        updateSalvo(salvoesPlayer06Game03,"0406",statusSalvoFired);
+        updateSalvo(salvoesPlayer06Game03,"0506",statusSalvoFired);
+        updateSalvo(salvoesPlayer06Game03,"0606",statusSalvoFired);
+        updateSalvo(salvoesPlayer06Game03,"0706",statusSalvoFired);
 
-        updateSalvo(salvoesPlayer06Game03,"0107",statusSalvoHit);
-        updateSalvo(salvoesPlayer06Game03,"0108",statusSalvoHit);
-        updateSalvo(salvoesPlayer06Game03,"0109",statusSalvoHit);
+        updateSalvo(salvoesPlayer06Game03,"0107",statusSalvoFired);
+        updateSalvo(salvoesPlayer06Game03,"0108",statusSalvoFired);
+        updateSalvo(salvoesPlayer06Game03,"0109",statusSalvoFired);
 
-        updateSalvo(salvoesPlayer06Game03,"0207",statusSalvoHit);
-        updateSalvo(salvoesPlayer06Game03,"0208",statusSalvoHit);
-        updateSalvo(salvoesPlayer06Game03,"0209",statusSalvoHit);
+        updateSalvo(salvoesPlayer06Game03,"0206",statusSalvoFired);
+        updateSalvo(salvoesPlayer06Game03,"0207",statusSalvoFired);
+        updateSalvo(salvoesPlayer06Game03,"0208",statusSalvoFired);
+        updateSalvo(salvoesPlayer06Game03,"0209",statusSalvoFired);
 
-        updateSalvo(salvoesPlayer06Game03,"0504",statusSalvoHit);
-        updateSalvo(salvoesPlayer06Game03,"0604",statusSalvoHit);
-        updateSalvo(salvoesPlayer06Game03,"0704",statusSalvoHit);
+        updateSalvo(salvoesPlayer06Game03,"0504",statusSalvoFired);
+        updateSalvo(salvoesPlayer06Game03,"0604",statusSalvoFired);
+        updateSalvo(salvoesPlayer06Game03,"0704",statusSalvoFired);
 
-        updateSalvo(salvoesPlayer06Game03,"0901",statusSalvoHit);
-        updateSalvo(salvoesPlayer06Game03,"0902",statusSalvoHit);
-        updateSalvo(salvoesPlayer06Game03,"0903",statusSalvoHit);
-        updateSalvo(salvoesPlayer06Game03,"0904",statusSalvoHit);
+        updateSalvo(salvoesPlayer06Game03,"0901",statusSalvoFired);
+        updateSalvo(salvoesPlayer06Game03,"0902",statusSalvoFired);
+        updateSalvo(salvoesPlayer06Game03,"0903",statusSalvoFired);
+        updateSalvo(salvoesPlayer06Game03,"0904",statusSalvoFired);
 
         //Update the Board Player05 vs Board Player06 in Game03
-        UpdateShipsSalvos updateGame03SalvosAgainstShipsPlayer05Player06TwoWays= new UpdateShipsSalvos(gamePlayerPlayer05Game03,gamePlayerPlayer06Game03,repositoryShips);
+        UpdateShipsSalvos updateGame03SalvosAgainstShipsPlayer05Player06TwoWays= new UpdateShipsSalvos(gamePlayerPlayer05Game03,gamePlayerPlayer06Game03,repositoryShips,repositorySalvoes);
         updateGame03SalvosAgainstShipsPlayer05Player06TwoWays.UpdateSalvosAdversary();
 
         //_______________________________________________________________________________________________________
@@ -603,21 +589,21 @@ public class DataInitializer implements CommandLineRunner {
         CreateBoard boardPlayer07Game04 = new CreateBoard(Player07,Game04,gamePlayer07Date,listLocationsShipsPlayer07Game04,listLocationsSalvoesPlayer07Game04,repositoryShips,repositorySalvoes,repositoryGamePlayer);
         GamePlayer gamePlayerPlayer07Game04=boardPlayer07Game04.getBoard();
 
-        List<Salvo> salvoesPlayer07Game04=gamePlayerPlayer05Game03.getSalvoes();
+        List<Salvo> salvoesPlayer07Game04=gamePlayerPlayer07Game04.getSalvoes();
 
-        updateSalvo(salvoesPlayer07Game04,"0000",statusSalvoHit);
+        updateSalvo(salvoesPlayer07Game04,"0000",statusSalvoFired);
 
-        updateSalvo(salvoesPlayer07Game04,"0203",statusSalvoHit);
-        updateSalvo(salvoesPlayer07Game04,"0303",statusSalvoHit);
-        updateSalvo(salvoesPlayer07Game04,"0403",statusSalvoHit);
-        updateSalvo(salvoesPlayer07Game04,"0503",statusSalvoHit);
+        updateSalvo(salvoesPlayer07Game04,"0203",statusSalvoFired);
+        updateSalvo(salvoesPlayer07Game04,"0303",statusSalvoFired);
+        updateSalvo(salvoesPlayer07Game04,"0403",statusSalvoFired);
+        updateSalvo(salvoesPlayer07Game04,"0503",statusSalvoFired);
 
-        updateSalvo(salvoesPlayer07Game04,"0607",statusSalvoHit);
-        updateSalvo(salvoesPlayer07Game04,"0608",statusSalvoHit);
-        updateSalvo(salvoesPlayer07Game04,"0609",statusSalvoHit);
+        updateSalvo(salvoesPlayer07Game04,"0607",statusSalvoFired);
+        updateSalvo(salvoesPlayer07Game04,"0608",statusSalvoFired);
+        updateSalvo(salvoesPlayer07Game04,"0609",statusSalvoFired);
 
-        updateSalvo(salvoesPlayer07Game04,"0705",statusSalvoHit);
-        updateSalvo(salvoesPlayer07Game04,"0805",statusSalvoHit);
+        updateSalvo(salvoesPlayer07Game04,"0705",statusSalvoFired);
+        updateSalvo(salvoesPlayer07Game04,"0805",statusSalvoFired);
 
         // To Create the Board of Player08 in Game04
 
@@ -663,30 +649,30 @@ public class DataInitializer implements CommandLineRunner {
         Date gamePlayer08Date = new Date();
         CreateBoard boardPlayer08Game04 = new CreateBoard(Player08,Game04,gamePlayer08Date,listLocationsShipsPlayer08Game04,listLocationsSalvoesPlayer08Game04,repositoryShips,repositorySalvoes,repositoryGamePlayer);
         GamePlayer gamePlayerPlayer08Game04=boardPlayer08Game04.getBoard();
-        List<Salvo> salvoesPlayer08Game04=gamePlayerPlayer05Game03.getSalvoes();
+        List<Salvo> salvoesPlayer08Game04=gamePlayerPlayer08Game04.getSalvoes();
 
-        updateSalvo(salvoesPlayer08Game04,"0201",statusSalvoHit);
-        updateSalvo(salvoesPlayer08Game04,"0301",statusSalvoHit);
-        updateSalvo(salvoesPlayer08Game04,"0401",statusSalvoHit);
+        updateSalvo(salvoesPlayer08Game04,"0201",statusSalvoFired);
+        updateSalvo(salvoesPlayer08Game04,"0301",statusSalvoFired);
+        updateSalvo(salvoesPlayer08Game04,"0401",statusSalvoFired);
 
-        updateSalvo(salvoesPlayer08Game04,"0107",statusSalvoHit);
-        updateSalvo(salvoesPlayer08Game04,"0108",statusSalvoHit);
-        updateSalvo(salvoesPlayer08Game04,"0109",statusSalvoHit);
+        updateSalvo(salvoesPlayer08Game04,"0107",statusSalvoFired);
+        updateSalvo(salvoesPlayer08Game04,"0108",statusSalvoFired);
+        updateSalvo(salvoesPlayer08Game04,"0109",statusSalvoFired);
 
-        updateSalvo(salvoesPlayer08Game04,"0207",statusSalvoHit);
-        updateSalvo(salvoesPlayer08Game04,"0208",statusSalvoHit);
-        updateSalvo(salvoesPlayer08Game04,"0209",statusSalvoHit);
+        updateSalvo(salvoesPlayer08Game04,"0207",statusSalvoFired);
+        updateSalvo(salvoesPlayer08Game04,"0208",statusSalvoFired);
+        updateSalvo(salvoesPlayer08Game04,"0209",statusSalvoFired);
 
-        updateSalvo(salvoesPlayer08Game04,"0504",statusSalvoHit);
+        updateSalvo(salvoesPlayer08Game04,"0504",statusSalvoFired);
 
-        updateSalvo(salvoesPlayer08Game04,"0704",statusSalvoHit);
+        updateSalvo(salvoesPlayer08Game04,"0704",statusSalvoFired);
 
-        updateSalvo(salvoesPlayer08Game04,"0903",statusSalvoHit);
-        updateSalvo(salvoesPlayer08Game04,"0904",statusSalvoHit);
-        updateSalvo(salvoesPlayer08Game04,"0905",statusSalvoHit);
+        updateSalvo(salvoesPlayer08Game04,"0903",statusSalvoFired);
+        updateSalvo(salvoesPlayer08Game04,"0904",statusSalvoFired);
+        updateSalvo(salvoesPlayer08Game04,"0905",statusSalvoFired);
 
         //Update the Board Player07 vs Board Player08 in Game04
-        UpdateShipsSalvos updateGame04SalvosAgainstShipsPlayer07Player08TwoWays= new UpdateShipsSalvos(gamePlayerPlayer07Game04,gamePlayerPlayer08Game04,repositoryShips);
+        UpdateShipsSalvos updateGame04SalvosAgainstShipsPlayer07Player08TwoWays= new UpdateShipsSalvos(gamePlayerPlayer07Game04,gamePlayerPlayer08Game04,repositoryShips,repositorySalvoes);
         updateGame04SalvosAgainstShipsPlayer07Player08TwoWays.UpdateSalvosAdversary();
         //_______________________________________________________________________________________________________
         // End of Game04
@@ -742,21 +728,21 @@ public class DataInitializer implements CommandLineRunner {
         GamePlayer gamePlayerPlayer09Game05=boardPlayer09Game05.getBoard();
         List<Salvo> salvoesPlayer09Game05=gamePlayerPlayer09Game05.getSalvoes();
 
-        updateSalvo(salvoesPlayer09Game05,"0000",statusSalvoHit);
-        updateSalvo(salvoesPlayer09Game05,"0001",statusSalvoHit);
-        updateSalvo(salvoesPlayer09Game05,"0002",statusSalvoHit);
+        updateSalvo(salvoesPlayer09Game05,"0000",statusSalvoFired);
+        updateSalvo(salvoesPlayer09Game05,"0001",statusSalvoFired);
+        updateSalvo(salvoesPlayer09Game05,"0002",statusSalvoFired);
 
-        updateSalvo(salvoesPlayer09Game05,"0004",statusSalvoHit);
+        updateSalvo(salvoesPlayer09Game05,"0004",statusSalvoFired);
 
-        updateSalvo(salvoesPlayer09Game05,"0007",statusSalvoHit);
+        updateSalvo(salvoesPlayer09Game05,"0007",statusSalvoFired);
 
-        updateSalvo(salvoesPlayer09Game05,"0603",statusSalvoHit);
-        updateSalvo(salvoesPlayer09Game05,"0703",statusSalvoHit);
-        updateSalvo(salvoesPlayer09Game05,"0803",statusSalvoHit);
-        updateSalvo(salvoesPlayer09Game05,"0903",statusSalvoHit);
+        updateSalvo(salvoesPlayer09Game05,"0603",statusSalvoFired);
+        updateSalvo(salvoesPlayer09Game05,"0703",statusSalvoFired);
+        updateSalvo(salvoesPlayer09Game05,"0803",statusSalvoFired);
+        updateSalvo(salvoesPlayer09Game05,"0903",statusSalvoFired);
 
-        updateSalvo(salvoesPlayer09Game05,"0606",statusSalvoHit);
-        updateSalvo(salvoesPlayer09Game05,"0706",statusSalvoHit);
+        updateSalvo(salvoesPlayer09Game05,"0606",statusSalvoFired);
+        updateSalvo(salvoesPlayer09Game05,"0706",statusSalvoFired);
 
         // To Create the Board of Player10 in Game05
 
@@ -800,29 +786,29 @@ public class DataInitializer implements CommandLineRunner {
         Date gamePlayer10Date = new Date();
         CreateBoard boardPlayer10Game05 = new CreateBoard(Player10,Game05,gamePlayer10Date,listLocationsShipsPlayer10Game05,listLocationsSalvoesPlayer10Game05,repositoryShips,repositorySalvoes,repositoryGamePlayer);
         GamePlayer gamePlayerPlayer10Game05=boardPlayer10Game05.getBoard();
-        List<Salvo> salvoesPlayer10Game05=gamePlayerPlayer09Game05.getSalvoes();
+        List<Salvo> salvoesPlayer10Game05=gamePlayerPlayer10Game05.getSalvoes();
 
-        updateSalvo(salvoesPlayer10Game05,"0001",statusSalvoHit);
-        updateSalvo(salvoesPlayer10Game05,"0002",statusSalvoHit);
-        updateSalvo(salvoesPlayer10Game05,"0003",statusSalvoHit);
-        updateSalvo(salvoesPlayer10Game05,"0004",statusSalvoHit);
-        updateSalvo(salvoesPlayer10Game05,"0006",statusSalvoHit);
+        updateSalvo(salvoesPlayer10Game05,"0001",statusSalvoFired);
+        updateSalvo(salvoesPlayer10Game05,"0002",statusSalvoFired);
+        updateSalvo(salvoesPlayer10Game05,"0003",statusSalvoFired);
+        updateSalvo(salvoesPlayer10Game05,"0004",statusSalvoFired);
+        updateSalvo(salvoesPlayer10Game05,"0006",statusSalvoFired);
 
-        updateSalvo(salvoesPlayer10Game05,"0101",statusSalvoHit);
+        updateSalvo(salvoesPlayer10Game05,"0101",statusSalvoFired);
 
-        updateSalvo(salvoesPlayer10Game05,"0201",statusSalvoHit);
-        updateSalvo(salvoesPlayer10Game05,"0201",statusSalvoHit);
-        updateSalvo(salvoesPlayer10Game05,"0202",statusSalvoHit);
-        updateSalvo(salvoesPlayer10Game05,"0203",statusSalvoHit);
-        updateSalvo(salvoesPlayer10Game05,"0204",statusSalvoHit);
+        updateSalvo(salvoesPlayer10Game05,"0201",statusSalvoFired);
+        updateSalvo(salvoesPlayer10Game05,"0201",statusSalvoFired);
+        updateSalvo(salvoesPlayer10Game05,"0202",statusSalvoFired);
+        updateSalvo(salvoesPlayer10Game05,"0203",statusSalvoFired);
+        updateSalvo(salvoesPlayer10Game05,"0204",statusSalvoFired);
 
-        updateSalvo(salvoesPlayer10Game05,"0206",statusSalvoHit);
-        updateSalvo(salvoesPlayer10Game05,"0207",statusSalvoHit);
-        updateSalvo(salvoesPlayer10Game05,"0208",statusSalvoHit);
-        updateSalvo(salvoesPlayer10Game05,"0209",statusSalvoHit);
+        updateSalvo(salvoesPlayer10Game05,"0206",statusSalvoFired);
+        updateSalvo(salvoesPlayer10Game05,"0207",statusSalvoFired);
+        updateSalvo(salvoesPlayer10Game05,"0208",statusSalvoFired);
+        updateSalvo(salvoesPlayer10Game05,"0209",statusSalvoFired);
 
         //Update the Board Player09 vs Board Player10 in Game05
-        UpdateShipsSalvos updateGame05SalvosAgainstShipsPlayer09Player10TwoWays= new UpdateShipsSalvos(gamePlayerPlayer09Game05,gamePlayerPlayer10Game05,repositoryShips);
+        UpdateShipsSalvos updateGame05SalvosAgainstShipsPlayer09Player10TwoWays= new UpdateShipsSalvos(gamePlayerPlayer09Game05,gamePlayerPlayer10Game05,repositoryShips,repositorySalvoes);
         updateGame05SalvosAgainstShipsPlayer09Player10TwoWays.UpdateSalvosAdversary();
         //_______________________________________________________________________________________________________
         // End of Game05
@@ -846,7 +832,7 @@ public class DataInitializer implements CommandLineRunner {
         CreateBoard boardPlayer06Game06 = new CreateBoard(Player06,Game06,gamePlayer12Date,listLocationsShipsPlayer10Game05,listLocationsSalvoesPlayer10Game05,repositoryShips,repositorySalvoes,repositoryGamePlayer);
         GamePlayer gamePlayerPlayer10Game06=boardPlayer06Game06.getBoard();
 
-        UpdateShipsSalvos updateGame06SalvosAgainstShipsPlayer09Player10TwoWays= new UpdateShipsSalvos(gamePlayerPlayer09Game06,gamePlayerPlayer10Game06,repositoryShips);
+        UpdateShipsSalvos updateGame06SalvosAgainstShipsPlayer09Player10TwoWays= new UpdateShipsSalvos(gamePlayerPlayer09Game06,gamePlayerPlayer10Game06,repositoryShips,repositorySalvoes);
         updateGame06SalvosAgainstShipsPlayer09Player10TwoWays.UpdateSalvosAdversary();
 
         //_____________________________________________________________
