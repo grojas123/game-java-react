@@ -278,7 +278,7 @@ public class SalvoController {
             listLocationsShipsCurrentPlayer.add(locationShip02);
             listLocationsShipsCurrentPlayer.add(locationShip03);
             listLocationsShipsCurrentPlayer.add(locationShip04);
-            List<List<String>> listLocationsSalvoesCurrentPlayer = new ArrayList<>();
+            List<List<String>> listLocationsSalvoesCurrentPlayer = createSalvoesList();
             CreateBoard boardPlayerGame = new CreateBoard(currentPlayer,gameToJoin,dateCreationGame,listLocationsShipsCurrentPlayer,listLocationsSalvoesCurrentPlayer,repositoryShips,repositorySalvoes,repositoryGamePlayer);
             return boardPlayerGame.getBoard();}
         else return new ResponseEntity<>("The game have a pair", HttpStatus.FORBIDDEN);

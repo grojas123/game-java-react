@@ -15,17 +15,24 @@ export const GameBoardV2=()=>{
 
 
     const translateBackendToFrontShips=(data)=>{
-        //console.log(data)
+        const checkStatusShip=(shipLocations)=>{
+            let cellStatus="02";
+            var statusLocations=shipLocations.map(location=>cellStatus==location.slice(-2));
+            //console.log(statusLocations);
+            let countCellHits=statusLocations.reduce(function(a,b){
+                return b? ++a:a;
+            },0)
+
+            return Math.round(countCellHits/statusLocations.length*100);
+        }
         const translateBackendToFront=(ship)=>{
 
             const checkOrientationShip=(shipLocations)=>{
                 const orientationVertical=shipLocations.every(location=>{
-                    //console.log("location.substring(0,2) ",location.substring(0,2),"shipLocations[0].substring(0,2) ",shipLocations[0].substring(0,2))
                     if(location.substring(0,2)===shipLocations[0].substring(0,2))
                         return true;})
                 const orientationHorizontal=shipLocations.every(
                     location=>{
-                    //console.log("location.substring(0,2) ",location.substring(3,5),"shipLocations[0].substring(0,2) ",shipLocations[0].substring(3,5))
                     if(location.substring(2,4)===shipLocations[0].substring(2,4))
                         return true;}
                 )
@@ -48,8 +55,9 @@ export const GameBoardV2=()=>{
             let w=0;
             let h=0;
             let shipLength=shipLocations.length;
-            //console.log(shipLocations,checkOrientationShip(shipLocations),x,y,shipLength)
+            let statusChips=checkStatusShip(shipLocations);
             switch (checkOrientationShip(shipLocations)){
+
                 case 'horizontal':
                     w=parseInt(shipLength);
                     h=1;
@@ -66,7 +74,21 @@ export const GameBoardV2=()=>{
                     w=1;
                     h=1;
             }
-            let frontEndLocation={id:shipId,x: x, y: y, w: w,h: h,autoPosition:false,content: shipId+" "+"0/"+shipLength}
+            let lowerLimit=0;
+            let almostLimit=99;
+            let hitLimit=100;
+            let formatShipStatus=`<div class='text-white bg-success'>${shipId}-${statusChips}%<div/>`;
+            if(statusChips===lowerLimit){
+                formatShipStatus=`<div class='text-white bg-success'>${shipId}-${statusChips}%<div/>`;
+            } else if (statusChips>lowerLimit && statusChips<=99) {
+                formatShipStatus=`<div class='text-white bg-warning'>${shipId}-${statusChips}%<div/>`;
+            } else if (statusChips===100){
+                formatShipStatus=`<div class='text-white bg-danger'>${shipId}-${statusChips}%<div/>`;
+            };
+
+
+
+            let frontEndLocation={id:shipId,x: x, y: y, w: w,h: h,autoPosition:false,content: formatShipStatus}
             return frontEndLocation;
         }
 
@@ -221,6 +243,7 @@ export const GameBoardV2=()=>{
         grid01.cellWidth(cellWidth)
         let grid01Elements=grid01.getGridItems();
         grid01Elements.map((gridItem)=>(gridItem.ondblclick=(()=>flipElement(gridItem,grid01))));
+
         let grid02 = GridStack.init(gridOptionsSalvos,document.getElementById('grid2'));
         grid02.removeAll()
         grid02.cellHeight(cellHeight)

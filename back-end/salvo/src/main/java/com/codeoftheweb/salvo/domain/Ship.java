@@ -32,7 +32,9 @@ public class Ship {
 
      }
 
-
+    public Integer getShipSize(){
+        return getLocations().size();
+    }
     public String getShipName() {
         return shipName;
     }
@@ -44,6 +46,7 @@ public class Ship {
     public List<String> getLocations() {
         return locations;
     }
+
 
     public void setLocations(List<String> locations) {
         this.locations = locations;
