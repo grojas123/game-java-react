@@ -1,6 +1,7 @@
 package com.codeoftheweb.salvo.web;
 
 import com.codeoftheweb.salvo.bootstrap.CreateBoard;
+import com.codeoftheweb.salvo.bootstrap.UpdateShipsSalvos;
 import com.codeoftheweb.salvo.domain.*;
 import com.codeoftheweb.salvo.repositories.*;
 import net.minidev.json.JSONObject;
@@ -221,7 +222,7 @@ public class SalvoController {
     };
 
     @PostMapping(value="/updatesalvo/{gameid}" ,consumes = "application/json")
-    public List<Ship> UpdateSalvo(@PathVariable Long gameid ,@RequestBody JSONObject salvoFrontend){
+    public Salvo UpdateSalvo(@PathVariable Long gameid ,@RequestBody JSONObject salvoFrontend){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String currentPlayerEmail = authentication.getName();
         Player currentPlayer= playerRepository.findByEmail(currentPlayerEmail);
@@ -235,8 +236,11 @@ public class SalvoController {
         List<Salvo> listSalvoBackend=new ArrayList<>();
         if(currentPlayeremail==player00email) {listSalvoBackend =gamePlayer00.getSalvoes();}
         else if(currentPlayeremail==player01email) {listSalvoBackend=gamePlayer01.getSalvoes();}
-        //updateSalvo(listSalvoBackend,salvoFrontend,"02");
-        return new ArrayList<>();
+        updateSalvo(listSalvoBackend,salvoFrontend.getAsString("salvoPosition"),salvoFrontend.getAsString("salvoStatus"));
+        Salvo SalvoUpdated=updateSalvo(listSalvoBackend,salvoFrontend.getAsString("salvoPosition"),salvoFrontend.getAsString("salvoStatus"));
+        UpdateShipsSalvos updateSalvosAgainstShipsPlayer00Player01TwoWays=new UpdateShipsSalvos(gamePlayer00,gamePlayer01,repositoryShips,repositorySalvoes);
+        updateSalvosAgainstShipsPlayer00Player01TwoWays.UpdateSalvosAdversary();
+        return repositorySalvoes.getById(SalvoUpdated.getId());
     };
 
     @PostMapping(value="/games/join/{gameid}")

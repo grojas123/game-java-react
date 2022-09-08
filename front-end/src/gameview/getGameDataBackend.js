@@ -6,6 +6,7 @@ export const useSwrTest=(GameViewBackendGameid)=>( useSWR(
     fetcher,
     {
         suspense:true,
+        refreshInterval: 1000
     }
 ))
 

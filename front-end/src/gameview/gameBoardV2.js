@@ -6,6 +6,7 @@ import "./gameboardv1.css";
 import GetGameDataBackend from "./getGameDataBackend";
 import {useParams} from "react-router";
 import {UpdateShips} from "../forms/UpdateShips";
+import {UpdateSalvo} from "../forms/UpdateSalvo";
 
 export const GameBoardV2=()=>{
 
@@ -81,17 +82,17 @@ export const GameBoardV2=()=>{
     let serializedShipsData=translateBackendToFrontShips(databackend);
 
     const translateBackendToFrontSalvoes=(data)=>{
-        //console.log(data)
+
         const translateBackendToFront=(salvo)=>{
 
             const checkOrientationShip=(salvoLocations)=>{
                 const orientationVertical=salvoLocations.every(location=>{
-                    //console.log("location.substring(0,2) ",location.substring(0,2),"shipLocations[0].substring(0,2) ",shipLocations[0].substring(0,2))
+
                     if(location.substring(0,2)===salvoLocations[0].substring(0,2))
                         return true;})
                 const orientationHorizontal=salvoLocations.every(
                     location=>{
-                        //console.log("location.substring(0,2) ",location.substring(3,5),"shipLocations[0].substring(0,2) ",shipLocations[0].substring(3,5))
+
                         if(location.substring(2,4)===salvoLocations[0].substring(2,4))
                             return true;}
                 )
@@ -182,11 +183,33 @@ export const GameBoardV2=()=>{
     }
 
 
-    const dblClickSalvos=(elementToUpdate,grid)=>{
-        //console.log(elementToUpdate.gridstackNode);
+    const dblClickSalvos=(elementToUpdate)=>{
         let slavoPosition="0"+elementToUpdate.gridstackNode.x+"0"+elementToUpdate.gridstackNode.y;
-        let salvoStatus="0"+elementToUpdate.gridstackNode.content.substring(6,8);
-        console.log("slavoPosition",slavoPosition,"salvoStatus",salvoStatus)
+        //This regular expression is used to extract the display text "0702-01" part of this HTML
+        // <p class='text-white bg-success'>0702-01<p/> and then extract the status part "01"
+        const regExtractLocation = new RegExp(/(?<=>)(.*\n?)(?=<)/);
+        let salvoStatus="0"+elementToUpdate.gridstackNode.content.match(regExtractLocation)[0].substring(6,8);
+        //console.log("salvoPosition ",slavoPosition,"salvoStatus ",salvoStatus,"gameid ",gameid)
+       let salvoFired="02";
+        switch (salvoStatus){
+            case "01":
+                let dataSalvo={
+                    salvoPosition:slavoPosition,
+                    salvoStatus:salvoFired
+                }
+                UpdateSalvo(dataSalvo,gameid);
+                break;
+            case "02":
+                console.log("The has been fired didn't hit")
+                break
+            case "03":
+                console.log("The has been fired and hit")
+                break
+            default:
+                console.log("No status set in the salvo")
+        }
+
+
     }
     useEffect(() => {
         const cellHeight=38;
@@ -204,7 +227,7 @@ export const GameBoardV2=()=>{
         grid02.cellWidth(cellWidth);
         grid02.load(serializedSalvoesData)
         let grid02Elements=grid02.getGridItems();
-        grid02Elements.map((gridItem)=>(gridItem.ondblclick=(()=>dblClickSalvos(gridItem,grid02))))
+        grid02Elements.map((gridItem)=>(gridItem.ondblclick=(()=>dblClickSalvos(gridItem))))
 
     });
 

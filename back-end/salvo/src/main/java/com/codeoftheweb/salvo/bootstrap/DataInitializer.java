@@ -817,22 +817,125 @@ public class DataInitializer implements CommandLineRunner {
         //_______________________________________________________________________________________________________
         // Creation of Game06
         //_______________________________________________________________________________________________________
-        // with Player 09 y Player10 and the SameShips as Game05
+        // with Player 09 y Player10 .
         Date game_creation_date06= addHoursToJavaUtilDate(game_creation_date01,4);
         Game Game06 = new Game("Game 06", game_creation_date06);
         repositoryGames.save(Game06);
+        // Creation of Ships
+        List<String> locationShip61 = new ArrayList<>();
+        locationShip61.add("020101");
+        List<String> locationShip62 = new ArrayList<>();
+        locationShip62.add("090701");
+        locationShip62.add("090801");
+        locationShip62.add("090901");
+        List<String> locationShip63 = new ArrayList<>();
+        locationShip63.add("000401");
+        locationShip63.add("010401");
+        locationShip63.add("020401");
+        locationShip63.add("030401");
+        List<String> locationShip64 = new ArrayList<>();
+        locationShip64.add("030801");
+        locationShip64.add("040801");
+        locationShip64.add("050801");
+        locationShip64.add("060801");
+        locationShip64.add("070801");
+        List<String> locationShip65 = new ArrayList<>();
+        locationShip65.add("040001");
+        locationShip65.add("040101");
 
-        // To Create the Board of Player05 in Game06
+        List<List<String>> listLocationsShipsPlayer09Game06 = new ArrayList<>();
+        listLocationsShipsPlayer09Game06.add(locationShip61);
+        listLocationsShipsPlayer09Game06.add(locationShip62);
+        listLocationsShipsPlayer09Game06.add(locationShip63);
+        listLocationsShipsPlayer09Game06.add(locationShip64);
+        listLocationsShipsPlayer09Game06.add(locationShip65);
+
+        List<List<String>> listLocationsSalvoesPlayer09Game06 = createSalvoesList();
+
+        // To Create the Board of Player09 in Game06
         Date gamePlayer11Date = new Date();
-        CreateBoard boardPlayer05Game06 = new CreateBoard(Player05,Game06,gamePlayer11Date,listLocationsShipsPlayer09Game05,listLocationsSalvoesPlayer09Game05,repositoryShips,repositorySalvoes,repositoryGamePlayer);
-        GamePlayer gamePlayerPlayer09Game06=boardPlayer05Game06.getBoard();
+        CreateBoard boardPlayer09Game06 = new CreateBoard(Player09,Game06,gamePlayer11Date,listLocationsShipsPlayer09Game06,listLocationsSalvoesPlayer09Game06,repositoryShips,repositorySalvoes,repositoryGamePlayer);
+        GamePlayer gamePlayerPlayer09Game06=boardPlayer09Game06.getBoard();
+        List<Salvo> salvoesPlayer09Game06=gamePlayerPlayer09Game06.getSalvoes();
 
-        // To Create the Board of Player06 in Game06
+        updateSalvo(salvoesPlayer09Game06,"0000",statusSalvoFired);
+        updateSalvo(salvoesPlayer09Game06,"0001",statusSalvoFired);
+        updateSalvo(salvoesPlayer09Game06,"0002",statusSalvoFired);
+
+        updateSalvo(salvoesPlayer09Game06,"0004",statusSalvoFired);
+
+        updateSalvo(salvoesPlayer09Game06,"0007",statusSalvoFired);
+
+        updateSalvo(salvoesPlayer09Game06,"0603",statusSalvoFired);
+        updateSalvo(salvoesPlayer09Game06,"0703",statusSalvoFired);
+        updateSalvo(salvoesPlayer09Game06,"0803",statusSalvoFired);
+        updateSalvo(salvoesPlayer09Game06,"0903",statusSalvoFired);
+
+        updateSalvo(salvoesPlayer09Game06,"0606",statusSalvoFired);
+        updateSalvo(salvoesPlayer09Game06,"0706",statusSalvoFired);
+        // To Create the Board of Player10 in Game06
         Date gamePlayer12Date = new Date();
-        CreateBoard boardPlayer06Game06 = new CreateBoard(Player06,Game06,gamePlayer12Date,listLocationsShipsPlayer10Game05,listLocationsSalvoesPlayer10Game05,repositoryShips,repositorySalvoes,repositoryGamePlayer);
-        GamePlayer gamePlayerPlayer10Game06=boardPlayer06Game06.getBoard();
 
+        // Creation of Ships
+        List<String> locationShip66 = new ArrayList<>();
+        locationShip66.add("000001");
+        List<String> locationShip67 = new ArrayList<>();
+        locationShip67.add("000701");
+        locationShip67.add("000801");
+        locationShip67.add("000901");
+        List<String> locationShip68 = new ArrayList<>();
+        locationShip68.add("040001");
+        locationShip68.add("050001");
+        locationShip68.add("060001");
+        locationShip68.add("070001");
+        List<String> locationShip69 = new ArrayList<>();
+        locationShip69.add("040301");
+        locationShip69.add("050301");
+        locationShip69.add("060301");
+        locationShip69.add("070301");
+        locationShip69.add("080301");
+        List<String> locationShip70 = new ArrayList<>();
+        locationShip70.add("040501");
+        locationShip70.add("050501");
+
+        List<List<String>> listLocationsShipsPlayer10Game06 = new ArrayList<>();
+        listLocationsShipsPlayer10Game06.add(locationShip66);
+        listLocationsShipsPlayer10Game06.add(locationShip67);
+        listLocationsShipsPlayer10Game06.add(locationShip68);
+        listLocationsShipsPlayer10Game06.add(locationShip69);
+        listLocationsShipsPlayer10Game06.add(locationShip70);
+
+        List<List<String>> listLocationsSalvoesPlayer10Game06 = createSalvoesList();
+
+        CreateBoard boardPlayer10Game06 = new CreateBoard(Player10,Game06,gamePlayer12Date,listLocationsShipsPlayer10Game06,listLocationsSalvoesPlayer10Game06,repositoryShips,repositorySalvoes,repositoryGamePlayer);
+        GamePlayer gamePlayerPlayer10Game06=boardPlayer10Game06.getBoard();
+
+        List<Salvo> salvoesPlayer10Game06=gamePlayerPlayer10Game06.getSalvoes();
+
+        updateSalvo(salvoesPlayer10Game06,"0001",statusSalvoFired);
+        updateSalvo(salvoesPlayer10Game06,"0002",statusSalvoFired);
+        updateSalvo(salvoesPlayer10Game06,"0003",statusSalvoFired);
+        updateSalvo(salvoesPlayer10Game06,"0004",statusSalvoFired);
+
+        updateSalvo(salvoesPlayer10Game06,"0006",statusSalvoFired);
+
+        updateSalvo(salvoesPlayer10Game06,"0101",statusSalvoFired);
+
+        updateSalvo(salvoesPlayer10Game06,"0201",statusSalvoFired);
+        updateSalvo(salvoesPlayer10Game06,"0202",statusSalvoFired);
+        updateSalvo(salvoesPlayer10Game06,"0203",statusSalvoFired);
+        updateSalvo(salvoesPlayer10Game06,"0204",statusSalvoFired);
+
+        updateSalvo(salvoesPlayer10Game06,"0206",statusSalvoFired);
+        updateSalvo(salvoesPlayer10Game06,"0207",statusSalvoFired);
+        updateSalvo(salvoesPlayer10Game06,"0208",statusSalvoFired);
+        updateSalvo(salvoesPlayer10Game06,"0209",statusSalvoFired);
+        //________________________________________________________________________
         UpdateShipsSalvos updateGame06SalvosAgainstShipsPlayer09Player10TwoWays= new UpdateShipsSalvos(gamePlayerPlayer09Game06,gamePlayerPlayer10Game06,repositoryShips,repositorySalvoes);
+        //System.out.println(gamePlayerPlayer09Game06.getSalvoes().size());
+        //System.out.println(gamePlayerPlayer10Game06.getSalvoes().size());
+        //System.out.println(gamePlayerPlayer09Game06.getShips().size());
+        //System.out.println(gamePlayerPlayer10Game06.getShips().size());
         updateGame06SalvosAgainstShipsPlayer09Player10TwoWays.UpdateSalvosAdversary();
 
         //_____________________________________________________________
