@@ -100,6 +100,7 @@ public class CreateBoard {
 
         for (final Ship ship :shipList) {
             ship.setGamePlayer(gamePlayer);
+            ship.calculateStatus();
             shipRepository.save(ship);
         }
         for (final Salvo salvo:salvoesList){

@@ -208,7 +208,7 @@ export const GameBoardV2=()=>{
     const dblClickSalvos=(elementToUpdate)=>{
         let slavoPosition="0"+elementToUpdate.gridstackNode.x+"0"+elementToUpdate.gridstackNode.y;
         //This regular expression is used to extract the display text "0702-01" part of this HTML
-        // <p class='text-white bg-success'>0702-01<p/> and then extract the status part "01"
+        // <div class='text-white bg-success'>0702-01<div/> and then extract the status part "01"
         const regExtractLocation = new RegExp(/(?<=>)(.*\n?)(?=<)/);
         let salvoStatus="0"+elementToUpdate.gridstackNode.content.match(regExtractLocation)[0].substring(6,8);
         //console.log("salvoPosition ",slavoPosition,"salvoStatus ",salvoStatus,"gameid ",gameid)

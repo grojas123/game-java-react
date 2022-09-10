@@ -3,9 +3,8 @@ import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.util.Date;
-//import java.util.HashSet;
 import java.util.List;
-//import java.util.Set;
+
 
 @Entity
 public class GamePlayer {
@@ -35,6 +34,7 @@ public class GamePlayer {
 
 
     private Date gamePlayerCreationDate;
+
 
     public GamePlayer() { }
     public GamePlayer(Game game, Player player,Date gamePlayerCreationDate, List<Ship> ships,List<Salvo> salvoes) {

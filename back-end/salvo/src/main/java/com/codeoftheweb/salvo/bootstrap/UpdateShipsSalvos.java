@@ -102,9 +102,12 @@ public class UpdateShipsSalvos {
                             indexOneCellShip=indexOneCellShip+1;
                         }
                             ship.setLocations(Player02ShipCellList);
+                            ship.calculateStatus();
                             shipRepository.save(ship);
+
                     }
-                                );
+
+                    );
         });
 
         // Check the Player02 Salvoes  with the Player01 Ships
@@ -138,6 +141,7 @@ public class UpdateShipsSalvos {
                             indexOneCellShip=indexOneCellShip+1;
                         }
                         ship.setLocations(Player01ShipCellList);
+                        ship.calculateStatus();
                         shipRepository.save(ship);
                     }
             );
