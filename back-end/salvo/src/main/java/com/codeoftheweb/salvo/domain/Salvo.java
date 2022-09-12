@@ -55,7 +55,9 @@ public class Salvo {
     public void setLocations(List<String> locations) {
         this.locations = locations;
     }
-
+public String getStatus(){
+        return getLocations().get(0).substring(4,6);
+};
     public void setGamePlayer(GamePlayer gamePlayer) {
         this.gamePlayer = gamePlayer;
     }

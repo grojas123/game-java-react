@@ -17,13 +17,9 @@ public class Ship {
     private String statusCellClean="01";
     private String statusCellHit="02";
 
-    enum Status {
-        CLEAN,
-        HIT,
-        DESTROYED
-    }
+
     @Enumerated(EnumType.ORDINAL)
-    public Status ShipStatus;
+    public categoriesStatusShips StatusShips;
     public Ship() {
 
     }
@@ -65,12 +61,12 @@ public class Ship {
         this.gamePlayer = gamePlayer;
     }
 
-    public Status getShipStatus() {
-        return ShipStatus;
+    public categoriesStatusShips getShipStatus() {
+        return StatusShips;
     }
 
-    private void setShipStatus(Status shipStatus) {
-        ShipStatus = shipStatus;
+    private void setShipStatus(categoriesStatusShips StatusShips) {
+        this.StatusShips = StatusShips;
     }
 
     public void calculateStatus(){
@@ -79,11 +75,11 @@ public class Ship {
             int countCleans= (int) checkCleans.stream().filter(a->a.equals(true)).count();
             int countHits= (int) checkHits.stream().filter(a->a.equals(true)).count();
             if(countCleans==getShipSize()){
-                    setShipStatus(Status.CLEAN);
+                    setShipStatus(categoriesStatusShips.CLEAN);
             } else if (countHits<getShipSize()){
-                setShipStatus(Status.HIT);
+                setShipStatus(categoriesStatusShips.HIT);
             } else if(countHits==getShipSize()){
-                setShipStatus(Status.DESTROYED);
+                setShipStatus(categoriesStatusShips.DESTROYED);
             }
 
     }

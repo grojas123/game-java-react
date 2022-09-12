@@ -4,6 +4,7 @@ import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 @Entity
@@ -34,7 +35,8 @@ public class GamePlayer {
 
 
     private Date gamePlayerCreationDate;
-
+    @Enumerated(EnumType.ORDINAL)
+    public categoriesGamePlayerStatus GamePlayerStatus;
 
     public GamePlayer() { }
     public GamePlayer(Game game, Player player,Date gamePlayerCreationDate, List<Ship> ships,List<Salvo> salvoes) {
@@ -97,5 +99,36 @@ public class GamePlayer {
 
     public void setScore(Score score) {
         this.score = score;
+    }
+
+    public categoriesGamePlayerStatus getGamePlayerStatus() {
+        return GamePlayerStatus;
+    }
+
+    public void setGamePlayerStatus(categoriesGamePlayerStatus GamePlayerStatus) {
+        this.GamePlayerStatus = GamePlayerStatus;
+    }
+
+    public categoriesGamePlayerStatus calculateStatus() {
+        String salvoHit="03";
+        int totalCellShips=15;
+        List<Ship> GamePlayerShips=getShips();
+        List<Salvo> GamePlayerSalvos=getSalvoes();
+        int totalCountShips=GamePlayerShips.size();
+        List<Boolean> checkShipsStatusClean =GamePlayerShips.stream().map(ship->ship.getShipStatus().equals(categoriesStatusShips.CLEAN)).collect(Collectors.toList());
+        List<Boolean> checkSalvosStatusHit=GamePlayerSalvos.stream().map(salvo -> salvo.getStatus().equals(salvoHit)).collect(Collectors.toList());
+        List<Boolean> checkShipsStatusDestroyed =GamePlayerShips.stream().map(ship->ship.getShipStatus().equals(categoriesStatusShips.DESTROYED)).collect(Collectors.toList());
+        int countShipsCleans= (int) checkShipsStatusClean.stream().filter(a->a.equals(true)).count();
+        int countSalvoHits= (int) checkSalvosStatusHit.stream().filter(a->a.equals(true)).count();
+        int countShipsDestroyed= (int) checkShipsStatusDestroyed.stream().filter(a->a.equals(true)).count();
+
+        if(countSalvoHits==totalCellShips){
+            GamePlayerStatus=categoriesGamePlayerStatus.WON;
+        } else if(countShipsCleans==totalCountShips || countShipsDestroyed<totalCountShips){
+            GamePlayerStatus=categoriesGamePlayerStatus.PLAYING;
+        } else if(countShipsDestroyed==totalCountShips){
+            GamePlayerStatus=categoriesGamePlayerStatus.LOST;
+        }
+        return GamePlayerStatus;
     }
 }

@@ -98,6 +98,7 @@ public class UpdateShipsSalvos {
                                 salvoPlayer01.setLocations(Player01LocationsOneSalvo);
                                 salvoRepository.save(salvoPlayer01);
 
+
                             }
                             indexOneCellShip=indexOneCellShip+1;
                         }
@@ -108,7 +109,8 @@ public class UpdateShipsSalvos {
                     }
 
                     );
-        });
+
+             });
 
         // Check the Player02 Salvoes  with the Player01 Ships
         Player02Salvoes.forEach(salvoPlayer02 -> {
