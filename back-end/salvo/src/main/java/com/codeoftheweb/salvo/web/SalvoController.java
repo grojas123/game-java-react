@@ -229,17 +229,20 @@ public class SalvoController {
         String currentPlayerEmail = authentication.getName();
         Player currentPlayer= playerRepository.findByEmail(currentPlayerEmail);
         List<GamePlayer> gamePlayerList=repositoryGamePlayer.findByGame_Id(gameid);
-
-
         GamePlayer gamePlayer00=gamePlayerList.get(0);
         GamePlayer gamePlayer01=gamePlayerList.get(1);
-
         String player00email =gamePlayer00.getPlayer().getEmail();
         String player01email =gamePlayer01.getPlayer().getEmail();
         String currentPlayeremail=currentPlayer.getEmail();
         List<Salvo> listSalvoBackend=new ArrayList<>();
-        if(currentPlayeremail==player00email) {listSalvoBackend =gamePlayer00.getSalvoes();}
-        else if(currentPlayeremail==player01email) {listSalvoBackend=gamePlayer01.getSalvoes();}
+        GamePlayer BoardGamePlayerActualPlayer=gamePlayer00;
+        GamePlayer BoardGamePlayerOpponentPlayer=gamePlayer01;
+        if(currentPlayeremail==player00email) {
+            listSalvoBackend =gamePlayer00.getSalvoes();}
+        else if(currentPlayeremail==player01email) {
+            BoardGamePlayerActualPlayer=gamePlayer01;
+            BoardGamePlayerOpponentPlayer=gamePlayer00;
+            listSalvoBackend=gamePlayer01.getSalvoes();}
         Salvo SalvoUpdated=updateSalvo(listSalvoBackend,salvoFrontend.getAsString("salvoPosition"),salvoFrontend.getAsString("salvoStatus"));
         UpdateShipsSalvos updateSalvosAgainstShipsPlayer00Player01TwoWays=new UpdateShipsSalvos(gamePlayer00,gamePlayer01,repositoryShips,repositorySalvoes);
         updateSalvosAgainstShipsPlayer00Player01TwoWays.UpdateSalvosAdversary();
@@ -247,9 +250,22 @@ public class SalvoController {
         repositoryGamePlayer.save(gamePlayer00);
         gamePlayer01.computeBoardStatus();
         repositoryGamePlayer.save(gamePlayer01);
-        //SalvoUpdated.getStatus();
+        Boolean HitHappenedSalvo=SalvoUpdated.getStatus().equals(salvoStatusHit);
+        if(HitHappenedSalvo){
+            BoardGamePlayerActualPlayer.setOnPlayingTurn(Boolean.TRUE);
+            repositoryGamePlayer.save(BoardGamePlayerActualPlayer);
+            BoardGamePlayerOpponentPlayer.setOnPlayingTurn(Boolean.FALSE);
+            repositoryGamePlayer.save(BoardGamePlayerOpponentPlayer);
 
-        return repositorySalvoes.getById(SalvoUpdated.getId());
+        } else {
+            BoardGamePlayerActualPlayer.setOnPlayingTurn(Boolean.FALSE);
+            repositoryGamePlayer.save(BoardGamePlayerActualPlayer);
+            BoardGamePlayerOpponentPlayer.setOnPlayingTurn(Boolean.TRUE);
+            repositoryGamePlayer.save(BoardGamePlayerOpponentPlayer);
+        }
+
+        Salvo SavedSalvoUpdated=repositorySalvoes.getById(SalvoUpdated.getId());
+        return SavedSalvoUpdated;
     };
 
     @PostMapping(value="/games/join/{gameid}")

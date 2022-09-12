@@ -206,32 +206,33 @@ export const GameBoardV2=()=>{
 
 
     const dblClickSalvos=(elementToUpdate)=>{
-        let slavoPosition="0"+elementToUpdate.gridstackNode.x+"0"+elementToUpdate.gridstackNode.y;
-        //This regular expression is used to extract the display text "0702-01" part of this HTML
-        // <div class='text-white bg-success'>0702-01<div/> and then extract the status part "01"
-        const regExtractLocation = new RegExp(/(?<=>)(.*\n?)(?=<)/);
-        let salvoStatus="0"+elementToUpdate.gridstackNode.content.match(regExtractLocation)[0].substring(6,8);
-        //console.log("salvoPosition ",slavoPosition,"salvoStatus ",salvoStatus,"gameid ",gameid)
-       let salvoFired="02";
-        switch (salvoStatus){
-            case "01":
-                let dataSalvo={
-                    salvoPosition:slavoPosition,
-                    salvoStatus:salvoFired
-                }
-                UpdateSalvo(dataSalvo,gameid);
-                break;
-            case "02":
-                console.log("Salvo has been fired didn't hit")
-                break
-            case "03":
-                console.log("Salvo has been fired and hit")
-                break
+        if(databackend[0].onPlayingTurn){
+            let slavoPosition="0"+elementToUpdate.gridstackNode.x+"0"+elementToUpdate.gridstackNode.y;
+            //This regular expression is used to extract the display text "0702-01" part of this HTML
+            // <div class='text-white bg-success'>0702-01<div/> and then extract the status part "01"
+            const regExtractLocation = new RegExp(/(?<=>)(.*\n?)(?=<)/);
+            let salvoStatus="0"+elementToUpdate.gridstackNode.content.match(regExtractLocation)[0].substring(6,8);
+            //console.log("salvoPosition ",slavoPosition,"salvoStatus ",salvoStatus,"gameid ",gameid)
+        let salvoFired="02";
+            switch (salvoStatus){
+                case "01":
+                    let dataSalvo={
+                        salvoPosition:slavoPosition,
+                        salvoStatus:salvoFired
+                    }
+                    UpdateSalvo(dataSalvo,gameid);
+                    break;
+                case "02":
+                    console.log("Salvo has been fired didn't hit")
+                    break
+                case "03":
+                    console.log("Salvo has been fired and hit")
+                    break
             default:
-                console.log("No status set in the Salvo")
+                    console.log("No status set in the Salvo")
         }
 
-
+        }
     }
     useEffect(() => {
         const cellHeight=38;
@@ -362,7 +363,7 @@ export const GameBoardV2=()=>{
         //elementToUpdate.gridstackNode.id="1/5"
         grid.update(elementToUpdate,{content: 'ship00 1/5'});
     }
-
+console.log(databackend[0].onPlayingTurn)
     return (
         <div >
             {<button onClick={()=>addWidget()}>add Items "grid-stack"</button>}
@@ -373,6 +374,7 @@ export const GameBoardV2=()=>{
             {<button onClick={()=>saveShipsBackend(gameid)}>Update the positions ships Backend</button>}
             <p>Game:{databackend[0].game.gameName} BoardStatus {databackend[0].gamePlayerStatus}</p>
             <p>Players: {databackend[0].player.email} vs {databackend[1].player.email}</p>
+            <p>onPlayingTurn {databackend[0].onPlayingTurn+''}</p>
             <p>Ships</p>
             <div className="grid-stack border border-primary" id="grid1"></div>
             <p>Salvos</p>
