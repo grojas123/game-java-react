@@ -38,6 +38,8 @@ public class GamePlayer {
     @Enumerated(EnumType.ORDINAL)
     public categoriesGamePlayerStatus GamePlayerStatus;
 
+    public Boolean onPlayingTurn;
+
     public GamePlayer() { }
     public GamePlayer(Game game, Player player,Date gamePlayerCreationDate, List<Ship> ships,List<Salvo> salvoes) {
         this.game = game;
@@ -109,7 +111,15 @@ public class GamePlayer {
         this.GamePlayerStatus = GamePlayerStatus;
     }
 
-    public categoriesGamePlayerStatus calculateStatus() {
+    public Boolean getOnPlayingTurn() {
+        return onPlayingTurn;
+    }
+
+    public void setOnPlayingTurn(Boolean onPlayingTurn) {
+        this.onPlayingTurn = onPlayingTurn;
+    }
+
+    public categoriesGamePlayerStatus computeBoardStatus() {
         String salvoHit="03";
         int totalCellShips=15;
         List<Ship> GamePlayerShips=getShips();

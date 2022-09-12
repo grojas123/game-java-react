@@ -222,13 +222,13 @@ export const GameBoardV2=()=>{
                 UpdateSalvo(dataSalvo,gameid);
                 break;
             case "02":
-                console.log("The has been fired didn't hit")
+                console.log("Salvo has been fired didn't hit")
                 break
             case "03":
-                console.log("The has been fired and hit")
+                console.log("Salvo has been fired and hit")
                 break
             default:
-                console.log("No status set in the salvo")
+                console.log("No status set in the Salvo")
         }
 
 
@@ -363,7 +363,6 @@ export const GameBoardV2=()=>{
         grid.update(elementToUpdate,{content: 'ship00 1/5'});
     }
 
-
     return (
         <div >
             {<button onClick={()=>addWidget()}>add Items "grid-stack"</button>}
@@ -372,7 +371,8 @@ export const GameBoardV2=()=>{
             {<button onClick={()=>stopDragDrop()}>Stop Drag and Drop</button>}
             {<button onClick={()=>changeContent()}>Change content</button>}
             {<button onClick={()=>saveShipsBackend(gameid)}>Update the positions ships Backend</button>}
-
+            <p>Game:{databackend[0].game.gameName} BoardStatus {databackend[0].gamePlayerStatus}</p>
+            <p>Players: {databackend[0].player.email} vs {databackend[1].player.email}</p>
             <p>Ships</p>
             <div className="grid-stack border border-primary" id="grid1"></div>
             <p>Salvos</p>

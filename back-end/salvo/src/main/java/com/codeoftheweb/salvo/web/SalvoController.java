@@ -129,15 +129,7 @@ public class SalvoController {
         }
         return SalvoesList;
     }
-    private Salvo updateSalvo(List<Salvo> Salvoes, String locationToUpdate, String status){
-        Predicate<Salvo> byLocation=salvo -> salvo.getLocations().get(0).substring(0,4).equals(locationToUpdate);
-        List<Salvo> listSalvoToUpdate=Salvoes.stream().filter(byLocation).collect(Collectors.toList());
-        List<String> locationToUpdateSalvo = new ArrayList<>();
-        String locationNewStatusSalvoes=listSalvoToUpdate.get(0).getLocations().get(0).substring(0,4)+status;
-        locationToUpdateSalvo.add(locationNewStatusSalvoes);
-        listSalvoToUpdate.get(0).setLocations(locationToUpdateSalvo);
-        return repositorySalvoes.save(listSalvoToUpdate.get(0));
-    };
+
     @PostMapping(value="/games",consumes = "application/json")
     public Object createGame(){
 
@@ -220,13 +212,25 @@ public class SalvoController {
 
         return UpdateShipsBackend(listShipsFrontend,listShipsBackend);
     };
-
+    private Salvo updateSalvo(List<Salvo> Salvoes, String locationToUpdate, String status){
+        Predicate<Salvo> byLocation=salvo -> salvo.getLocations().get(0).substring(0,4).equals(locationToUpdate);
+        List<Salvo> listSalvoToUpdate=Salvoes.stream().filter(byLocation).collect(Collectors.toList());
+        List<String> locationToUpdateSalvo = new ArrayList<>();
+        String locationNewStatusSalvoes=listSalvoToUpdate.get(0).getLocations().get(0).substring(0,4)+status;
+        locationToUpdateSalvo.add(locationNewStatusSalvoes);
+        listSalvoToUpdate.get(0).setLocations(locationToUpdateSalvo);
+        Salvo salvoUpdated=repositorySalvoes.save(listSalvoToUpdate.get(0));
+        return salvoUpdated;
+    };
     @PostMapping(value="/updatesalvo/{gameid}" ,consumes = "application/json")
     public Salvo UpdateSalvo(@PathVariable Long gameid ,@RequestBody JSONObject salvoFrontend){
+        String salvoStatusHit="03";
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String currentPlayerEmail = authentication.getName();
         Player currentPlayer= playerRepository.findByEmail(currentPlayerEmail);
         List<GamePlayer> gamePlayerList=repositoryGamePlayer.findByGame_Id(gameid);
+
+
         GamePlayer gamePlayer00=gamePlayerList.get(0);
         GamePlayer gamePlayer01=gamePlayerList.get(1);
 
@@ -236,10 +240,15 @@ public class SalvoController {
         List<Salvo> listSalvoBackend=new ArrayList<>();
         if(currentPlayeremail==player00email) {listSalvoBackend =gamePlayer00.getSalvoes();}
         else if(currentPlayeremail==player01email) {listSalvoBackend=gamePlayer01.getSalvoes();}
-        updateSalvo(listSalvoBackend,salvoFrontend.getAsString("salvoPosition"),salvoFrontend.getAsString("salvoStatus"));
         Salvo SalvoUpdated=updateSalvo(listSalvoBackend,salvoFrontend.getAsString("salvoPosition"),salvoFrontend.getAsString("salvoStatus"));
         UpdateShipsSalvos updateSalvosAgainstShipsPlayer00Player01TwoWays=new UpdateShipsSalvos(gamePlayer00,gamePlayer01,repositoryShips,repositorySalvoes);
         updateSalvosAgainstShipsPlayer00Player01TwoWays.UpdateSalvosAdversary();
+        gamePlayer00.computeBoardStatus();
+        repositoryGamePlayer.save(gamePlayer00);
+        gamePlayer01.computeBoardStatus();
+        repositoryGamePlayer.save(gamePlayer01);
+        //SalvoUpdated.getStatus();
+
         return repositorySalvoes.getById(SalvoUpdated.getId());
     };
 
@@ -280,7 +289,11 @@ public class SalvoController {
             listLocationsShipsCurrentPlayer.add(locationShip04);
             List<List<String>> listLocationsSalvoesCurrentPlayer = createSalvoesList();
             CreateBoard boardPlayerGame = new CreateBoard(currentPlayer,gameToJoin,dateCreationGame,listLocationsShipsCurrentPlayer,listLocationsSalvoesCurrentPlayer,repositoryShips,repositorySalvoes,repositoryGamePlayer);
-            return boardPlayerGame.getBoard();}
+            GamePlayer newBoard=boardPlayerGame.getBoard();
+            newBoard.computeBoardStatus();
+            newBoard.setOnPlayingTurn(Boolean.FALSE);
+            GamePlayer newBoardSaved=repositoryGamePlayer.save(newBoard);
+            return newBoardSaved;}
         else return new ResponseEntity<>("The game have a pair", HttpStatus.FORBIDDEN);
     };
 
@@ -341,7 +354,6 @@ private JSONObject getEmptyPlayer(){
             else {// If Opponent Player is not present the data of the Opponent will be empty
                 boardActualPlayer.add(gamePlayerActual.get(0));
                 boardActualPlayer.add(getEmptyPlayer());}
-
 
             return boardActualPlayer;}
 

@@ -16,9 +16,9 @@ export const UpdateSalvo=(data,gameid) =>{
 
     async function UpdateSalvo(){
         var dataSalvoUpdate = await UpdateSalvoPromise(data,gameid);
-        console.log(dataSalvoUpdate);
-
+        //console.log(dataSalvoUpdate);
+        return dataSalvoUpdate;
     }
-    UpdateSalvo(data,gameid)
+    return UpdateSalvo(data,gameid)
 
 }

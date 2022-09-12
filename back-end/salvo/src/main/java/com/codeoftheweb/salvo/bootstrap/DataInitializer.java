@@ -224,9 +224,11 @@ public class DataInitializer implements CommandLineRunner {
         // Update the data between the two Boards created
         UpdateShipsSalvos updateGame01SalvosAgainstShipsPlayer01Player02TwoWays= new UpdateShipsSalvos(gamePlayerPlayer01Game01,gamePlayerPlayer02Game01,repositoryShips,repositorySalvoes);
         updateGame01SalvosAgainstShipsPlayer01Player02TwoWays.UpdateSalvosAdversary();
-        gamePlayerPlayer01Game01.calculateStatus();
+        gamePlayerPlayer01Game01.computeBoardStatus();
+        gamePlayerPlayer01Game01.setOnPlayingTurn(Boolean.TRUE);
         repositoryGamePlayer.save(gamePlayerPlayer01Game01);
-        gamePlayerPlayer02Game01.calculateStatus();
+        gamePlayerPlayer02Game01.computeBoardStatus();
+        gamePlayerPlayer02Game01.setOnPlayingTurn(Boolean.FALSE);
         repositoryGamePlayer.save(gamePlayerPlayer02Game01);
         //_______________________________________________________________________________________________________
         // End of Game01
@@ -383,9 +385,11 @@ public class DataInitializer implements CommandLineRunner {
         //------------Update the two Boards
         UpdateShipsSalvos updateGame02SalvosAgainstShipsPlayer03Player04TwoWays= new UpdateShipsSalvos(gamePlayerPlayer03Game02,gamePlayerPlayer04Game02,repositoryShips,repositorySalvoes);
         updateGame02SalvosAgainstShipsPlayer03Player04TwoWays.UpdateSalvosAdversary();
-        gamePlayerPlayer03Game02.calculateStatus();
+        gamePlayerPlayer03Game02.computeBoardStatus();
+        gamePlayerPlayer03Game02.setOnPlayingTurn(Boolean.FALSE);
         repositoryGamePlayer.save(gamePlayerPlayer03Game02);
-        gamePlayerPlayer04Game02.calculateStatus();
+        gamePlayerPlayer04Game02.computeBoardStatus();
+        gamePlayerPlayer04Game02.setOnPlayingTurn(Boolean.TRUE);
         repositoryGamePlayer.save(gamePlayerPlayer04Game02);
         //_______________________________________________________________________________________________________
         // End of Game02
@@ -542,9 +546,11 @@ public class DataInitializer implements CommandLineRunner {
         //Update the Board Player05 vs Board Player06 in Game03
         UpdateShipsSalvos updateGame03SalvosAgainstShipsPlayer05Player06TwoWays= new UpdateShipsSalvos(gamePlayerPlayer05Game03,gamePlayerPlayer06Game03,repositoryShips,repositorySalvoes);
         updateGame03SalvosAgainstShipsPlayer05Player06TwoWays.UpdateSalvosAdversary();
-        gamePlayerPlayer05Game03.calculateStatus();
+        gamePlayerPlayer05Game03.computeBoardStatus();
+        gamePlayerPlayer05Game03.setOnPlayingTurn(Boolean.TRUE);
         repositoryGamePlayer.save(gamePlayerPlayer05Game03);
-        gamePlayerPlayer06Game03.calculateStatus();
+        gamePlayerPlayer06Game03.computeBoardStatus();
+        gamePlayerPlayer06Game03.setOnPlayingTurn(Boolean.FALSE);
         repositoryGamePlayer.save(gamePlayerPlayer06Game03);
         //_______________________________________________________________________________________________________
         // End of Game03
@@ -684,9 +690,11 @@ public class DataInitializer implements CommandLineRunner {
         //Update the Board Player07 vs Board Player08 in Game04
         UpdateShipsSalvos updateGame04SalvosAgainstShipsPlayer07Player08TwoWays= new UpdateShipsSalvos(gamePlayerPlayer07Game04,gamePlayerPlayer08Game04,repositoryShips,repositorySalvoes);
         updateGame04SalvosAgainstShipsPlayer07Player08TwoWays.UpdateSalvosAdversary();
-        gamePlayerPlayer07Game04.calculateStatus();
+        gamePlayerPlayer07Game04.computeBoardStatus();
+        gamePlayerPlayer07Game04.setOnPlayingTurn(Boolean.TRUE);
         repositoryGamePlayer.save(gamePlayerPlayer07Game04);
-        gamePlayerPlayer08Game04.calculateStatus();
+        gamePlayerPlayer08Game04.computeBoardStatus();
+        gamePlayerPlayer08Game04.setOnPlayingTurn(Boolean.FALSE);
         repositoryGamePlayer.save(gamePlayerPlayer08Game04);
         //_______________________________________________________________________________________________________
         // End of Game04
@@ -824,9 +832,9 @@ public class DataInitializer implements CommandLineRunner {
         //Update the Board Player09 vs Board Player10 in Game05
         UpdateShipsSalvos updateGame05SalvosAgainstShipsPlayer09Player10TwoWays= new UpdateShipsSalvos(gamePlayerPlayer09Game05,gamePlayerPlayer10Game05,repositoryShips,repositorySalvoes);
         updateGame05SalvosAgainstShipsPlayer09Player10TwoWays.UpdateSalvosAdversary();
-        gamePlayerPlayer09Game05.calculateStatus();
+        gamePlayerPlayer09Game05.computeBoardStatus();
         repositoryGamePlayer.save(gamePlayerPlayer09Game05);
-        gamePlayerPlayer10Game05.calculateStatus();
+        gamePlayerPlayer10Game05.computeBoardStatus();
         repositoryGamePlayer.save(gamePlayerPlayer10Game05);
         //_______________________________________________________________________________________________________
         // End of Game05
@@ -955,9 +963,9 @@ public class DataInitializer implements CommandLineRunner {
         //System.out.println(gamePlayerPlayer09Game06.getShips().size());
         //System.out.println(gamePlayerPlayer10Game06.getShips().size());
         updateGame06SalvosAgainstShipsPlayer09Player10TwoWays.UpdateSalvosAdversary();
-        gamePlayerPlayer09Game06.calculateStatus();
+        gamePlayerPlayer09Game06.computeBoardStatus();
         repositoryGamePlayer.save(gamePlayerPlayer09Game06);
-        gamePlayerPlayer10Game06.calculateStatus();
+        gamePlayerPlayer10Game06.computeBoardStatus();
         repositoryGamePlayer.save(gamePlayerPlayer10Game06);
         //_____________________________________________________________
         // End Game06
