@@ -119,7 +119,7 @@ public class DataInitializer implements CommandLineRunner {
         //System.out.println(createSalvoesList());
         Date gamePlayer01Date = new Date();
         CreateBoard boardPlayer01Game01 = new CreateBoard(Player01,Game01,gamePlayer01Date,listLocationsShipsPlayer01Game01,listLocationsSalvoesPlayer01Game01,repositoryShips,repositorySalvoes,repositoryGamePlayer);
-        GamePlayer gamePlayerPlayer01Game01=boardPlayer01Game01.getBoard();
+        GamePlayer gamePlayerPlayer01Game01=boardPlayer01Game01.getBoard(Boolean.TRUE);
         List<Salvo> salvoesPlayer01Game01=gamePlayerPlayer01Game01.getSalvoes();
         updateSalvo(salvoesPlayer01Game01,"0000",statusSalvoFired);
         updateSalvo(salvoesPlayer01Game01,"0100",statusSalvoFired);
@@ -188,7 +188,7 @@ public class DataInitializer implements CommandLineRunner {
 
         Date gamePlayer02Date = new Date();
         CreateBoard boardPlayer02Game01 = new CreateBoard(Player02,Game01,gamePlayer02Date,listLocationsShipsPlayer02Game01,listLocationsSalvoesPlayer02Game01,repositoryShips,repositorySalvoes,repositoryGamePlayer);
-        GamePlayer gamePlayerPlayer02Game01=boardPlayer02Game01.getBoard();
+        GamePlayer gamePlayerPlayer02Game01=boardPlayer02Game01.getBoard(Boolean.FALSE);
         List<Salvo> salvoesPlayer02Game01=gamePlayerPlayer02Game01.getSalvoes();
 
         updateSalvo(salvoesPlayer02Game01,"0006",statusSalvoFired);
@@ -281,7 +281,7 @@ public class DataInitializer implements CommandLineRunner {
 
         Date gamePlayer03Date = new Date();
         CreateBoard boardPlayer03Game02 = new CreateBoard(Player03,Game02,gamePlayer03Date,listLocationsShipsPlayer03Game02,listLocationsSalvoesPlayer03Game02,repositoryShips,repositorySalvoes,repositoryGamePlayer);
-        GamePlayer gamePlayerPlayer03Game02=boardPlayer03Game02.getBoard();
+        GamePlayer gamePlayerPlayer03Game02=boardPlayer03Game02.getBoard(Boolean.FALSE);
         List<Salvo> salvoesPlayer03Game02=gamePlayerPlayer03Game02.getSalvoes();
         updateSalvo(salvoesPlayer03Game02,"0000",statusSalvoFired);
 
@@ -350,7 +350,7 @@ public class DataInitializer implements CommandLineRunner {
         Date gamePlayer04Date = new Date();
 
         CreateBoard boardPlayer04Game02 = new CreateBoard(Player04,Game02,gamePlayer04Date,listLocationsShipsPlayer04Game02,listLocationsSalvoesPlayer04Game02,repositoryShips,repositorySalvoes,repositoryGamePlayer);
-        GamePlayer gamePlayerPlayer04Game02=boardPlayer04Game02.getBoard();
+        GamePlayer gamePlayerPlayer04Game02=boardPlayer04Game02.getBoard(Boolean.TRUE);
         List<Salvo> salvoesPlayer04Game02=gamePlayerPlayer04Game02.getSalvoes();
 
         updateSalvo(salvoesPlayer04Game02,"0000",statusSalvoFired);
@@ -447,7 +447,7 @@ public class DataInitializer implements CommandLineRunner {
         Date gamePlayer05Date = new Date();
 
         CreateBoard boardPlayer05Game03 = new CreateBoard(Player05,Game03,gamePlayer05Date,listLocationsShipsPlayer05Game03,listLocationsSalvoesPlayer05Game03,repositoryShips,repositorySalvoes,repositoryGamePlayer);
-        GamePlayer gamePlayerPlayer05Game03=boardPlayer05Game03.getBoard();
+        GamePlayer gamePlayerPlayer05Game03=boardPlayer05Game03.getBoard(Boolean.TRUE);
         List<Salvo> salvoesPlayer05Game03=gamePlayerPlayer05Game03.getSalvoes();
         updateSalvo(salvoesPlayer05Game03,"0000",statusSalvoFired);
 
@@ -511,7 +511,7 @@ public class DataInitializer implements CommandLineRunner {
 
         Date gamePlayer06Date = new Date();
         CreateBoard boardPlayer06Game03 = new CreateBoard(Player06,Game03,gamePlayer06Date,listLocationsShipsPlayer06Game03,listLocationsSalvoesPlayer06Game03,repositoryShips,repositorySalvoes,repositoryGamePlayer);
-        GamePlayer gamePlayerPlayer06Game03=boardPlayer06Game03.getBoard();
+        GamePlayer gamePlayerPlayer06Game03=boardPlayer06Game03.getBoard(Boolean.FALSE);
         List<Salvo> salvoesPlayer06Game03=gamePlayerPlayer06Game03.getSalvoes();
 
         updateSalvo(salvoesPlayer06Game03,"0201",statusSalvoFired);
@@ -603,7 +603,7 @@ public class DataInitializer implements CommandLineRunner {
 
         Date gamePlayer07Date = new Date();
         CreateBoard boardPlayer07Game04 = new CreateBoard(Player07,Game04,gamePlayer07Date,listLocationsShipsPlayer07Game04,listLocationsSalvoesPlayer07Game04,repositoryShips,repositorySalvoes,repositoryGamePlayer);
-        GamePlayer gamePlayerPlayer07Game04=boardPlayer07Game04.getBoard();
+        GamePlayer gamePlayerPlayer07Game04=boardPlayer07Game04.getBoard(Boolean.TRUE);
 
         List<Salvo> salvoesPlayer07Game04=gamePlayerPlayer07Game04.getSalvoes();
 
@@ -664,7 +664,7 @@ public class DataInitializer implements CommandLineRunner {
 
         Date gamePlayer08Date = new Date();
         CreateBoard boardPlayer08Game04 = new CreateBoard(Player08,Game04,gamePlayer08Date,listLocationsShipsPlayer08Game04,listLocationsSalvoesPlayer08Game04,repositoryShips,repositorySalvoes,repositoryGamePlayer);
-        GamePlayer gamePlayerPlayer08Game04=boardPlayer08Game04.getBoard();
+        GamePlayer gamePlayerPlayer08Game04=boardPlayer08Game04.getBoard(Boolean.FALSE);
         List<Salvo> salvoesPlayer08Game04=gamePlayerPlayer08Game04.getSalvoes();
 
         updateSalvo(salvoesPlayer08Game04,"0201",statusSalvoFired);
@@ -747,7 +747,7 @@ public class DataInitializer implements CommandLineRunner {
 
         Date gamePlayer09Date = new Date();
         CreateBoard boardPlayer09Game05 = new CreateBoard(Player09,Game05,gamePlayer09Date,listLocationsShipsPlayer09Game05,listLocationsSalvoesPlayer09Game05,repositoryShips,repositorySalvoes,repositoryGamePlayer);
-        GamePlayer gamePlayerPlayer09Game05=boardPlayer09Game05.getBoard();
+        GamePlayer gamePlayerPlayer09Game05=boardPlayer09Game05.getBoard(Boolean.TRUE);
         List<Salvo> salvoesPlayer09Game05=gamePlayerPlayer09Game05.getSalvoes();
 
         updateSalvo(salvoesPlayer09Game05,"0000",statusSalvoFired);
@@ -807,7 +807,7 @@ public class DataInitializer implements CommandLineRunner {
 
         Date gamePlayer10Date = new Date();
         CreateBoard boardPlayer10Game05 = new CreateBoard(Player10,Game05,gamePlayer10Date,listLocationsShipsPlayer10Game05,listLocationsSalvoesPlayer10Game05,repositoryShips,repositorySalvoes,repositoryGamePlayer);
-        GamePlayer gamePlayerPlayer10Game05=boardPlayer10Game05.getBoard();
+        GamePlayer gamePlayerPlayer10Game05=boardPlayer10Game05.getBoard(Boolean.FALSE);
         List<Salvo> salvoesPlayer10Game05=gamePlayerPlayer10Game05.getSalvoes();
 
         updateSalvo(salvoesPlayer10Game05,"0001",statusSalvoFired);
@@ -881,7 +881,7 @@ public class DataInitializer implements CommandLineRunner {
         // To Create the Board of Player09 in Game06
         Date gamePlayer11Date = new Date();
         CreateBoard boardPlayer09Game06 = new CreateBoard(Player09,Game06,gamePlayer11Date,listLocationsShipsPlayer09Game06,listLocationsSalvoesPlayer09Game06,repositoryShips,repositorySalvoes,repositoryGamePlayer);
-        GamePlayer gamePlayerPlayer09Game06=boardPlayer09Game06.getBoard();
+        GamePlayer gamePlayerPlayer09Game06=boardPlayer09Game06.getBoard(Boolean.FALSE);
         List<Salvo> salvoesPlayer09Game06=gamePlayerPlayer09Game06.getSalvoes();
 
         updateSalvo(salvoesPlayer09Game06,"0000",statusSalvoFired);
@@ -934,7 +934,7 @@ public class DataInitializer implements CommandLineRunner {
         List<List<String>> listLocationsSalvoesPlayer10Game06 = createSalvoesList();
 
         CreateBoard boardPlayer10Game06 = new CreateBoard(Player10,Game06,gamePlayer12Date,listLocationsShipsPlayer10Game06,listLocationsSalvoesPlayer10Game06,repositoryShips,repositorySalvoes,repositoryGamePlayer);
-        GamePlayer gamePlayerPlayer10Game06=boardPlayer10Game06.getBoard();
+        GamePlayer gamePlayerPlayer10Game06=boardPlayer10Game06.getBoard(Boolean.TRUE);
 
         List<Salvo> salvoesPlayer10Game06=gamePlayerPlayer10Game06.getSalvoes();
 
@@ -1049,7 +1049,7 @@ public class DataInitializer implements CommandLineRunner {
             List<List<String>> listLocationsSalvoesPlayer07Game07 = new ArrayList<>();
 
             CreateBoard boardPlayer07Game07 = new CreateBoard(Player07,Game07,gamePlayer13Date,listLocationsShipsPlayer07Game07,listLocationsSalvoesPlayer07Game07,repositoryShips,repositorySalvoes,repositoryGamePlayer);
-            GamePlayer gamePlayerPlayer07Game07=boardPlayer07Game07.getBoard();
+            GamePlayer gamePlayerPlayer07Game07=boardPlayer07Game07.getBoard(Boolean.TRUE);
         //GamePlayer Second of the Game07
         Date gamePlayer14Date = new Date();
             List<String> locationShip5600 = new ArrayList<>();
@@ -1081,7 +1081,7 @@ public class DataInitializer implements CommandLineRunner {
             List<List<String>> listLocationsSalvoesPlayer08Game07 = new ArrayList<>();
             //GamePlayer First of the Game07
             CreateBoard boardPlayer08Game07 = new CreateBoard(Player08,Game07,gamePlayer14Date,listLocationsShipsPlayer08Game07,listLocationsSalvoesPlayer08Game07,repositoryShips,repositorySalvoes,repositoryGamePlayer);
-            GamePlayer gamePlayerPlayer08Game07=boardPlayer08Game07.getBoard();
+            GamePlayer gamePlayerPlayer08Game07=boardPlayer08Game07.getBoard(Boolean.FALSE);
 
     }
 }

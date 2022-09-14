@@ -56,7 +56,7 @@ public class CreateBoard {
         this.listLocationSalvoes = listLocationSalvoes;
     }
 
-    public GamePlayer getBoard() {
+    public GamePlayer getBoard(Boolean OnPlayingTurn) {
         List<Ship> shipList = new ArrayList<>();
         List<Salvo> salvoesList = new ArrayList<>();
         for(final List<String> locationShip : listLocationsShips) {
@@ -96,6 +96,7 @@ public class CreateBoard {
         }
 
         GamePlayer gamePlayer = new GamePlayer(game,player,gamePlayerDate,shipList,salvoesList);
+        gamePlayer.setOnPlayingTurn(OnPlayingTurn);
         gamePlayerRepository.save(gamePlayer);
 
         for (final Ship ship :shipList) {

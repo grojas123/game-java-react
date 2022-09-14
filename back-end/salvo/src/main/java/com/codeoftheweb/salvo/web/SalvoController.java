@@ -171,7 +171,10 @@ public class SalvoController {
         List<List<String>> listLocationsSalvoesCurrentPlayer = createSalvoesList();
         CreateBoard boardPlayerGame = new CreateBoard(currentPlayer,newGame,dateCreationGame,listLocationsShipsCurrentPlayer,listLocationsSalvoesCurrentPlayer,repositoryShips,repositorySalvoes,repositoryGamePlayer);
         //List<GamePlayer> BoardList =newGame.getGamePlayers();
-        return boardPlayerGame.getBoard();
+        GamePlayer boardSavedPlayerGame=boardPlayerGame.getBoard(Boolean.TRUE);
+        boardSavedPlayerGame.computeBoardStatus();
+        repositoryGamePlayer.save(boardSavedPlayerGame);
+        return boardSavedPlayerGame;
     };
     private LinkedHashMap FindShipFrontend(JSONObject listShipsFrontend,String shipname){
         LinkedHashMap ShipFound=new LinkedHashMap();
@@ -305,10 +308,11 @@ public class SalvoController {
             listLocationsShipsCurrentPlayer.add(locationShip04);
             List<List<String>> listLocationsSalvoesCurrentPlayer = createSalvoesList();
             CreateBoard boardPlayerGame = new CreateBoard(currentPlayer,gameToJoin,dateCreationGame,listLocationsShipsCurrentPlayer,listLocationsSalvoesCurrentPlayer,repositoryShips,repositorySalvoes,repositoryGamePlayer);
-            GamePlayer newBoard=boardPlayerGame.getBoard();
+            GamePlayer newBoard=boardPlayerGame.getBoard(Boolean.FALSE);
             newBoard.computeBoardStatus();
             newBoard.setOnPlayingTurn(Boolean.FALSE);
             GamePlayer newBoardSaved=repositoryGamePlayer.save(newBoard);
+
             return newBoardSaved;}
         else return new ResponseEntity<>("The game have a pair", HttpStatus.FORBIDDEN);
     };
@@ -317,19 +321,24 @@ public class SalvoController {
     public List<GamePlayer> getGamePlayer(@PathVariable Long gameid) {
          return repositoryGamePlayer.findByGame_Id(gameid);
     };
-private JSONObject getNamesPlayerOnGamePlayer(List<GamePlayer> listGamePlayer) {
+private JSONObject getDataOpponentPlayerGamePlayer(List<GamePlayer> listGamePlayer) {
     Player playerTemp=listGamePlayer.get(0).getPlayer();
+    List<Ship> playerShips=listGamePlayer.get(0).getShips();
+    List<Boolean> listStatusShipDestroyed=playerShips.stream().map(ship -> ship.getShipStatus().equals(categoriesStatusShips.DESTROYED)).collect(Collectors.toList());
+    int countShipsDestroyed= (int) listStatusShipDestroyed.stream().filter(a->a.equals(true)).count();
     String email = playerTemp.getEmail();
     String firstName=playerTemp.getFirstName();
     String lastName=playerTemp.getLastName();
-    JSONObject jsonPlayerData = new JSONObject();
-    jsonPlayerData.put("email",email);
-    jsonPlayerData.put("firstName",firstName);
-    jsonPlayerData.put("lastName",lastName);
+    JSONObject jsonDataOpponentData = new JSONObject();
+    jsonDataOpponentData.put("email",email);
+    jsonDataOpponentData.put("firstName",firstName);
+    jsonDataOpponentData.put("lastName",lastName);
+    jsonDataOpponentData.put("countShipsDestroyed",countShipsDestroyed);
     JSONObject jsonPlayer = new JSONObject();
-    jsonPlayer.put("player",jsonPlayerData);
+    jsonPlayer.put("player",jsonDataOpponentData);
     return jsonPlayer;
 };
+
 private JSONObject getEmptyPlayer(){
     String email ="";
     String firstName="";
@@ -363,7 +372,7 @@ private JSONObject getEmptyPlayer(){
             List<GamePlayer> gamePlayerOpponentUser= (List<GamePlayer>) gamePlayerListByGameId.stream().filter(byOpponentPlayer).collect(Collectors.toList());
             List<Object> boardActualPlayer = new ArrayList<Object>();
             if (gamePlayerOpponentUser.size()!=0) {
-                JSONObject PlayerOpponentNames=getNamesPlayerOnGamePlayer(gamePlayerOpponentUser);
+                JSONObject PlayerOpponentNames=getDataOpponentPlayerGamePlayer(gamePlayerOpponentUser);
                 //To create the board of the actual Player to return
                 boardActualPlayer.add(gamePlayerActual.get(0));
                 boardActualPlayer.add(PlayerOpponentNames);}

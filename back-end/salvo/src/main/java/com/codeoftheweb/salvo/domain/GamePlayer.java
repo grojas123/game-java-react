@@ -37,8 +37,9 @@ public class GamePlayer {
     private Date gamePlayerCreationDate;
     @Enumerated(EnumType.ORDINAL)
     public categoriesGamePlayerStatus GamePlayerStatus;
-
     public Boolean onPlayingTurn;
+
+    public Integer countShipsDestroyed=0;
 
     public GamePlayer() { }
     public GamePlayer(Game game, Player player,Date gamePlayerCreationDate, List<Ship> ships,List<Salvo> salvoes) {
@@ -119,6 +120,14 @@ public class GamePlayer {
         this.onPlayingTurn = onPlayingTurn;
     }
 
+    public Integer getCountShipsDestroyed() {
+        return countShipsDestroyed;
+    }
+
+    public void setCountShipsDestroyed(Integer countShipsDestroyed) {
+        this.countShipsDestroyed = countShipsDestroyed;
+    }
+
     public categoriesGamePlayerStatus computeBoardStatus() {
         String salvoHit="03";
         int totalCellShips=15;
@@ -131,7 +140,7 @@ public class GamePlayer {
         int countShipsCleans= (int) checkShipsStatusClean.stream().filter(a->a.equals(true)).count();
         int countSalvoHits= (int) checkSalvosStatusHit.stream().filter(a->a.equals(true)).count();
         int countShipsDestroyed= (int) checkShipsStatusDestroyed.stream().filter(a->a.equals(true)).count();
-
+        setCountShipsDestroyed(countShipsDestroyed);
         if(countSalvoHits==totalCellShips){
             GamePlayerStatus=categoriesGamePlayerStatus.WON;
         } else if(countShipsCleans==totalCountShips || countShipsDestroyed<totalCountShips){

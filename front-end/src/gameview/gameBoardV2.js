@@ -212,7 +212,6 @@ export const GameBoardV2=()=>{
             // <div class='text-white bg-success'>0702-01<div/> and then extract the status part "01"
             const regExtractLocation = new RegExp(/(?<=>)(.*\n?)(?=<)/);
             let salvoStatus="0"+elementToUpdate.gridstackNode.content.match(regExtractLocation)[0].substring(6,8);
-            //console.log("salvoPosition ",slavoPosition,"salvoStatus ",salvoStatus,"gameid ",gameid)
         let salvoFired="02";
             switch (salvoStatus){
                 case "01":
@@ -337,7 +336,13 @@ export const GameBoardV2=()=>{
         // {...data} is for transform the array in an object because the end point is expecting an object
         UpdateShips({...data},gameid)
     }
-
+const startToPlay=()=>{
+    let grid=document.getElementById('grid1').gridstack;
+    let itemOptions= {noMove:true,noResize:true,locked:true}
+    let gridElements=grid.getGridItems();
+    gridElements.map((element)=>(grid.update(element,itemOptions)));
+    saveShipsBackend(gameid);
+};
 
 
     const updateElement=()=>{
@@ -366,15 +371,17 @@ export const GameBoardV2=()=>{
 console.log(databackend[0].onPlayingTurn)
     return (
         <div >
-            {<button onClick={()=>addWidget()}>add Items "grid-stack"</button>}
+        {/*    {<button onClick={()=>addWidget()}>add Items "grid-stack"</button>}
             {<button onClick={()=>getGrid()}>Get the Grid "grid-stack"</button>}
-           {/* {<button onClick={()=>updateElement()}>Update element</button>}*/}
+            {<button onClick={()=>updateElement()}>Update element</button>}
             {<button onClick={()=>stopDragDrop()}>Stop Drag and Drop</button>}
             {<button onClick={()=>changeContent()}>Change content</button>}
-            {<button onClick={()=>saveShipsBackend(gameid)}>Update the positions ships Backend</button>}
-            <p>Game:{databackend[0].game.gameName} BoardStatus {databackend[0].gamePlayerStatus}</p>
-            <p>Players: {databackend[0].player.email} vs {databackend[1].player.email}</p>
-            <p>onPlayingTurn {databackend[0].onPlayingTurn+''}</p>
+            {<button onClick={()=>saveShipsBackend(gameid)}>Update the positions ships Backend</button>}*/}
+            {<button onClick={()=>startToPlay(gameid)}>Start to Play</button>}
+            <p>Game:{databackend[0].game.gameName} BoardStatus {databackend[0].gamePlayerStatus} My Ships Destroyed {databackend[0].countShipsDestroyed}/5</p>
+            <p>Players: {databackend[0].player.email} Turn {databackend[0].onPlayingTurn+''} vs {databackend[1].player.email}</p>
+            <p>Opponent Ships Destroyed {databackend[1].player.countShipsDestroyed}/5</p>
+            {/*<p>onPlayingTurn {databackend[0].onPlayingTurn+''}</p>*/}
             <p>Ships</p>
             <div className="grid-stack border border-primary" id="grid1"></div>
             <p>Salvos</p>
